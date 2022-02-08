@@ -1,0 +1,9 @@
+:local(.styles) {
+  .button {
+    border-radius: $buttonRadius;
+    background-color: $secondary;
+    color: white;
+    border-color: $secondary;
+  }
+
+}

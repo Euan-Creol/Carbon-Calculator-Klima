@@ -1,0 +1,10 @@
+:local(.styles) {
+  border-radius: 20px;
+  background-color: $white;
+
+  .stripe-btn {
+    width: 100%;
+    border-radius: inherit;
+  }
+
+}

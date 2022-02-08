@@ -1,0 +1,16 @@
+:local(.styles){
+  .root {
+    &.disabled {
+      svg {
+        circle {
+          fill: $disabled;
+        }
+      }
+      svg {
+        text {
+          fill: $white;
+        }
+      }
+    }
+  }
+}

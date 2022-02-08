@@ -1,0 +1,57 @@
+body {
+  font-family: 'CenturyGothic', sans-serif;
+  font-weight: 300;
+  color: inherit;
+}
+
+h1,
+h2 {
+  color: $white;
+  font-family: 'CenturyGothic-Bold', sans-serif;
+  font-weight: 300;
+  font-size: 32px;
+}
+h3 {
+  color: $primary;
+  font-family: 'CenturyGothic-Bold', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  min-width: 175px;
+}
+h4,
+h5,
+h6 {
+  font-family: 'CenturyGothic', sans-serif;
+  font-weight: 300;
+}
+
+p {
+  font-family: 'CenturyGothic', sans-serif;
+  font-size: 14px;
+}
+
+@font-face {
+  font-family: 'DJB-Digital';
+  src: url('assets/fonts/DJB-Digital.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CenturyGothic-Regular';
+  src: url('assets/fonts/CenturyGothic-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'CenturyGothic';
+  src: url('assets/fonts/CenturyGothic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'CenturyGothic-Bold';
+  src: url('assets/fonts/CenturyGothic-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

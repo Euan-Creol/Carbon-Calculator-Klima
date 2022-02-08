@@ -1,0 +1,22 @@
+:local(.styles) {
+
+  .flight-button {
+    text-align: center;
+    font-size: 50px ;
+  }
+  .region-title {
+    max-height: 10px;
+    min-width: 150px!important;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .flight-container {
+    max-height: 10px
+  }
+
+  @media (max-width: 500px) {
+    .button-options {
+      min-width: 100%;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+:local(.styles) {
+  .panel {
+    background-color: $creolbkgd;
+  }
+  .expansion-heading {
+    font-family: inherit;
+    color: $primary;
+  }
+  .panel-summary {
+    margin: auto;
+    background-color: $white;
+    border-radius: 30px;
+    max-height: 48px;
+    max-width: 400px;
+    min-height: 48px!important;
+  }
+  .panel-details {
+    padding: 0px;
+  }
+}

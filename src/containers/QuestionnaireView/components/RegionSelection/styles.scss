@@ -1,0 +1,16 @@
+:local(.styles) {
+  .Flag{
+    max-width: 50px;
+  }
+  .average-footprint{
+    max-font-size: 10pt;
+  }
+  .select-menu {
+    color: white;
+    font-family: CenturyGothic, sans-serif;
+    border-bottom: 2px solid white;
+  }
+  .select-icon {
+    color: $white;
+  }
+}

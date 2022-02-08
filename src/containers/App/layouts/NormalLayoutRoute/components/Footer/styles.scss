@@ -1,0 +1,29 @@
+:local(.styles) {
+  background-color: transparent;
+  .add-btn {
+    margin-top: -144px;
+  }
+  .second-btn {
+    margin: auto;
+    padding: 6px;
+  }
+
+  .container {
+    padding-bottom: 0px;
+  }
+  .dial-container {
+    padding-bottom: 0px;
+    align-items: center;
+    align-content: center;
+  }
+
+  .bottom-navigation {
+    //box-shadow:0 0 1px rgba(0,0,0,0.4);
+  }
+
+  @media (min-width: 1100px) {
+    .bottom-navigation {
+      text-align: center;
+    }
+  }
+}

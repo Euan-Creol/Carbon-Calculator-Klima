@@ -1,0 +1,33 @@
+{
+  "Roadmap": {
+    "1": {
+      "panelHeading": "Helping you reduce",
+      "panelDetails": "The main goal of Creol is to help people reduce their Carbon footprint.\n\nWe plan integrations with other apps you frequently use to choose your transportation and products with. If you choose the lower carbon routes, we will reward you and show how your annual footprint is reducing.\n\nWe look forward to launching this in the near future to fulfil our mission to help people reduce their footprint."
+    },
+    "2": {
+      "panelHeading": "Gifting and selling Credits",
+      "panelDetails": "We will soon be releasing the ability to send Carbon credits to other Creol users or indeed anyone with a Crypto wallet. Whether you sell, buy or gift them is up to you."
+    },
+    "3": {
+      "panelHeading": "Carbon Market Place",
+      "panelDetails": "For people who want to go beyond our subscriptions in terms of impact we will be launching our Carbon Market Place, here you can buy credits from a number of products that we will be launching from Solar to Wind and other green projects around the world carefully selected for you."
+    },
+    "4": {
+      "panelHeading": "Planet partners",
+      "panelDetails": "To help you lower your impact further, we will create a portal to third party planet partners.\n\nThere are so many great impact companies selling products from baby nappies to bags, food and services.\n\nIf you know of a great company with proven green impact credentials or even if you are one yourself, get in touch and help us build a great community.\nWe’d love to hear from you!"
+    },
+    "5": {
+      "panelHeading": "Unique impact tokens",
+      "panelDetails": "We’ve always been about going beyond what is traditionally available and possible, so therefore we will be launching our Unique impact tokens.\n\nThese will be digitally unique, feature custom artwork and stories to help support, fund and initiate new worthwhile causes and projects that create a greener planet.\n\nWe are actively looking for great new collaborators both on the project side as well as the artwork, if this is something you’re interested in or you know someone who is, reach out to us!"},
+    "6": {
+      "panelHeading": "More payment options",
+      "panelDetails": "Currently we have an amazing provider in Stripe to accept 135 currencies using three different card providers.\n\nWe will be expanding this to Cryptocurrencies to accept DAI, USDC, USDT and others"},
+    "7": {
+      "panelHeading": "Business subscriptions",
+      "panelDetails": "If you love our product and want your business to take up this challenge for it’s employees, then our business subscriptions are for you.\n\nYou may also be interested in our main IoT product for buildings, our IoT control system to help reduce the Carbon impact of buildings powered with Blockchain.\n\nSee more here at www.creol.io\n"},
+    "8": {
+      "panelHeading": "Carbon Streaming",
+      "panelDetails": "You may be wondering why the name Creol Carbon Stream? Well Creol is our company name and it stands for Creation to Control, which came from our other product, our amazing Blockchain enabled IoT control system to help reduce the Carbon impact of buildings.\n\nSo why Carbon Stream, well it’s a feature that’s right around the corner that gave us that name. The ability to live stream Carbon credits incrementally as you use them. The principle is much like when you stream music from a provider like Spotify. You don’t get provided with all the music you want to listen to all at once, listening to all those beats all at once would sound like a mess! So you are slowly delivered with the songs to your device in time for you to listen without any breaks or stutters. We want to send you your Carbon credits the same way. Meaning you are delivered Carbon Credits not in whole or half tones, but in microgram increments as you use them.\nSo why is that relevant? Well, as we develop our integrations to other apps you use, we can better understand your own footprint. Currently we use official statistics from The World Bank, but as we better understand your unique footprint, we can also provide you Carbon as you personally expend it and only charge you for what you actually use.\nIt’s just fairer that way and we believe in transparency and fairness"}
+  }
+
+}

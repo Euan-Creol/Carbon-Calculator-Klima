@@ -1,0 +1,30 @@
+import keyMirror from 'keymirror'
+
+export default keyMirror({
+  OPEN_MODAL: null,
+  CLOSE_MODAL: null,
+  OPEN_CONFIRM_MODAL: null,
+  CLOSE_CONFIRM_MODAL: null,
+  OPEN_LEFT_NAV: null,
+  CLOSE_LEFT_NAV: null,
+  SET_PROVIDER: null,
+  ADD_ASSET: null,
+  SET_ACCOUNT: null,
+  SET_CONTRACT: null,
+  SET_ACCOUNT_EMAIL: null,
+  CLEAR_ACCOUNT: null,
+  CLEAR_ASSETS: null,
+  CHECK_ASSET: null,
+  CREATE_ASSET_HASH: null,
+  ASSET_ERROR: null,
+  OPEN_RIGHT_DRAWER: null,
+  CLOSE_RIGHT_DRAWER: null,
+  SET_AUTHENTICATION: null,
+  CLEAR_AUTHENTICATION: null,
+  SET_DRIZZLE: null,
+  CLEAR_DRIZZLE: null,
+  CLEAR_WEB3: null,
+  SET_SUBSCRIPTION: null,
+  CLEAR_SUBSCRIPTION: null,
+  SET_FOOTPRINT: null
+})

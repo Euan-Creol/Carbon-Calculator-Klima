@@ -1,0 +1,45 @@
+:local(.styles) {
+
+  width: 100%;
+  background-color: $primary;
+  margin: 0px auto auto;
+  font-size: 14px;
+  .footer {
+    background-color: $primary;
+    max-width: $viewWidthLg/2;
+    margin: auto;
+  }
+  @media (max-width: 500px) {
+    .footer {
+      width: 100%;
+    }
+  }
+  .footer-logo {
+    max-width: 140pt;
+  }
+  .footer-logo-item {
+    text-align: left;
+  }
+  .footer-links {
+    color: $white;
+  }
+  .social-icons {
+    color: $white;
+  }
+  .footer-span {
+    color: $white;
+    font-weight: 900;
+  }
+  .link-box {
+    max-height: 120px
+  }
+  .twitter-icon {
+    text-align: right;
+  }
+  .instagram-icon {
+    text-align: left;
+  }
+  .copyright-row {
+    max-height: 50px;
+  }
+}
