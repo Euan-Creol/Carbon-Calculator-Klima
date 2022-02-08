@@ -1,5 +1,15 @@
 :local(.styles) {
 
+  .Home_heroGradient__hPNv9 {
+    min-height: 100vh;
+    height: 100%;
+    width: 100vw;
+    background: -moz-linear-gradient(335deg,#121212 21.2%,hsla(0,0%,7%,.75) 44.88%,hsla(0,0%,7%,0) 89.75%);
+    background: linear-gradient(115deg,#121212 21.2%,hsla(0,0%,7%,.75) 44.88%,hsla(0,0%,7%,0) 89.75%);
+    position: absolute;
+    z-index: -1;
+  }
+
   .landing-h2 {
     color: $white;
   }

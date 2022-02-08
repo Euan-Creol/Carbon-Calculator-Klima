@@ -12,7 +12,7 @@ import {
 }                                           from '@material-ui/core'
 import LogoGif                              from 'assets/images/LogoCroppedCenturyGothic.gif'
 import AccomSelect                          from './components/AccomadationSelect'
-import CoverImage                           from '../../assets/images/LandingView/Optimized-Images_Colourised2.png'
+import CoverImage                           from '../../assets/images/green-wormhole.jpg'
 import RegionSelect                         from './components/RegionSelection'
 import { styles }                           from './styles.scss'
 import Question                             from './components/Question'
@@ -528,17 +528,21 @@ class QuestionnaireView extends Component {
 
               return (
                 <ReactFullpage.Wrapper>
-                  <div className="section">
+                  <div className="section" style={{
+                    backgroundImage: `url(${CoverImage})`,
+                    backgroundSize: 'cover',
+                  }}>
                     <div
                       className="slide"
                       style={{
-                        backgroundImage: `url(${CoverImage})`,
-                        backgroundSize: 'cover'
-                      }}
+                        background: 'linear-gradient(115deg,#121212 21.2%,hsla(0,0%,7%,.75) 44.88%,hsla(0,0%,7%,0) 89.75%)'
+                      }}>
+
                     >
                       <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
                         <Grid item xs>
                           <h2>Calculate your carbon footprint</h2>
+                          <h2>with Creol and Offset with Klima Infinity</h2>
                         </Grid>
                         <Grid item xs style={{ paddingBottom: 100 }}>
                           <Button
