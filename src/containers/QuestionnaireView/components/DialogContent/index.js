@@ -52,7 +52,7 @@ class DialogContent extends Component {
         return (
             <div className={ styles }>
                 <Dialog open={ModalOn} onBackdropClick={() => { this.handleClose(this.props) }}>
-                    <Grid container direction='column' justify="center" alignItems="center" className="dialog-box" style={{backgroundColor:"#5f4b8b", height:500}}>
+                    <Grid container direction='column' justify="center" alignItems="center" className="dialog-box" style={{backgroundColor:"#33972d", height:500}}>
                         <Grid item xs>
                             <img src={Subscription} alt={Subscription} style={{height:150, width:150, paddingTop: 20}}/>
                         </Grid>

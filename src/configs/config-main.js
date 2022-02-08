@@ -1,8 +1,8 @@
 /* Main app configs go here */
 
 export const appConfig = {
-  name: 'Creol Control dApp',
-  shortName: 'CreoldApp',
-  description: 'Web Interface for Creol\'s dApp',
+  name: 'Creol - Klima Calculator',
+  shortName: 'CreolKlimaCalc',
+  description: 'Calculator for KLIMA offsetting by Creol',
   splashScreenBackground: '#ffffff'
 }
