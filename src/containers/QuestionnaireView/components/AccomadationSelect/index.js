@@ -210,7 +210,7 @@ class AccomSelect extends Component {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  defaultValue = ""
+                  defaultValue=""
                   onChange={event => this.UpdateFootprint(event.target.value, 3, this.props)}
                 >
                   {this.returnSelectArray(QuestionData, QuestionNumber, 3, RegionID)}

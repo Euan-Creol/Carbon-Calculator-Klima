@@ -58,10 +58,10 @@
     },
     "8": {
       "Question": "What is your living situation?",
-      "UKOption": [["Mid Terrace",0.05917],["Flat",0.06],["End Terrace",0.07333],["Semi-detached",0.08167],["Bungalow",0.0825],["Terrace",0.0883]],
-      "EUOption": [["Mid Terrace",0.05917],["Flat",0.06],["End Terrace",0.07333],["Semi-detached",0.08167],["Bungalow",0.0825],["Terrace",0.0883]],
-      "USOption": [["Mid Terrace",0.05917],["Flat",0.06],["End Terrace",0.07333],["Semi-detached",0.08167],["Bungalow",0.0825],["Terrace",0.0883]],
-      "WorldOption": [["Mid Terrace",0.05917],["Flat",0.06],["End Terrace",0.07333],["Semi-detached",0.08167],["Bungalow",0.0825],["Terrace",0.0883]],
+      "UKOption": [["Mid Terrace",0.5917],["Flat",0.6],["End Terrace",0.7333],["Semi-detached",0.8167],["Bungalow",0.825],["Terrace",0.883]],
+      "EUOption": [["Mid Terrace",0.5917],["Flat",0.6],["End Terrace",0.7333],["Semi-detached",0.8167],["Bungalow",0.825],["Terrace",0.883]],
+      "USOption": [["Mid Terrace",0.5917],["Flat",0.6],["End Terrace",0.7333],["Semi-detached",0.8167],["Bungalow",0.825],["Terrace",0.883]],
+      "WorldOption": [["Mid Terrace",0.5917],["Flat",0.6],["End Terrace",0.7333],["Semi-detached",0.8167],["Bungalow",0.825],["Terrace",0.883]],
       "Options2": [["1",1],["2",2],["3",3],["4",4],["5",5],["6+",6]],
       "Options3": [["0",1],["1",2],["2",3],["3",4],["4",5],["5",6],["6+",7]]
     },

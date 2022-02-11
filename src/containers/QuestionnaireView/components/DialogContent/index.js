@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {Dialog, Grid} from "@material-ui/core";
-import Subscription from '../../../../assets/images/AccountView/Eco_Purple_Burner@3x.png'
 import EmailSignup from "../EmailSignup";
 import PropTypes from "prop-types";
 import { styles } from './styles.scss'
@@ -51,10 +50,9 @@ class DialogContent extends Component {
 
         return (
             <div className={ styles }>
-                <Dialog open={ModalOn} onBackdropClick={() => { this.handleClose(this.props) }}>
+                <Dialog open={ModalOn} onClose={() => { this.handleClose(this.props) }}>
                     <Grid container direction='column' justify="center" alignItems="center" className="dialog-box" style={{backgroundColor:"#33972d", height:500}}>
                         <Grid item xs>
-                            <img src={Subscription} alt={Subscription} style={{height:150, width:150, paddingTop: 20}}/>
                         </Grid>
                         <Grid item xs>
                             <h2 style={{padding:20}} align="center">

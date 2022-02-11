@@ -2,7 +2,7 @@ import React, { Component }                 from 'react'
 import ReactFullpage                        from '@fullpage/react-fullpage'
 import { withRouter }                       from 'react-router-dom'
 import MetaTags                             from 'react-meta-tags'
-import { PieChart } from 'react-minimal-pie-chart'
+import { PieChart }                         from 'react-minimal-pie-chart'
 import {
   Button,
   Grid,
@@ -10,17 +10,16 @@ import {
   Divider,
   Card
 }                                           from '@material-ui/core'
-import LogoGif                              from 'assets/images/LogoCroppedCenturyGothic.gif'
+import ReactPlayer                          from 'react-player'
 import AccomSelect                          from './components/AccomadationSelect'
 import CoverImage                           from '../../assets/images/green-wormhole.jpg'
+import LogoGif                              from '../../assets/images/LogoGif.gif'
 import RegionSelect                         from './components/RegionSelection'
 import { styles }                           from './styles.scss'
 import Question                             from './components/Question'
 import QuestionCheckbox                     from './components/Checkbox'
 import FlightCounter                        from './components/FlightCounter'
 import LinearWithValueLabel                 from './components/LinearProgressWithLabel'
-import DialogContent                        from './components/DialogContent'
-
 
 /*
 The parent component incorporating the calculator questions, components and result display
@@ -442,7 +441,7 @@ class QuestionnaireView extends Component {
                 style={{
                   color: 'lightGrey'
                 }}
-                variant="static"
+                variant="determinate"
                 size={120}
                 thickness={6}
                 value={100}
@@ -451,10 +450,10 @@ class QuestionnaireView extends Component {
             <div className="circular-progress-transport">
               <CircularProgress
                 style={{
-                  color: 'primary',
+                  color: '#33972d',
                   opacity: 1
                 }}
-                variant="static"
+                variant="determinate"
                 size={120}
                 thickness={6}
                 value={(TransportNo / 18) * 100}
@@ -463,10 +462,10 @@ class QuestionnaireView extends Component {
             <div className="circular-progress-energy">
               <CircularProgress
                 style={{
-                  color: 'primary',
+                  color: '#33972d',
                   opacity: 0.7
                 }}
-                variant="static"
+                variant="determinate"
                 size={120}
                 thickness={6}
                 value={(EnergyNo / 18) * 100}
@@ -475,10 +474,10 @@ class QuestionnaireView extends Component {
             <div className="circular-progress-food">
               <CircularProgress
                 style={{
-                  color: 'primary',
+                  color: '#33972d',
                   opacity: 0.4
                 }}
-                variant="static"
+                variant="determinate"
                 size={120}
                 thickness={6}
                 value={(FoodNo / 18) * 100}
@@ -487,10 +486,10 @@ class QuestionnaireView extends Component {
             <div className="circular-progress-extras">
               <CircularProgress
                 style={{
-                  color: 'primary',
+                  color: '#33972d',
                   opacity: 0.1
                 }}
-                variant="static"
+                variant="determinate"
                 size={120}
                 thickness={6}
                 value={(ExtrasNo / 18) * 100}
@@ -539,7 +538,7 @@ class QuestionnaireView extends Component {
                       }}>
 
                     >
-                      <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
+                      <Grid container direction="column" justifyContent="center" alignItems="center" spacing={1}>
                         <Grid item xs>
                           <h2>Calculate your carbon footprint</h2>
                           <h2>with Creol and Offset with Klima Infinity</h2>
@@ -554,12 +553,6 @@ class QuestionnaireView extends Component {
                           >Take the Questionnaire!
                           </Button>
                         </Grid>
-                        <Button
-                          onClick={() =>
-                            this.EndQuestionnaire(fullpageApi)}
-                        >
-                          Skipppp
-                        </Button>
                         <Grid item xs>
                           <RegionSelect onChange={RegionID => this.UpdateRegion(RegionID)} displayText />
                         </Grid>
@@ -568,10 +561,10 @@ class QuestionnaireView extends Component {
                   </div>
                   <div className="section">
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={0}
@@ -586,10 +579,10 @@ class QuestionnaireView extends Component {
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={1}
@@ -608,10 +601,10 @@ class QuestionnaireView extends Component {
                     </div>
 
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={2}
@@ -627,10 +620,10 @@ class QuestionnaireView extends Component {
                     </div>
 
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={3}
@@ -645,10 +638,10 @@ class QuestionnaireView extends Component {
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={4}
@@ -663,10 +656,10 @@ class QuestionnaireView extends Component {
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={5}
@@ -681,10 +674,10 @@ class QuestionnaireView extends Component {
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" spacing={1} justify="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ paddingTop: 70 }}>
+                          <Grid container direction="column" spacing={1} justifyContent="center" alignItems="center">
+                            <Grid item xs={12} md={6} style={{ paddingTop: 70, paddingBottom: 30 }}>
                               <FlightCounter
                                 QuestionNumber={6}
                                 RegionID={RegionID}
@@ -706,10 +699,10 @@ class QuestionnaireView extends Component {
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={7}
@@ -748,10 +741,10 @@ class QuestionnaireView extends Component {
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs >
                               <Question
                                 QuestionNumber={9}
@@ -766,10 +759,10 @@ class QuestionnaireView extends Component {
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center" spacing={2}>
+                          <Grid container direction="column" justifyContent="center" alignItems="center" spacing={2}>
                             <Grid item xs>
                               <QuestionCheckbox
                                 QuestionNumber={10}
@@ -799,10 +792,10 @@ class QuestionnaireView extends Component {
                   </div>
                   <div className="section">
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={11}
@@ -817,10 +810,10 @@ class QuestionnaireView extends Component {
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={12}
@@ -835,10 +828,10 @@ class QuestionnaireView extends Component {
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={13}
@@ -854,10 +847,10 @@ class QuestionnaireView extends Component {
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={14}
@@ -874,10 +867,10 @@ class QuestionnaireView extends Component {
                   </div>
                   <div className="section">
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={15}
@@ -893,10 +886,10 @@ class QuestionnaireView extends Component {
                     </div>
 
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <Question
                                 QuestionNumber={16}
@@ -912,10 +905,10 @@ class QuestionnaireView extends Component {
                     </div>
 
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs />
                         <Grid item xs={12} md={6}>
-                          <Grid container direction="column" justify="center" alignItems="center">
+                          <Grid container direction="column" justifyContent="center" alignItems="center">
                             <Grid item xs>
                               <QuestionCheckbox
                                 QuestionNumber={17}
@@ -968,62 +961,33 @@ class QuestionnaireView extends Component {
                       <h3 className="results-value">{TotalFootprint.toFixed(1)}</h3>
                       <h3 className="results-unit">Tons CO2e</h3>
                       <div className={`results-container${ResultsOn}`} />
-
-                      {/*
-                        <PieChart
-                          animate
-                          animationDuration={2000}
-                          animationEasing="ease-out"
-                          radius={25}
-                          startAngle={0}
-                          paddingAngle={5}
-                          labelStyle={{
-                            fontSize: '5px',
-                            fill: '#000'
-                          }}
-                          labelPosition={63}
-                          lineWidth={30}
-                          data={
-                            [
-                              { title: 'Transport', value: 3, color: '#800080' },
-                              { title: 'Energy', value: 1, color: '#cd34cd' },
-                              { title: 'Food', value: 2, color: '#e77ae7' },
-                              { title: 'Extras', value: 4, color: '#f5b8f5' }
-                            ]
-                            /*
-                            [
-                            { title: 'Transport', value: CarFootprint + MotorcycleFootprint + TrainFootprint + BusFootprint + FlightFootprint, color: '#800080' },
-                            { title: 'Energy', value: HomeFootprint + HomeImprovements, color: '#cd34cd' },
-                            { title: 'Food', value: FoodFootprint + RestaurantFootprint, color: '#e77ae7' },
-                            { title: 'Extras', value: FashionFootprint + HotelFootprint + AccessoryFootprint, color: '#f5b8f5' }
-                          ]
-                          */
-                      }
-                      />
-                      */}
-
                       <h4>*This is only a rough estimate of your total carbon footprint</h4>
-                      <Button
-                        variant="outlined"
-                        className="question-button"
-                        color="primary"
-                        onClick={() =>
-                          fullpageApi.moveTo(6, 1)}
-                      >Detailed Breakdown
-                      </Button>
-                      <Button
-                        variant="contained"
-                        className="question-button"
-                        color="primary"
-                        onClick={() =>
-                          fullpageApi.moveTo(7, 0)}
-                      >Reducing your footprint
-                      </Button>
-
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center" style={{ paddingTop: 30 }}>
+                        <Grid item xs={12} md={3}>
+                          <Button
+                            variant="outlined"
+                            className="question-button"
+                            color="primary"
+                            onClick={() =>
+                              fullpageApi.moveTo(6, 1)}
+                          >Detailed Breakdown
+                          </Button>
+                        </Grid>
+                        <Grid item xs={12} md={3}>
+                          <Button
+                            variant="contained"
+                            className="question-button"
+                            color="primary"
+                            onClick={() =>
+                              fullpageApi.moveTo(7, 0)}
+                          >Reducing your footprint
+                          </Button>
+                        </Grid>
+                      </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
-                        <Grid container direction="column" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
+                        <Grid container direction="column" spacing={0} justifyContent="center" alignItems="center">
                           <Grid item xs={12} md={6}>
                             <h1 className="results-h1">Footprint Breakdown</h1>
                           </Grid>
@@ -1031,7 +995,7 @@ class QuestionnaireView extends Component {
                             <h3>Transport</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((CarFootprint + MotorcycleFootprint + TrainFootprint + BusFootprint + FlightFootprint) / TotalFootprint) * 100} />
                               </Grid>
@@ -1041,7 +1005,7 @@ class QuestionnaireView extends Component {
                             <h3>Home</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((HomeFootprint + HomeImprovements) / TotalFootprint) * 100} />
                               </Grid>
@@ -1051,7 +1015,7 @@ class QuestionnaireView extends Component {
                             <h3>Food</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((FoodFootprint + RestaurantFootprint) / TotalFootprint) * 100} />
                               </Grid>
@@ -1061,53 +1025,48 @@ class QuestionnaireView extends Component {
                             <h3>Extras</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((HotelFootprint + FashionFootprint + AccessoryFootprint) / TotalFootprint) * 100} />
                               </Grid>
                             </Grid>
                           </Grid>
-                          <Grid item xs={12} md={6}>
-                            <Button
-                              variant="outlined"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(6, 2)}
-                            >Transport
-                            </Button>
-                          </Grid>
-                          <Grid item xs={12} md={6}>
-                            <Button
-                              variant="contained"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(7, 0)}
-                            >Reducing your footprint
-                            </Button>
+                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center" style={{ paddingTop: 30 }}>
+                            <Grid item xs={12} md={3}>
+                              <Button
+                                variant="outlined"
+                                className="question-button"
+                                color="primary"
+                                onClick={() =>
+                                  fullpageApi.moveTo(6, 2)}
+                              >Transport
+                              </Button>
+                            </Grid>
+                            <Grid item xs={12} md={3}>
+                              <Button
+                                variant="contained"
+                                className="question-button"
+                                color="primary"
+                                onClick={() =>
+                                  fullpageApi.moveTo(7, 0)}
+                              >Reducing your footprint
+                              </Button>
+                            </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
-                        <Grid container direction="column" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
+                        <Grid container direction="column" spacing={0} justifyContent="center" alignItems="center">
                           <Grid item xs={12} md={6}>
                             <h1 className="results-h1">Transport</h1>
-                          </Grid>
-                          <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
-                              <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                                <LinearWithValueLabel value={((CarFootprint + MotorcycleFootprint + TrainFootprint + BusFootprint + FlightFootprint) / TotalFootprint) * 100} />
-                              </Grid>
-                            </Grid>
                           </Grid>
                           <Grid item xs={12} md={6}>
                             <h3>Car</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((CarFootprint) / TotalFootprint) * 100} />
                               </Grid>
@@ -1117,7 +1076,7 @@ class QuestionnaireView extends Component {
                             <h3>Motorcycle</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((MotorcycleFootprint) / TotalFootprint) * 100} />
                               </Grid>
@@ -1127,7 +1086,7 @@ class QuestionnaireView extends Component {
                             <h3>Bus</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((BusFootprint) / TotalFootprint) * 100} />
                               </Grid>
@@ -1137,7 +1096,7 @@ class QuestionnaireView extends Component {
                             <h3>Train</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((TrainFootprint) / TotalFootprint) * 100} />
                               </Grid>
@@ -1147,44 +1106,48 @@ class QuestionnaireView extends Component {
                             <h3>Flights</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((FlightFootprint) / TotalFootprint) * 100} />
                               </Grid>
                             </Grid>
                           </Grid>
-                          <Grid item xs={12} md={6}>
-                            <Button
-                              variant="outlined"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(6, 3)}
-                            >Home
-                            </Button>
-                            <Button
-                              variant="contained"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(7, 0)}
-                            >Reducing your footprint
-                            </Button>
+                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center" style={{ paddingTop: 30 }}>
+                            <Grid item xs={12} md={3}>
+                              <Button
+                                variant="outlined"
+                                className="question-button"
+                                color="primary"
+                                onClick={() =>
+                                  fullpageApi.moveTo(6, 3)}
+                              >Home
+                              </Button>
+                            </Grid>
+                            <Grid item xs={12} md={3}>
+                              <Button
+                                variant="contained"
+                                className="question-button"
+                                color="primary"
+                                onClick={() =>
+                                  fullpageApi.moveTo(7, 0)}
+                              >Reducing your footprint
+                              </Button>
+                            </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
-                        <Grid container direction="column" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
+                        <Grid container direction="column" spacing={0} justifyContent="center" alignItems="center">
                           <Grid item xs={12} md={6}>
                             <h1 className="results-h1">Home</h1>
                           </Grid>
                           <Grid item xs={12} md={6}>
-                            <h3>Home</h3>
+                            <h3>Energy Usage</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((HomeFootprint) / TotalFootprint) * 100} />
                               </Grid>
@@ -1194,36 +1157,40 @@ class QuestionnaireView extends Component {
                             <h3>Home Improvements</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((HomeImprovements) / TotalFootprint) * 100} />
                               </Grid>
                             </Grid>
                           </Grid>
-                          <Grid item xs={12} md={6}>
-                            <Button
-                              variant="outlined"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(6, 4)}
-                            >Food
-                            </Button>
-                            <Button
-                              variant="contained"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(7, 0)}
-                            >Reducing your footprint
-                            </Button>
+                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center" style={{ paddingTop: 30 }}>
+                            <Grid item xs={12} md={3}>
+                              <Button
+                                variant="outlined"
+                                className="question-button"
+                                color="primary"
+                                onClick={() =>
+                                  fullpageApi.moveTo(6, 4)}
+                              >Food
+                              </Button>
+                            </Grid>
+                            <Grid item xs={12} md={3}>
+                              <Button
+                                variant="contained"
+                                className="question-button"
+                                color="primary"
+                                onClick={() =>
+                                  fullpageApi.moveTo(7, 0)}
+                              >Reducing your footprint
+                              </Button>
+                            </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
-                        <Grid container direction="column" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
+                        <Grid container direction="column" spacing={0} justifyContent="center" alignItems="center">
                           <Grid item xs={12} md={6}>
                             <h1 className="results-h1">Food</h1>
                           </Grid>
@@ -1231,7 +1198,7 @@ class QuestionnaireView extends Component {
                             <h3>Food</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((FoodFootprint) / TotalFootprint) * 100} />
                               </Grid>
@@ -1241,36 +1208,40 @@ class QuestionnaireView extends Component {
                             <h3>Restaurants</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((RestaurantFootprint) / TotalFootprint) * 100} />
                               </Grid>
                             </Grid>
                           </Grid>
-                          <Grid item xs={12} md={6}>
-                            <Button
-                              variant="outlined"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(6, 5)}
-                            >Extras
-                            </Button>
-                            <Button
-                              variant="contained"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(7, 0)}
-                            >Reducing your footprint
-                            </Button>
+                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center" style={{ paddingTop: 30 }}>
+                            <Grid item xs={12} md={3}>
+                              <Button
+                                variant="outlined"
+                                className="question-button"
+                                color="primary"
+                                onClick={() =>
+                                  fullpageApi.moveTo(6, 5)}
+                              >Extras
+                              </Button>
+                            </Grid>
+                            <Grid item xs={12} md={3}>
+                              <Button
+                                variant="contained"
+                                className="question-button"
+                                color="primary"
+                                onClick={() =>
+                                  fullpageApi.moveTo(7, 0)}
+                              >Reducing your footprint
+                              </Button>
+                            </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="row" spacing={0} justify="center" alignItems="center">
-                        <Grid container direction="column" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
+                        <Grid container direction="column" spacing={0} justifyContent="center" alignItems="center">
                           <Grid item xs={12} md={6}>
                             <h1 className="results-h1">Extras</h1>
                           </Grid>
@@ -1278,7 +1249,7 @@ class QuestionnaireView extends Component {
                             <h3>Hotels</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((HotelFootprint) / TotalFootprint) * 100} />
                               </Grid>
@@ -1288,7 +1259,7 @@ class QuestionnaireView extends Component {
                             <h3>Fashion</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((FashionFootprint) / TotalFootprint) * 100} />
                               </Grid>
@@ -1298,13 +1269,13 @@ class QuestionnaireView extends Component {
                             <h3>Accessory</h3>
                           </Grid>
                           <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={6} style={{ width: '70%' }}>
                                 <LinearWithValueLabel value={((AccessoryFootprint) / TotalFootprint) * 100} />
                               </Grid>
                             </Grid>
                           </Grid>
-                          <Grid item xs={12} md={6}>
+                          <Grid item xs={12} md={6} style={{ paddingTop: 30 }}>
                             <Button
                               variant="contained"
                               className="question-button"
@@ -1320,7 +1291,7 @@ class QuestionnaireView extends Component {
                   </div>
                   <div className="section">
                     <div className="slide">
-                      <Grid container direction="column" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="column" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs={12} md={6}>
                           <h1 className="results-h1">Reducing your footprint</h1>
                         </Grid>
@@ -1352,43 +1323,42 @@ class QuestionnaireView extends Component {
                       </Grid>
                     </div>
                     <div className="slide">
-                      <Grid container direction="column" spacing={0} justify="center" alignItems="center">
+                      <Grid container direction="column" spacing={0} justifyContent="center" alignItems="center">
                         <Grid item xs={12} md={6}>
                           <h1 className="results-h1">Offsetting with KLIMA</h1>
                         </Grid>
-                        <Card>
+                        <Card style={{ paddingBottom: 30 }}>
                           <Grid item xs={12} md={12}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
-                              <Grid item xs={1} md={1}/>
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
+                              <Grid item xs={1} md={1} />
                               <Grid item xs={10} md={10}>
                                 <h3>To offset your calculated footprint, you would need</h3>
                               </Grid>
-                              <Grid item xs={1} md={1}/>
+                              <Grid item xs={1} md={1} />
                             </Grid>
                           </Grid>
                           <Grid item xs={12} md={12}>
-                            <Grid container direction="row" spacing={0} justify="center" alignItems="center">
+                            <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                               <Grid item xs={12} md={4}>
-                                <h1 className="conversion-h1">{TotalFootprint}</h1>
+                                <h1 className="conversion-h1">{TotalFootprint.toFixed(1)}</h1>
                                 <h3 className="results-h1">tCO2e</h3>
                               </Grid>
                               <Grid item xs={12} md={2}>
-                                <h1 className="results-h1">=></h1>
+                                <h1 className="results-h1">=</h1>
                               </Grid>
                               <Grid item xs={12} md={4}>
-                                <h1 className="conversion-h1">{TotalFootprint*5}</h1>
+                                <h1 className="conversion-h1">{(TotalFootprint/4).toFixed(1)}</h1>
                                 <h3 className="results-h1">KLIMA</h3>
                               </Grid>
                             </Grid>
                           </Grid>
-                          <Grid item xs={12} md={12}>
+                          <Grid item xs={12} md={12} style={{paddingBottom: 10}}>
                             <Button
-                              style={{paddingBottom: 10}}
                               variant="contained"
                               className="question-button"
                               color="primary"
                               onClick={() =>
-                                console.log("FREE MONEY")
+                                window.location.replace("https://www.klimadao.finance/")
                                 }
                             >Buy KLIMA
                             </Button>
@@ -1398,7 +1368,9 @@ class QuestionnaireView extends Component {
                           <h4>KLIMA DAO is fighting climate change by embedding the cost of carbon into a carbon-backed currency called KLIMA. Each KLIMA token is backed by at least 1 ton of carbon. As well as creating a carbon-backed currency, KLIMA is also pushing the price of carbon higher, forcing large corporations to reconsider their carbon emissions or pay a much more substantial fee to meet their net zero commitments</h4>
                           <h4>Read more at <a href={'https://www.klimadao.finance/'}>https://www.klimadao.finance/</a></h4>
                         </Grid>
-
+                        <Grid item xs={12} md={6}>
+                          <ReactPlayer  width={512} height={288} url='https://www.youtube.com/watch?v=N3cCs0Am7cg' />
+                        </Grid>
                       </Grid>
                     </div>
                   </div>

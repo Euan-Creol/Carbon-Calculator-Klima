@@ -122,7 +122,7 @@ class RegionSelect extends Component {
           </Grid>
           { displayText ? (
             <Grid item xs>
-              <h2 className="average-footprint">Average carbon footprint = {this.GetAverageFootprint()} t CO2 e</h2>
+              <h2 className="average-footprint">Average carbon footprint = {this.GetAverageFootprint()} tCO2e</h2>
             </Grid>
           ) : (
             <div />

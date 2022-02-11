@@ -29,7 +29,7 @@ class DialogBox extends Component {
     return (
       <div>
         <Button style={{ color: 'white' }} onClick={() => { this.handleClickOpen() }}> FAQs </Button>
-        <Dialog open={this.state.setOpen} onBackdropClick={() => { this.handleClose() }}>
+        <Dialog open={this.state.setOpen} onClose={() => { this.handleClose() }}>
           <h3 align="center">
             What is a carbon footprint?
           </h3>
@@ -47,7 +47,7 @@ class DialogBox extends Component {
             </h4>
           </MuiDialogContent>
           <h3 align="center">
-            Where is the carbon footprint average from?
+            Where is the carbon footprint average for my region from?
           </h3>
           <MuiDialogContent>
             <h4>
@@ -57,6 +57,14 @@ class DialogBox extends Component {
               UK Government
             </a>.
               Read more about carbon footprints <a>here</a>
+            </h4>
+          </MuiDialogContent>
+          <h3 align="center">
+            Where is this data from?
+          </h3>
+          <MuiDialogContent>
+            <h4>
+              This methodology and dataset is largely based on the work of <a href="https://www.carbonfootprint.com/calculator.aspx">carbonfootprint.com</a>, they provide a more in-depth and accurate calculator on their website.
             </h4>
           </MuiDialogContent>
           <h3 align="center">

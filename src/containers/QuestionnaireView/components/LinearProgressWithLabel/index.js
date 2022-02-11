@@ -12,12 +12,12 @@ class LinearWithValueLabel extends Component {
   render() {
     const { value } = this.props
     return (
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Box sx={{ mr: 1 }}>
-          <LinearProgress style={{ color: '#cccccc' }} variant="determinate" value={value} />
+      <Box sx={{ display: 'flex', alignItems: 'center' }} >
+        <Box sx={{ mr: 1, width: '100%' }}>
+          <LinearProgress style={{ color: '#33972d' }} variant="determinate" value={value} />
         </Box>
         <Box sx={{ minWidth: 35 }}>
-          <Typography variant="body2" color="text.secondary">{`${Math.round(
+          <Typography variant="body2" color="textSecondary">{`${Math.round(
             value
           )}%`}
           </Typography>
