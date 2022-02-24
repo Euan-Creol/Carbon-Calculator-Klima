@@ -1,6 +1,0 @@
-[submodule "creol-carbon-eth"]
-	path = creol-carbon-eth
-	url = https://github.com/JUDOKICK/creol-carbon-eth.git
-[submodule "creol-carbon-stream"]
-	path = creol-carbon-stream
-	url = https://github.com/JUDOKICK/creol-carbon-stream.git

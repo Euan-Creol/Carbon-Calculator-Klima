@@ -18,3 +18,5 @@ yarn-error.log
 .truffle-solidity-loader
 
 .openzeppelin/.session
+
+yarn.lock
