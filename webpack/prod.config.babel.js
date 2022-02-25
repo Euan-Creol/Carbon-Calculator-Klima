@@ -43,7 +43,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     }),
-    new FaviconsWebpackPlugin('assets/images/CreolIcon.png'),
+    //new FaviconsWebpackPlugin('assets/images/CreolIcon.png'),
     new CopyWebpackPlugin([
       {
         from: 'src/manifest.json',
