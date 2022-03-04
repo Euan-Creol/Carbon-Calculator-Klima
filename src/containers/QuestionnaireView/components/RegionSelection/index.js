@@ -95,7 +95,7 @@ class RegionSelect extends Component {
     const { displayText } = this.props
     return (
       <div className={styles}>
-        <Grid container direction="column" justify="center" alignItems="center" spacing={2}>
+        <Grid container direction="column" justifyContent="center" alignItems="center" spacing={2}>
           <Grid item xs>
             <FormControl className="simple-select">
               <Select
@@ -134,7 +134,6 @@ class RegionSelect extends Component {
           ) : (
             <div />
           )}
-
         </Grid>
       </div>
     )

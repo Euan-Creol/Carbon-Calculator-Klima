@@ -57,20 +57,20 @@
       "WorldOption": [["0%",1],["25%",0.75],["50%",0.5],["75%",0.25],["100%",0]]
     },
     "8": {
-      "Question": "What is your living situation?",
-      "UKOption": [["Mid Terrace",0.5917],["Flat",0.6],["End Terrace",0.7333],["Semi-detached",0.8167],["Bungalow",0.825],["Terrace",0.883]],
-      "EUOption": [["Mid Terrace",0.5917],["Flat",0.6],["End Terrace",0.7333],["Semi-detached",0.8167],["Bungalow",0.825],["Terrace",0.883]],
-      "USOption": [["Mid Terrace",0.5917],["Flat",0.6],["End Terrace",0.7333],["Semi-detached",0.8167],["Bungalow",0.825],["Terrace",0.883]],
-      "WorldOption": [["Mid Terrace",0.5917],["Flat",0.6],["End Terrace",0.7333],["Semi-detached",0.8167],["Bungalow",0.825],["Terrace",0.883]],
+      "Question": "What type of building do you live in?",
+      "UKOption": [["Terrace",0.883],["Mid Terrace",0.5917],["End Terrace",0.7333],["Apartment",0.6],["Semi-detached",0.8167],["Bungalow",0.825]],
+      "EUOption": [["Terrace",0.883],["Mid Terrace",0.5917],["End Terrace",0.7333],["Apartment",0.6],["Semi-detached",0.8167],["Bungalow",0.825]],
+      "USOption": [["Single-Family Home",0.883],["Condo",0.6],["Townhouse",0.7333],["Multi-family Home (duplex, triplex, etc.)",0.6467],["Co-op",0.62]],
+      "WorldOption": [["Terrace",0.883],["Mid Terrace",0.5917],["End Terrace",0.7333],["Apartment",0.6],["Semi-detached",0.8167],["Bungalow",0.825]],
       "Options2": [["1",1],["2",2],["3",3],["4",4],["5",5],["6+",6]],
       "Options3": [["0",1],["1",2],["2",3],["3",4],["4",5],["5",6],["6+",7]]
     },
     "9": {
       "Question": "Is your electricity on a green tariff?",
-      "UKOption": [["Yes",0],["No",1]],
-      "EUOption": [["Yes",0],["No",1]],
-      "USOption": [["Yes",0],["No",1]],
-      "WorldOption": [["Yes",0],["No",1]]
+      "UKOption": [["Yes",0],["No",1],["Don't know",1]],
+      "EUOption": [["Yes",0],["No",1],["Don't know",1]],
+      "USOption": [["Yes",0],["No",1],["Don't know",1]],
+      "WorldOption": [["Yes",0],["No",1],["Don't know",1]]
     },
     "10": {
       "Question": "Which home improvements do you have?",

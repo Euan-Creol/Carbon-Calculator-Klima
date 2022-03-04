@@ -2,7 +2,7 @@ import React, { Component }       from 'react'
 import PropTypes                  from 'prop-types'
 import { connect }                from 'react-redux'
 import { bindActionCreators }     from 'redux' // global styles
-import createTheme      from '@material-ui/core/styles'
+import { createTheme } from       '@material-ui/core/styles'
 import autoBind                   from 'auto-bind'
 import {
   Redirect,

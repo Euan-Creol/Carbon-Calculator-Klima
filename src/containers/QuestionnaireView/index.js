@@ -2,7 +2,7 @@ import React, { Component }                 from 'react'
 import ReactFullpage                        from '@fullpage/react-fullpage'
 import { withRouter }                       from 'react-router-dom'
 import MetaTags                             from 'react-meta-tags'
-import { PieChart }                         from 'react-minimal-pie-chart'
+import axios from 'axios'
 import {
   Button,
   Grid,
@@ -10,7 +10,10 @@ import {
   Divider,
   Card
 }                                           from '@material-ui/core'
+import { PieChart, Pie, Label, ResponsiveContainer } from 'recharts'
 import ReactPlayer                          from 'react-player'
+import { ethers } from 'ethers'
+
 import AccomSelect                          from './components/AccomadationSelect'
 import CoverImage                           from '../../assets/images/green-wormhole.jpg'
 import LogoGif                              from '../../assets/images/LogoGif.gif'
@@ -20,6 +23,9 @@ import Question                             from './components/Question'
 import QuestionCheckbox                     from './components/Checkbox'
 import FlightCounter                        from './components/FlightCounter'
 import LinearWithValueLabel                 from './components/LinearProgressWithLabel'
+import IERC20 from '../../data/QuestionnaireData/IERC20'
+import PairContract from '../../data/QuestionnaireData/PairContract'
+import addresses from '../../data/QuestionnaireData/contractAddresses'
 
 /*
 The parent component incorporating the calculator questions, components and result display
@@ -68,8 +74,107 @@ class QuestionnaireView extends Component {
 
       fullpageSet: false,
       fullpage: null,
-      previousQuestion: [0, 0]
+      previousQuestion: [0, 0],
+
+      klimaBacking: 1
     }
+  }
+
+  componentWillMount() {
+    this.getGeoInfo()
+    this.getKlimaData()
+  }
+
+  getGeoInfo() {
+    axios
+      .get('https://ipapi.co/json/')
+      .then((response) => {
+        const { data } = response
+        const countryName = data.country_name
+        const continentCode = data.continent_code
+        if (countryName === 'United Kingdom') {
+          this.setState({
+            RegionID: 0
+          })
+        } else if (continentCode === 'EU') {
+          this.setState({
+            RegionID: 1
+          })
+        } else if (continentCode === 'NA') {
+          this.setState({
+            RegionID: 2
+          })
+        } else {
+          this.setState({
+            RegionID: 3
+          })
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  getKlimaData = async () => {
+
+    const provider = new ethers.providers.JsonRpcProvider('https://polygon-rpc.com')
+    const bctContract = new ethers.Contract(
+      addresses.mainnet.bct,
+      IERC20.abi,
+      provider
+    )
+
+    const nakedBCT = await bctContract.balanceOf(addresses.mainnet.treasury)
+
+    const klimaTokenContract = new ethers.Contract(
+      addresses.mainnet.klima,
+      IERC20.abi,
+      provider
+    )
+
+    const totalSupply = await klimaTokenContract.totalSupply()
+
+    const bctUSDC = await this.getOwnedBCTFromSLP(provider, addresses.mainnet.bctUsdcLp)
+    const klimaBCT = await this.getOwnedBCTFromSLP(provider, addresses.mainnet.klimaBctLp)
+
+    const nakedBCTInt = this.getInteger(nakedBCT)
+    const totalSupplyInt = totalSupply.toNumber() / 1000000000
+
+    console.log("Backing per KLIMA", (nakedBCTInt + klimaBCT) / totalSupplyInt)
+
+    this.setState({
+      klimaBacking: ((nakedBCTInt + klimaBCT) / totalSupplyInt)
+    })
+
+  }
+
+  getOwnedBCTFromSLP = async (provider, slpAddress) => {
+    const contract = new ethers.Contract(slpAddress, PairContract.abi, provider);
+    const [token0, token1, [reserve0, reserve1], treasurySLP, totalSLP] =
+      await Promise.all([
+        contract.token0(),
+        contract.token1(),
+        contract.getReserves(),
+        contract.balanceOf(addresses.mainnet.treasury),
+        contract.totalSupply()
+      ])
+    let reserve
+    if (token0.toLowerCase() === addresses.mainnet.bct.toLowerCase()) {
+      reserve = reserve0
+    } else if (token1.toLowerCase() === addresses.mainnet.bct.toLowerCase()) {
+      reserve = reserve1
+    } else {
+      throw new Error('No BCT reserve found')
+    }
+    const bctSupply = this.getInteger(reserve)
+    const ownership = treasurySLP / totalSLP // decimal (percent) e.g. 0.95999
+    const bctOwned = Math.floor(bctSupply * ownership)
+    return bctOwned
+  };
+
+  getInteger(num) {
+    const str = ethers.utils.formatUnits(num)
+    return Math.floor(Number(str))
   }
 
   UpdateRegion(RegionID) {
@@ -415,9 +520,60 @@ class QuestionnaireView extends Component {
         FashionFootprint,
         AccessoryFootprint,
         PopupOn,
-        ResultsOn
+        ResultsOn,
+        klimaBacking
       } = this.state
       const { history } = this.props
+      const resultData = [
+        {
+          name: 'Transport',
+          value: ((CarFootprint + MotorcycleFootprint + TrainFootprint + BusFootprint + FlightFootprint) / TotalFootprint) * 100
+        },
+        {
+          name: 'Energy',
+          value: (HomeFootprint + HomeImprovements) / TotalFootprint
+        },
+        {
+          name: 'Food',
+          value: FoodFootprint + RestaurantFootprint
+        },
+        {
+          name: 'Extras',
+          value: HotelFootprint + FashionFootprint + AccessoryFootprint
+        }
+      ]
+
+      const CustomLabel = ({ viewBox, CO2e = 0 }) => {
+        const { cx, cy } = viewBox
+        return (
+          <React.Fragment>
+            <text x={cx - 60} y={cy - 5}>
+              <tspan
+                style={{
+                  fontWeight: 700,
+                  fontSize: '48pt',
+                  fill: '#33972d',
+                  fontFamily: 'Roboto'
+                }}
+              >
+                {CO2e}
+              </tspan>
+            </text>
+            <text x={cx - 65} y={cy + 35}>
+              <tspan
+                style={{
+                  fontSize: '20pt',
+                  fill: 'primary',
+                  fontFamily: 'Roboto'
+                }}
+              >
+                Tons CO2e
+              </tspan>
+            </text>
+          </React.Fragment>
+        )
+      }
+
       return (
         <div className={styles}>
           <MetaTags>
@@ -527,17 +683,21 @@ class QuestionnaireView extends Component {
 
               return (
                 <ReactFullpage.Wrapper>
-                  <div className="section" style={{
-                    backgroundImage: `url(${CoverImage})`,
-                    backgroundSize: 'cover',
-                  }}>
+                  <div
+                    className="section"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <div
                       className="slide"
                       style={{
                         background: 'linear-gradient(115deg,#121212 21.2%,hsla(0,0%,7%,.75) 44.88%,hsla(0,0%,7%,0) 89.75%)'
-                      }}>
-
+                      }}
                     >
+
+                      >
                       <Grid container direction="column" justifyContent="center" alignItems="center" spacing={1}>
                         <Grid item xs>
                           <h2>Calculate your carbon footprint</h2>
@@ -753,6 +913,9 @@ class QuestionnaireView extends Component {
                                   this.UpdateStateVariable(9, fullpageApi, footprintAddition)}
                               />
                             </Grid>
+                            <Grid item xs>
+                              <h4><a href="https://www.wri.org/initiatives/utility-green-tariffs#:~:text=A%20green%20tariff%20is%20a,their%20electricity%20from%20renewable%20resources." target="_blank" rel="noopener noreferrer">What is a green tariff?</a></h4>
+                            </Grid>
                           </Grid>
                         </Grid>
                         <Grid item xs />
@@ -957,11 +1120,73 @@ class QuestionnaireView extends Component {
                                      Region={RegionID}
                       onChange={setOpen => this.setState({ModalOn:setOpen})}/>
                       */}
-                      <h2 className="results-h3"> RESULTS </h2>
-                      <h3 className="results-value">{TotalFootprint.toFixed(1)}</h3>
-                      <h3 className="results-unit">Tons CO2e</h3>
-                      <div className={`results-container${ResultsOn}`} />
-                      <h4>*This is only a rough estimate of your total carbon footprint</h4>
+                      <Grid container direction="column" spacing={0} justifyContent="center" alignItems="center">
+                        <Grid item xs={12} md={12}>
+                          <h2 className="results-h3"> RESULTS </h2>
+                        </Grid>
+                        <Grid item xs={12} md={12}>
+                          <PieChart width={730} height={250}>
+                            <Pie
+                              data={resultData}
+                              cx="50%"
+                              cy="50%"
+                              dataKey="value" // make sure to map the dataKey to "value"
+                              innerRadius={90} // the inner and outer radius helps to create the progress look
+                              outerRadius={120}
+                              label={({
+                                cx,
+                                cy,
+                                midAngle,
+                                innerRadius,
+                                outerRadius,
+                                value,
+                                index
+                              }) => {
+                                console.log('handling label?')
+                                const RADIAN = Math.PI / 180
+                                // eslint-disable-next-line
+                                  const radius = 25 + innerRadius + (outerRadius - innerRadius);
+                                // eslint-disable-next-line
+                                  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                                // eslint-disable-next-line
+                                  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+                                return (
+                                  <text
+                                    x={x}
+                                    y={y}
+                                    fill="#8884d8"
+                                    textAnchor={x > cx ? 'start' : 'end'}
+                                    dominantBaseline="central"
+                                  >
+                                    {resultData[index].name} ({value})
+                                  </text>
+                                )
+                              }}
+                              fill="#33972d"
+                            >
+
+                              <Label
+                                content={<CustomLabel CO2e={TotalFootprint.toPrecision(3)} />}
+                                position="center"
+                              />
+                            </Pie>
+                          </PieChart>
+                        </Grid>
+                        {/*
+                        <Grid item xs={12} md={6}>
+                          <h3 className="results-value">{TotalFootprint.toFixed(1)}</h3>
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                          <h3 className="results-unit">Tons CO2e</h3>
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                          <div className={`results-container${ResultsOn}`} />
+                          <h4>*This is only a rough estimate of your total carbon footprint</h4>
+                        </Grid>
+                        */
+                        }
+                      </Grid>
                       <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center" style={{ paddingTop: 30 }}>
                         <Grid item xs={12} md={3}>
                           <Button
@@ -1316,7 +1541,7 @@ class QuestionnaireView extends Component {
                             className="question-button"
                             color="primary"
                             onClick={() =>
-                              fullpageApi.moveTo(7,1)}
+                              fullpageApi.moveTo(7, 1)}
                           >Offsetting with KLIMA
                           </Button>
                         </Grid>
@@ -1347,29 +1572,29 @@ class QuestionnaireView extends Component {
                                 <h1 className="results-h1">=</h1>
                               </Grid>
                               <Grid item xs={12} md={4}>
-                                <h1 className="conversion-h1">{(TotalFootprint/4).toFixed(1)}</h1>
+                                <h1 className="conversion-h1">{(TotalFootprint / klimaBacking).toFixed(1)}</h1>
                                 <h3 className="results-h1">KLIMA</h3>
                               </Grid>
                             </Grid>
                           </Grid>
-                          <Grid item xs={12} md={12} style={{paddingBottom: 10}}>
+                          <Grid item xs={12} md={12} style={{ paddingBottom: 10 }}>
                             <Button
                               variant="contained"
                               className="question-button"
                               color="primary"
                               onClick={() =>
-                                window.location.replace("https://www.klimadao.finance/")
-                                }
+                                window.location.replace('https://www.klimadao.finance/')
+                              }
                             >Buy KLIMA
                             </Button>
                           </Grid>
                         </Card>
                         <Grid item xs={12} md={6}>
                           <h4>KLIMA DAO is fighting climate change by embedding the cost of carbon into a carbon-backed currency called KLIMA. Each KLIMA token is backed by at least 1 ton of carbon. As well as creating a carbon-backed currency, KLIMA is also pushing the price of carbon higher, forcing large corporations to reconsider their carbon emissions or pay a much more substantial fee to meet their net zero commitments</h4>
-                          <h4>Read more at <a href={'https://www.klimadao.finance/'}>https://www.klimadao.finance/</a></h4>
+                          <h4>Read more at <a href="https://www.klimadao.finance/">https://www.klimadao.finance/</a></h4>
                         </Grid>
                         <Grid item xs={12} md={6}>
-                          <ReactPlayer  width={512} height={288} url='https://www.youtube.com/watch?v=N3cCs0Am7cg' />
+                          <ReactPlayer width={512} height={288} url="https://www.youtube.com/watch?v=N3cCs0Am7cg" />
                         </Grid>
                       </Grid>
                     </div>
