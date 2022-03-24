@@ -1,5 +1,6 @@
 import React, { Component }                     from 'react'
-import { Grid, FormControl, MenuItem, Select }       from '@material-ui/core'
+import { Grid, FormControl, MenuItem, Select }  from '@material-ui/core'
+import PropTypes                                from 'prop-types'
 import DialogBox                                from './components/DialogBox'
 import UKFlag                                   from '../../../../assets/images/QuestionnaireView/Flag_of_the_United_Kingdom.svg'
 import EUFlag                                   from '../../../../assets/images/QuestionnaireView/Flag_of_Europe.svg'
@@ -18,34 +19,14 @@ class RegionSelect extends Component {
     }
   }
 
-  SetRegion(NewValue, props) {
-    /*
-    @notice A function to set the state for the current region
-    @param NewValue: A number corresponding to a region
-    @param props: required to pass the state to the parent component
-     */
-    this.setState({
-      RegionID: NewValue
-    }, () => { this.handleRegionChange(props) })
-    this.GetRegionImage(NewValue)
-  }
-
-  handleRegionChange(props) {
-    /*
-    @notice A function to pass the state up to the parent component
-    @param props: required for passing the state up
-     */
-    props.onChange(this.state.RegionID)
-  }
-
-  GetRegionImage(NewValue) {
+  getRegionImage = (newValue) => {
     /*
    @notice A function to return the corresponding image based on the region
    @param NewValue: A number corresponding to a region
    @return The relevant flag image
     */
     let NewRegion = UKFlag
-    switch (NewValue) {
+    switch (newValue) {
     case 0:
       NewRegion = UKFlag
       // Change Image
@@ -63,6 +44,27 @@ class RegionSelect extends Component {
       NewRegion = UKFlag
     }
     return NewRegion
+  };
+
+  handleRegionChange(props) {
+    /*
+    @notice A function to pass the state up to the parent component
+    @param props: required for passing the state up
+     */
+    props.onChange(this.state.RegionID)
+  }
+
+
+  SetRegion(NewValue, props) {
+    /*
+    @notice A function to set the state for the current region
+    @param NewValue: A number corresponding to a region
+    @param props: required to pass the state to the parent component
+     */
+    this.setState({
+      RegionID: NewValue
+    }, () => { this.handleRegionChange(props) })
+    this.getRegionImage(NewValue)
   }
 
   GetAverageFootprint() {
@@ -138,6 +140,10 @@ class RegionSelect extends Component {
       </div>
     )
   }
+}
+
+RegionSelect.propTypes = {
+  displayText: PropTypes.string.isRequired
 }
 
 export default RegionSelect

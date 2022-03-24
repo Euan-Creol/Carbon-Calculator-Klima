@@ -1,15 +1,10 @@
 import React, { Component }       from 'react'
-import PropTypes                  from 'prop-types'
 import { connect }                from 'react-redux'
-import { bindActionCreators }     from 'redux' // global styles
-import { createTheme } from       '@material-ui/core/styles'
-import autoBind                   from 'auto-bind'
 import {
   Redirect,
   Switch,
   withRouter
 }                                  from 'react-router-dom'
-import * as providerActionCreators from 'core/actions/actions-provider'
 import theme                       from 'configs/theme/config-theme'
 import QuestionnaireView           from 'containers/QuestionnaireView'
 
@@ -39,11 +34,11 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {
   }
 }
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps() {
   return {
     actions: {
     }
