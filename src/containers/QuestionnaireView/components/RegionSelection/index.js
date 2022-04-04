@@ -19,14 +19,34 @@ class RegionSelect extends Component {
     }
   }
 
-  getRegionImage = (newValue) => {
+  SetRegion(NewValue, props) {
+    /*
+    @notice A function to set the state for the current region
+    @param NewValue: A number corresponding to a region
+    @param props: required to pass the state to the parent component
+     */
+    this.setState({
+      RegionID: NewValue
+    }, () => { this.handleRegionChange(props) })
+    this.GetRegionImage(NewValue)
+  }
+
+  handleRegionChange(props) {
+    /*
+    @notice A function to pass the state up to the parent component
+    @param props: required for passing the state up
+     */
+    props.onChange(this.state.RegionID)
+  }
+
+  GetRegionImage = (NewValue) => {
     /*
    @notice A function to return the corresponding image based on the region
    @param NewValue: A number corresponding to a region
    @return The relevant flag image
     */
     let NewRegion = UKFlag
-    switch (newValue) {
+    switch (NewValue) {
     case 0:
       NewRegion = UKFlag
       // Change Image
@@ -44,27 +64,6 @@ class RegionSelect extends Component {
       NewRegion = UKFlag
     }
     return NewRegion
-  };
-
-  handleRegionChange(props) {
-    /*
-    @notice A function to pass the state up to the parent component
-    @param props: required for passing the state up
-     */
-    props.onChange(this.state.RegionID)
-  }
-
-
-  SetRegion(NewValue, props) {
-    /*
-    @notice A function to set the state for the current region
-    @param NewValue: A number corresponding to a region
-    @param props: required to pass the state to the parent component
-     */
-    this.setState({
-      RegionID: NewValue
-    }, () => { this.handleRegionChange(props) })
-    this.getRegionImage(NewValue)
   }
 
   GetAverageFootprint() {
