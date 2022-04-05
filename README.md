@@ -1,6 +1,6 @@
 # Carbon Footprint Calculator - KLIMA
 
-[https://www.klimadao.finance/](https://www.klimadao.finance/)
+[https://klima.creol.io/#/](https://klima.creol.io/#/)
 
 This carbon calculator allows users to answer a set of quick questions to provide an estimation of their personal carbon footprint. The estimation considers 4 lifestyle aspects: Travel, Home, Food and Extras
 *The output footprint is just an estimate and should not be taken as an empirical value
