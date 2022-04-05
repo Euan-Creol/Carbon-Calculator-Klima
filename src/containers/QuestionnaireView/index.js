@@ -155,6 +155,7 @@ class QuestionnaireView extends Component {
         const { data } = response
         const countryName = data.country_name
         const continentCode = data.continent_code
+        console.log(countryName, continentCode)
         if (countryName === 'United Kingdom') {
           this.setState({
             RegionID: 0
