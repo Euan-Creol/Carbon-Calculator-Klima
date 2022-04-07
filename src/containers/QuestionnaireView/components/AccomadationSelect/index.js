@@ -22,7 +22,7 @@ class AccomSelect extends Component {
     }
   }
 
-  formatQuestionTitle(QuestionJSON, QuestionNumber) {
+  formatQuestionTitle = (QuestionJSON, QuestionNumber) => {
     /*
     @notice A function to parse the question from the JSON file for a given question
     @param QuestionJSON: the entire JSON data for the entire calculator
@@ -32,7 +32,7 @@ class AccomSelect extends Component {
     return (QuestionJSON.Questions[QuestionNumber.QuestionNumber].Question)
   }
 
-  formatQuestionOptions(QuestionJSON, QuestionNumber, RegionID) {
+  formatQuestionOptions = (QuestionJSON, QuestionNumber, RegionID) => {
     /*
     @notice A function to return the appropriate values for the question based on the region
     @param QuestionJSON: the entire JSON data for the entire calculator
@@ -61,7 +61,7 @@ class AccomSelect extends Component {
     return RegionOption
   }
 
-  formatQuestionOptions2(QuestionJSON, QuestionNumber) {
+  formatQuestionOptions2 = (QuestionJSON, QuestionNumber) => {
     /*
     @notice A function to return the appropriate answers for the second select dropdown
     @param QuestionJSON: the entire JSON data for the entire calculator
@@ -71,7 +71,7 @@ class AccomSelect extends Component {
     return QuestionJSON.Questions[QuestionNumber.QuestionNumber].Options2
   }
 
-  formatQuestionOptions3(QuestionJSON, QuestionNumber) {
+  formatQuestionOptions3 = (QuestionJSON, QuestionNumber) => {
     /*
     @notice A function to return the appropriate answers for the third select dropdown
     @param QuestionJSON: the entire JSON data for the entire calculator
@@ -104,7 +104,7 @@ class AccomSelect extends Component {
       SelectArray = []
     }
     return SelectArray.map((Array, index) => (
-        // eslint-disable-next-line react/no-array-index-key
+      // eslint-disable-next-line react/no-array-index-key
       <MenuItem key={index} value={Array[1]}> {Array[0]} </MenuItem>
     )
     )
@@ -159,8 +159,7 @@ class AccomSelect extends Component {
   }
 
   render() {
-    const QuestionNumber = this.props
-    const { RegionID } = this.props
+    const { RegionID, QuestionNumber } = this.props
     const QuestionTitle = this.formatQuestionTitle(QuestionData, QuestionNumber)
     return (
       <div className={styles}>
@@ -168,7 +167,7 @@ class AccomSelect extends Component {
           <Grid item>
             <h3> {QuestionTitle} </h3>
           </Grid>
-          <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
+          <Grid container direction="row" justifyContent="center" alignItems="center" spacing={1}>
             <Grid item>
               <h3>I live in a </h3>
             </Grid>
@@ -180,7 +179,7 @@ class AccomSelect extends Component {
                   id="demo-simple-select"
                   autoWidth
                   displayEmpty
-                  defaultValue = ""
+                  defaultValue=""
                   onChange={event => this.UpdateFootprint(event.target.value, 2, this.props)}
                 >
                   {this.returnSelectArray(QuestionData, QuestionNumber, 2, RegionID)}
@@ -195,7 +194,7 @@ class AccomSelect extends Component {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  defaultValue = ""
+                  defaultValue=""
                   onChange={event => this.UpdateFootprint(event.target.value, 1, this.props)}
                 >
                   {this.returnSelectArray(QuestionData, QuestionNumber, 1, RegionID)}

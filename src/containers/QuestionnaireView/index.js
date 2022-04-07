@@ -36,7 +36,7 @@ class QuestionnaireView extends Component {
     this.state = {
       TotalFootprint: 0.0,
 
-      RegionID: 0,
+      RegionID: 2,
 
       QuestionCategory: 'Transport',
 
@@ -149,13 +149,14 @@ class QuestionnaireView extends Component {
   };
 
   getGeoInfo() {
+    // 'https://ipapi.co/json/' 'http://api.hostip.info' is blocked by Brave, Firefox
+
     axios
       .get('https://ipapi.co/json/')
       .then((response) => {
         const { data } = response
         const countryName = data.country_name
         const continentCode = data.continent_code
-        console.log(countryName, continentCode)
         if (countryName === 'United Kingdom') {
           this.setState({
             RegionID: 0
@@ -173,7 +174,8 @@ class QuestionnaireView extends Component {
             RegionID: 3
           })
         }
-      })
+        // eslint-disable-next-line no-console
+      }).catch((e) => { console.log(e) })
   }
 
   setPreviousSlide() {
@@ -219,6 +221,9 @@ class QuestionnaireView extends Component {
     } else if (value === 2) {
       // Motorcycle
       fullpageApi.moveTo(2, 3)
+    } else if (value === 4) {
+      // Train
+      fullpageApi.moveTo(2, 5)
     } else {
       // Bus,Train,Cycling,Walking
       fullpageApi.moveTo(2, 4)
@@ -453,8 +458,6 @@ class QuestionnaireView extends Component {
     }
     this.setState({
       TotalFootprint
-    }, () => {
-      this.SubscriptionRecommendation()
     })
   }
 

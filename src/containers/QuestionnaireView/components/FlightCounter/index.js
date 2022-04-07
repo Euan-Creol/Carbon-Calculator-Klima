@@ -24,7 +24,7 @@ class FlightCounter extends Component {
   }
 
 
-  getFlightFootprintValue(OptionName, FlightFootprints) {
+  getFlightFootprintValue = (OptionName, FlightFootprints) => {
     /*
     @notice A function get the associated value for a given flight
     @param props: required for passing the state up
@@ -39,7 +39,7 @@ class FlightCounter extends Component {
   }
 
 
-  formatFlightFootprints(QuestionJSON, QuestionNumber, RegionID) {
+  formatFlightFootprints = (QuestionJSON, QuestionNumber, RegionID) => {
     /*
     @notice A function to return the appropriate options based on the region
     @param QuestionJSON: the entire JSON data for the entire calculator
@@ -68,7 +68,7 @@ class FlightCounter extends Component {
     return RegionOption
   }
 
-  formatQuestionTitle(QuestionJSON, QuestionNumber) {
+  formatQuestionTitle = (QuestionJSON, QuestionNumber) => {
     /*
     @notice A function to parse the question from the JSON file for a given question
     @param QuestionJSON: the entire JSON data for the entire calculator
@@ -210,7 +210,7 @@ class FlightCounter extends Component {
       return (
         // eslint-disable-next-line react/no-array-index-key
         <Grid item xs key={index}>
-          <Grid container direction="row" justify="center" alignItems="center" spacing={2} style={{'maxHeight': 70}}>
+          <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2} style={{ maxHeight: 70 }}>
             <Grid item xs={6} >
               <h3 className="region-title">{Options[index][0]}</h3>
             </Grid>
@@ -250,16 +250,16 @@ class FlightCounter extends Component {
           container
           className="flight-counter"
           direction="column"
-          justify="center"
+          justifyContent="center"
           alignItems="center"
         >
           <Grid item xs>
             <h3>{QuestionTitle}</h3>
           </Grid>
           <Grid item xs>
-            <Grid container direction="row" justify="center" alignItems="center" className="button-options">
+            <Grid container direction="row" justifyContent="center" alignItems="center" className="button-options">
               <Grid item xs>
-                <Grid container direction="column" justify="center" alignItems="center">
+                <Grid container direction="column" justifyContent="center" alignItems="center">
                   {FlightQuestions}
                 </Grid>
               </Grid>

@@ -15,7 +15,7 @@ class RegionSelect extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      RegionID: 0
+      RegionID: 2
     }
   }
 
@@ -104,7 +104,7 @@ class RegionSelect extends Component {
                 labelWidth={100}
                 id="simple-select"
                 autoWidth
-                defaultValue={0}
+                defaultValue={2}
                 onChange={event => this.SetRegion(event.target.value, this.props)}
                 classes={{
                   selectMenu: 'select-menu',
@@ -142,7 +142,7 @@ class RegionSelect extends Component {
 }
 
 RegionSelect.propTypes = {
-  displayText: PropTypes.string.isRequired
+  displayText: PropTypes.bool.isRequired
 }
 
 export default RegionSelect

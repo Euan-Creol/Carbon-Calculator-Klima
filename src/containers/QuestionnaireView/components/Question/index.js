@@ -19,7 +19,7 @@ class Question extends Component {
     }
   }
 
-  formatQuestionTitle(QuestionJSON, QuestionNumber) {
+  formatQuestionTitle = (QuestionJSON, QuestionNumber) => {
     /*
    @notice A function to parse the question from the JSON file for a given question
    @param QuestionJSON: the entire JSON data for the entire calculator
@@ -29,7 +29,7 @@ class Question extends Component {
     return (QuestionJSON.Questions[QuestionNumber.QuestionNumber].Question)
   }
 
-  formatQuestionOptions(QuestionJSON, QuestionNumber, RegionID) {
+  formatQuestionOptions = (QuestionJSON, QuestionNumber, RegionID) => {
     /*
     @notice A function to return the appropriate values for the question based on the region
     @param QuestionJSON: the entire JSON data for the entire calculator
@@ -103,8 +103,7 @@ class Question extends Component {
 
   // const { Question, Options } = props;
   render() {
-    const QuestionNumber = this.props
-    const { RegionID } = this.props
+    const { RegionID, QuestionNumber } = this.props
     const QuestionTitle = this.formatQuestionTitle(QuestionData, QuestionNumber)
     return (
       <div className={styles}>
@@ -112,7 +111,7 @@ class Question extends Component {
           container
           className="question"
           direction="column"
-          justify="center"
+          justifyContent="center"
           alignItems="center"
         >
           <Grid item>
