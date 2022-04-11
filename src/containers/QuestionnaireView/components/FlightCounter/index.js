@@ -24,7 +24,8 @@ class FlightCounter extends Component {
   }
 
 
-  getFlightFootprintValue = (OptionName, FlightFootprints) => {
+  // eslint-disable-next-line class-methods-use-this
+  getFlightFootprintValue(OptionName, FlightFootprints) {
     /*
     @notice A function get the associated value for a given flight
     @param props: required for passing the state up
@@ -39,7 +40,8 @@ class FlightCounter extends Component {
   }
 
 
-  formatFlightFootprints = (QuestionJSON, QuestionNumber, RegionID) => {
+  // eslint-disable-next-line class-methods-use-this
+  formatFlightFootprints(QuestionJSON, QuestionNumber, RegionID) {
     /*
     @notice A function to return the appropriate options based on the region
     @param QuestionJSON: the entire JSON data for the entire calculator
@@ -47,7 +49,7 @@ class FlightCounter extends Component {
     @param RegionID: a number corresponding to the user's region
     @return An array of arrays containing the question options
      */
-    let RegionOption = QuestionJSON.Questions[QuestionNumber].UKOption
+    let RegionOption = null
     switch (RegionID) {
     case 0:
       RegionOption = QuestionJSON.Questions[QuestionNumber].UKOption
@@ -68,7 +70,8 @@ class FlightCounter extends Component {
     return RegionOption
   }
 
-  formatQuestionTitle = (QuestionJSON, QuestionNumber) => {
+  // eslint-disable-next-line class-methods-use-this
+  formatQuestionTitle(QuestionJSON, QuestionNumber) {
     /*
     @notice A function to parse the question from the JSON file for a given question
     @param QuestionJSON: the entire JSON data for the entire calculator

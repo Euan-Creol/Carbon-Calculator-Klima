@@ -22,17 +22,19 @@ class AccomSelect extends Component {
     }
   }
 
-  formatQuestionTitle = (QuestionJSON, QuestionNumber) => {
+  // eslint-disable-next-line class-methods-use-this
+  formatQuestionTitle(QuestionJSON, QuestionNumber) {
     /*
     @notice A function to parse the question from the JSON file for a given question
     @param QuestionJSON: the entire JSON data for the entire calculator
     @param QuestionNumber: the current question number
     @return A string of the question
      */
-    return (QuestionJSON.Questions[QuestionNumber.QuestionNumber].Question)
+    return (QuestionJSON.Questions[QuestionNumber].Question)
   }
 
-  formatQuestionOptions = (QuestionJSON, QuestionNumber, RegionID) => {
+  // eslint-disable-next-line class-methods-use-this
+  formatQuestionOptions(QuestionJSON, QuestionNumber, RegionID) {
     /*
     @notice A function to return the appropriate values for the question based on the region
     @param QuestionJSON: the entire JSON data for the entire calculator
@@ -40,45 +42,47 @@ class AccomSelect extends Component {
     @param RegionID: a number corresponding to the user's region
     @return An array of arrays containing the question options
      */
-    let RegionOption = QuestionJSON.Questions[QuestionNumber.QuestionNumber].UKOption
+    let RegionOption = null
     switch (RegionID) {
     case 0:
-      RegionOption = QuestionJSON.Questions[QuestionNumber.QuestionNumber].UKOption
+      RegionOption = QuestionJSON.Questions[QuestionNumber].UKOption
       break
     case 1:
-      RegionOption = QuestionJSON.Questions[QuestionNumber.QuestionNumber].EUOption
+      RegionOption = QuestionJSON.Questions[QuestionNumber].EUOption
       break
     case 2:
-      RegionOption = QuestionJSON.Questions[QuestionNumber.QuestionNumber].USOption
+      RegionOption = QuestionJSON.Questions[QuestionNumber].USOption
       break
     case 3:
-      RegionOption = QuestionJSON.Questions[QuestionNumber.QuestionNumber].WorldOption
+      RegionOption = QuestionJSON.Questions[QuestionNumber].WorldOption
       break
     default:
-      RegionOption = QuestionJSON.Questions[QuestionNumber.QuestionNumber].UKOption
+      RegionOption = QuestionJSON.Questions[QuestionNumber].UKOption
       break
     }
     return RegionOption
   }
 
-  formatQuestionOptions2 = (QuestionJSON, QuestionNumber) => {
+  // eslint-disable-next-line class-methods-use-this
+  formatQuestionOptions2(QuestionJSON, QuestionNumber) {
     /*
     @notice A function to return the appropriate answers for the second select dropdown
     @param QuestionJSON: the entire JSON data for the entire calculator
     @param QuestionNumber: the current question number
     @return An array of arrays containing the question options
      */
-    return QuestionJSON.Questions[QuestionNumber.QuestionNumber].Options2
+    return QuestionJSON.Questions[QuestionNumber].Options2
   }
 
-  formatQuestionOptions3 = (QuestionJSON, QuestionNumber) => {
+  // eslint-disable-next-line class-methods-use-this
+  formatQuestionOptions3(QuestionJSON, QuestionNumber) {
     /*
     @notice A function to return the appropriate answers for the third select dropdown
     @param QuestionJSON: the entire JSON data for the entire calculator
     @param QuestionNumber: the current question number
     @return An array of arrays containing the question options
      */
-    return QuestionJSON.Questions[QuestionNumber.QuestionNumber].Options3
+    return QuestionJSON.Questions[QuestionNumber].Options3
   }
 
   returnSelectArray(QuestionJSON, QuestionNumber, SelectNumber, RegionID) {
