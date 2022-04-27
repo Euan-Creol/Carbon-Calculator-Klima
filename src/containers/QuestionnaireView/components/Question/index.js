@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
 import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormControl from '@material-ui/core/FormControl'
+import { Button, Card, CardActionArea } from '@material-ui/core'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import styles from './styles.scss'
+import CreolLogo from '../../../../assets/images/Creol.png'
 import QuestionData from '../../../../data/QuestionnaireData/QuestionnaireData'
 
 /*
@@ -81,6 +83,36 @@ class Question extends Component {
     )
   }
 
+  returnButtonArray(QuestionJSON, QuestionNumber, RegionID, props) {
+    const ButtonArray = this.formatQuestionOptions(QuestionJSON, QuestionNumber, RegionID)
+    return ButtonArray.map(OptionArray => (
+      <Grid item style={{ width: '60%' }}>
+        <Card
+          style={{
+            backgroundColor: '#F7F7F7', width: '100%', margin: 6, textAlign: 'left'
+          }}
+          key={OptionArray[0]}
+          elevation={0}
+        >
+          <CardActionArea onClick={() => this.updateFootprint(OptionArray[1], props)}>
+            <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start">
+              <Grid item xs={10} md={10}>
+                <h4 style={{
+                  margin: 6, paddingLeft: 16, fontWeight: 600, align: 'flex-start'
+                }}
+                >{OptionArray[0]}
+                </h4>
+              </Grid>
+              <Grid item xs={2} md={2}>
+                <ArrowForwardIosIcon style={{ color: 'grey', padding: 8, height: 15 }} />
+              </Grid>
+            </Grid>
+          </CardActionArea>
+        </Card>
+      </Grid>
+    ))
+  }
+
   updateFootprint(value, props) {
     /*
     @notice A function to update the state when a question option is chosen
@@ -103,33 +135,72 @@ class Question extends Component {
     props.onChange(this.state.CurrentQuestionValue)
   }
 
+  handlePreviousQuestion() {
+    this.props.onPrevious()
+  }
+
   // const { Question, Options } = props;
   render() {
     const { RegionID, QuestionNumber } = this.props
     const QuestionTitle = this.formatQuestionTitle(QuestionData, QuestionNumber)
     return (
       <div className={styles}>
-        <Grid
-          container
-          className="question"
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
+        <Card style={{
+          width: '100%', padding: 32, borderRadius: '0.8rem', marginTop: 120
+        }}
         >
-          <Grid item>
-            <h3>{QuestionTitle}</h3>
-            <form>
-              <FormControl component="fieldset">
-                <RadioGroup
-                  aria-label="transport"
-                  name="customized-radios"
-                >
-                  {this.returnRadioArray(QuestionData, QuestionNumber, RegionID, this.props)}
-                </RadioGroup>
-              </FormControl>
-            </form>
+          <Grid
+            container
+            className="question"
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item>
+              <h3 className="question-title" style={{ fontWeight: 1000, marginTop: 0 }}>{QuestionTitle}</h3>
+            </Grid>
           </Grid>
-        </Grid>
+          <Grid
+            container
+            className="question"
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+
+            {this.returnButtonArray(QuestionData, QuestionNumber, RegionID, this.props)}
+            {/*
+                <form>
+                  <FormControl component="fieldset">
+                    <RadioGroup
+                      aria-label="transport"
+                      name="customized-radios"
+                    >
+                      {this.returnRadioArray(QuestionData, QuestionNumber, RegionID, this.props)}
+                    </RadioGroup>
+                  </FormControl>
+                </form>
+                */}
+          </Grid>
+          <Grid container direction="column" alignItems="flex-start" justifyContent="flex-start">
+            <Grid item xs>
+              <Button style={{ color: 'grey' }} onClick={() => { this.handlePreviousQuestion(this.props) }} startIcon={<ArrowBackIosIcon />}>
+                Previous Question
+              </Button>
+            </Grid>
+          </Grid>
+
+        </Card>
+        <a href="https://www.creol.io/">
+          <Grid container direction="row" alignItems="flex-end" justifyContent="flex-end">
+            <Grid item>
+              <h4 className="creol-footer" style={{ margin: 3 }}>Powered by Creol</h4>
+            </Grid>
+            <Grid item>
+              <img src={CreolLogo} alt="Creol Logo" style={{ height: 15 }} />
+            </Grid>
+          </Grid>
+        </a>
       </div>
     )
   }
@@ -138,7 +209,8 @@ Question.propTypes = {
   /** The associated position of the accommodation question in the questionnaire */
   QuestionNumber: PropTypes.number.isRequired,
   /** The chosen region of the questionnaire taker */
-  RegionID: PropTypes.number.isRequired
+  RegionID: PropTypes.number.isRequired,
+  onPrevious: PropTypes.number.isRequired
 }
 
 export default (Question)

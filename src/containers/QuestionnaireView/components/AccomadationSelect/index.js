@@ -4,8 +4,13 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import Grid from '@material-ui/core/Grid'
+import { Card } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+
 import QuestionData from '../../../../data/QuestionnaireData/QuestionnaireData'
 import styles from '../Question/styles.scss'
+import CreolLogo from '../../../../assets/images/Creol.png'
 
 /*
 The component handling the dropdown selections for the accommodation question
@@ -162,69 +167,113 @@ class AccomSelect extends Component {
     props.onChange(this.state.CurrentQuestionValue)
   }
 
+  handlePreviousQuestion() {
+    this.props.onPrevious()
+  }
+
+  handleNextQuestion() {
+    this.props.onNext()
+  }
+
   render() {
     const { RegionID, QuestionNumber } = this.props
     const QuestionTitle = this.formatQuestionTitle(QuestionData, QuestionNumber)
     return (
-      <div className={styles}>
-        <Grid container direction="column">
-          <Grid item>
-            <h3> {QuestionTitle} </h3>
+      <div
+        className={styles}
+        style={{ width: '100%' }}
+      >
+        <Card style={{
+          width: '100%', padding: 32, borderRadius: '0.8rem', marginTop: 120
+        }}
+        >
+          <Grid container direction="column">
+            <Grid item>
+              <h3 style={{ fontWeight: 1000, marginTop: 0 }}> {QuestionTitle} </h3>
+            </Grid>
+            <Grid container direction="row" justifyContent="center" alignItems="center" spacing={1}>
+              <Grid item>
+                <h4 style={{ margin: 12, fontWeight: 600 }}>I live in a </h4>
+              </Grid>
+              <Grid item>
+                <FormControl>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    labelWidth={100}
+                    id="demo-simple-select"
+                    autoWidth
+                    displayEmpty
+                    defaultValue=""
+                    onChange={event => this.UpdateFootprint(event.target.value, 2, this.props)}
+                  >
+                    {this.returnSelectArray(QuestionData, QuestionNumber, 2, RegionID)}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item>
+                <h4 style={{ margin: 12, fontWeight: 600 }}>bedroom</h4>
+              </Grid>
+              <Grid item>
+                <FormControl>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    defaultValue=""
+                    onChange={event => this.UpdateFootprint(event.target.value, 1, this.props)}
+                  >
+                    {this.returnSelectArray(QuestionData, QuestionNumber, 1, RegionID)}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item>
+                <h4 style={{ margin: 12, fontWeight: 600 }}>with</h4>
+              </Grid>
+              <Grid item>
+                <FormControl>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    defaultValue=""
+                    onChange={event => this.UpdateFootprint(event.target.value, 3, this.props)}
+                  >
+                    {this.returnSelectArray(QuestionData, QuestionNumber, 3, RegionID)}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item>
+                <h4 style={{ margin: 12, fontWeight: 600 }}>people</h4>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid container direction="row" justifyContent="center" alignItems="center" spacing={1}>
-            <Grid item>
-              <h3>I live in a </h3>
+          <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start">
+            <Grid item xs>
+              <Button style={{ color: 'grey' }} onClick={() => { this.handlePreviousQuestion(this.props) }} startIcon={<ArrowBackIosIcon />}>
+                Previous Question
+              </Button>
             </Grid>
-            <Grid item>
-              <FormControl>
-                <Select
-                  labelId="demo-simple-select-label"
-                  labelWidth={100}
-                  id="demo-simple-select"
-                  autoWidth
-                  displayEmpty
-                  defaultValue=""
-                  onChange={event => this.UpdateFootprint(event.target.value, 2, this.props)}
-                >
-                  {this.returnSelectArray(QuestionData, QuestionNumber, 2, RegionID)}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item>
-              <h3>bedroom</h3>
-            </Grid>
-            <Grid item>
-              <FormControl>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  defaultValue=""
-                  onChange={event => this.UpdateFootprint(event.target.value, 1, this.props)}
-                >
-                  {this.returnSelectArray(QuestionData, QuestionNumber, 1, RegionID)}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item>
-              <h3>with</h3>
-            </Grid>
-            <Grid item>
-              <FormControl>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  defaultValue=""
-                  onChange={event => this.UpdateFootprint(event.target.value, 3, this.props)}
-                >
-                  {this.returnSelectArray(QuestionData, QuestionNumber, 3, RegionID)}
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item>
-              <h3>people</h3>
+            <Grid item xs>
+              <Button
+                variant="contained"
+                className="next-button"
+                color="primary"
+                style={{ color: 'white', backgroundColor: '#33972d' }}
+                onClick={() => { this.handleNextQuestion(this.props) }}
+              >
+                Next Question
+              </Button>
             </Grid>
           </Grid>
-        </Grid>
+        </Card>
+        <a href="https://www.creol.io/">
+          <Grid container direction="row" alignItems="flex-end" justifyContent="flex-end">
+            <Grid item>
+              <h4 className="creol-footer" style={{ margin: 3 }}>Powered by Creol</h4>
+            </Grid>
+            <Grid item>
+              <img src={CreolLogo} alt="Creol Logo" style={{ height: 15 }} />
+            </Grid>
+          </Grid>
+        </a>
       </div>
     )
   }
@@ -233,7 +282,9 @@ AccomSelect.propTypes = {
   /** The associated position of the accommodation question in the questionnaire */
   QuestionNumber: PropTypes.number.isRequired,
   /** The chosen region of the questionnaire taker */
-  RegionID: PropTypes.number.isRequired
+  RegionID: PropTypes.number.isRequired,
+  onPrevious: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired
 }
 
 export default (AccomSelect)

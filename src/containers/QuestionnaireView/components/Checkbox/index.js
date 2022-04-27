@@ -6,8 +6,13 @@ import FormControl from '@material-ui/core/FormControl'
 import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
+import { Card } from '@material-ui/core'
+import Button from '@material-ui/core/Button'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+
 import { styles } from './styles.scss'
 import QuestionData from '../../../../data/QuestionnaireData/QuestionnaireData'
+
 
 /*
 The component that populates the checkbox array with appropriate answers
@@ -113,30 +118,61 @@ class QuestionCheckbox extends Component {
     props.onChange(this.state.CurrentQuestionValue)
   }
 
+  handlePreviousQuestion() {
+    this.props.onPrevious()
+  }
+
+  handleNextQuestion() {
+    this.props.onNext()
+  }
+
   render() {
     const { RegionID, QuestionNumber } = this.props
     const QuestionTitle = this.formatQuestionTitle(QuestionData, QuestionNumber)
     return (
       <div className={styles}>
-        <Grid
-          container
-          className="checkbox"
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
+        <Card style={{
+          width: '100%', padding: 32, borderRadius: '0.8rem', marginTop: 120
+        }}
         >
-          <Grid item xs>
-            <h3>{QuestionTitle}</h3>
+          <Grid
+            container
+            className="checkbox"
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item xs>
+              <h3 style={{ fontWeight: 1000, marginTop: 0 }}>{QuestionTitle}</h3>
+            </Grid>
+            <Grid item xs>
+              <FormControl component="fieldset">
+                <FormLabel component="legend">Choose all that apply</FormLabel>
+                <FormGroup>
+                  {this.returnCheckboxArray(QuestionData, QuestionNumber, RegionID, this.props)}
+                </FormGroup>
+              </FormControl>
+            </Grid>
           </Grid>
-          <Grid item xs>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Choose all that apply</FormLabel>
-              <FormGroup>
-                {this.returnCheckboxArray(QuestionData, QuestionNumber, RegionID, this.props)}
-              </FormGroup>
-            </FormControl>
+          <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start">
+            <Grid item xs>
+              <Button style={{ color: 'grey' }} onClick={() => { this.handlePreviousQuestion() }} startIcon={<ArrowBackIosIcon />}>
+                Previous Question
+              </Button>
+            </Grid>
+            <Grid item xs>
+              <Button
+                variant="contained"
+                className="next-button"
+                color="primary"
+                style={{ color: 'white', backgroundColor: '#33972d' }}
+                onClick={() => { this.handleNextQuestion() }}
+              >
+                Next Question
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
+        </Card>
       </div>
     )
   }
@@ -145,7 +181,9 @@ QuestionCheckbox.propTypes = {
   /** The associated position of the accommodation question in the questionnaire */
   QuestionNumber: PropTypes.number.isRequired,
   /** The chosen region of the questionnaire taker */
-  RegionID: PropTypes.number.isRequired
+  RegionID: PropTypes.number.isRequired,
+  onPrevious: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired
 }
 
 export default QuestionCheckbox

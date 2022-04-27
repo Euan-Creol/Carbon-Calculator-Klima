@@ -3,8 +3,13 @@ import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import { Card } from '@material-ui/core'
+
 import styles from './styles.scss'
 import QuestionData from '../../../../data/QuestionnaireData/QuestionnaireData'
+import CreolLogo from '../../../../assets/images/Creol.png'
+
 
 /*
 The component that populates flights question with the relevant components and options
@@ -215,21 +220,25 @@ class FlightCounter extends Component {
         <Grid item xs key={index}>
           <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2} style={{ maxHeight: 70 }}>
             <Grid item xs={6} >
-              <h3 className="region-title">{Options[index][0]}</h3>
+              <h4 className="region-title" style={{ margin: 12, fontWeight: 600 }}>{Options[index][0]}</h4>
             </Grid>
             <Grid item xs={6}>
-              <ButtonGroup size="large" color="primary" aria-label="flight-counter">
-                <Button onClick={() => {
-                  this.updateFlights(Options[index][0], -1,
-                    currentQuestionState, QuestionNumber, RegionID, props)
-                }}
+              <ButtonGroup style={{ backgroundColor: '#F7F7F7', height: 35, color: 'black' }} size="large" color="primary" aria-label="flight-counter">
+                <Button
+                  style={{ color: 'black', border: 'black' }}
+                  onClick={() => {
+                    this.updateFlights(Options[index][0], -1,
+                      currentQuestionState, QuestionNumber, RegionID, props)
+                  }}
                 >-
                 </Button>
-                <Button>{ currentQuestionState }</Button>
-                <Button onClick={() => {
-                  this.updateFlights(Options[index][0], 1,
-                    currentQuestionState, QuestionNumber, RegionID, props)
-                }}
+                <Button style={{ color: 'black', border: 'black' }}>{ currentQuestionState }</Button>
+                <Button
+                  style={{ color: 'black', border: 'black' }}
+                  onClick={() => {
+                    this.updateFlights(Options[index][0], 1,
+                      currentQuestionState, QuestionNumber, RegionID, props)
+                  }}
                 >+
                 </Button>
               </ButtonGroup>
@@ -238,6 +247,14 @@ class FlightCounter extends Component {
         </Grid>)
     })
     return questions
+  }
+
+  handlePreviousQuestion() {
+    this.props.onPrevious()
+  }
+
+  handleNextQuestion() {
+    this.props.onNext()
   }
 
 
@@ -249,26 +266,59 @@ class FlightCounter extends Component {
       QuestionNumber, RegionID, this.props)
     return (
       <div className={styles}>
-        <Grid
-          container
-          className="flight-counter"
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
+        <Card style={{
+          width: '100%', padding: 32, borderRadius: '0.8rem', marginTop: 120
+        }}
         >
-          <Grid item xs>
-            <h3>{QuestionTitle}</h3>
-          </Grid>
-          <Grid item xs>
-            <Grid container direction="row" justifyContent="center" alignItems="center" className="button-options">
-              <Grid item xs>
-                <Grid container direction="column" justifyContent="center" alignItems="center">
-                  {FlightQuestions}
+          <Grid
+            container
+            className="flight-counter"
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item xs>
+              <h3 style={{ fontWeight: 1000, marginTop: 0 }}>{QuestionTitle}</h3>
+            </Grid>
+            <Grid item xs>
+              <Grid container direction="row" justifyContent="center" alignItems="center" className="button-options">
+                <Grid item xs>
+                  <Grid container direction="column" justifyContent="center" alignItems="center">
+                    {FlightQuestions}
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+          <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start">
+            <Grid item xs>
+              <Button style={{ color: 'grey' }} onClick={() => { this.handlePreviousQuestion(this.props) }} startIcon={<ArrowBackIosIcon />}>
+                Previous Question
+              </Button>
+            </Grid>
+            <Grid item xs>
+              <Button
+                variant="contained"
+                className="next-button"
+                color="primary"
+                style={{ color: 'white', backgroundColor: '#33972d' }}
+                onClick={() => { this.handleNextQuestion(this.props) }}
+              >
+                Next Question
+              </Button>
+            </Grid>
+          </Grid>
+        </Card>
+        <a href="https://www.creol.io/">
+          <Grid container direction="row" alignItems="flex-end" justifyContent="flex-end">
+            <Grid item>
+              <h4 className="creol-footer" style={{ margin: 3 }}>Powered by Creol</h4>
+            </Grid>
+            <Grid item>
+              <img src={CreolLogo} alt="Creol Logo" style={{ height: 15 }} />
+            </Grid>
+          </Grid>
+        </a>
       </div>
     )
   }
@@ -277,7 +327,9 @@ FlightCounter.propTypes = {
   /** The associated position of the accommodation question in the questionnaire */
   QuestionNumber: PropTypes.number.isRequired,
   /** The chosen region of the questionnaire taker */
-  RegionID: PropTypes.number.isRequired
+  RegionID: PropTypes.number.isRequired,
+  onPrevious: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired
 }
 
 export default (FlightCounter)

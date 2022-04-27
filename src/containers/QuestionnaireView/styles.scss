@@ -87,8 +87,8 @@
   .footprint-display {
     text-align: center;
     position: fixed;
-    right: 48%;
-    top: 70px;
+    right: 45%;
+    top: 110px;
     z-index: 6;
     width: 120px;
     height: 120px;
@@ -105,28 +105,33 @@
   }
   .circular-progress-background {
     position: fixed;
-    right: 48%;
+    right: 45%;
     z-index: 1;
+    top: 80px;
   }
   .circular-progress-transport {
     position: fixed;
-    right: 48%;
+    right: 45%;
     z-index: 5;
+    top: 80px;
   }
   .circular-progress-energy {
     position: fixed;
-    right: 48%;
+    right: 45%;
     z-index: 4;
+    top: 80px;
   }
   .circular-progress-food {
     position: fixed;
-    right: 48%;
+    right: 45%;
     z-index: 3;
+    top: 80px;
   }
   .circular-progress-extras {
     position: fixed;
-    right: 48%;
+    right: 45%;
     z-index: 2;
+    top: 80px;
   }
   .footprint-text {
     color: #33972d;
@@ -177,5 +182,13 @@
     font-size: 82pt;
     color: #33972d;
     margin: 0;
+  }
+  .footer {
+    position: fixed;
+    bottom: 0%;
+    padding: 16px;
+  }
+  .footer-button {
+    color: grey;
   }
 }

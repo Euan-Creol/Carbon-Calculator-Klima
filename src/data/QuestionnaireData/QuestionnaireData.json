@@ -1,63 +1,63 @@
 {
   "Questions": {
     "0": {
-      "Question": "What is your main transport method?",
+      "Question": "WHAT IS YOUR MAIN TRANSPORT METHOD?",
       "UKOption": [["Car",1],["Motorcycle",2],["Bus",3],["Train",4],["Cycling",5],["Walking",6]],
       "EUOption": [["Car",1],["Motorcycle",2],["Bus",3],["Train",4],["Cycling",5],["Walking",6]],
       "USOption": [["Car",1],["Motorcycle",2],["Bus",3],["Train",4],["Cycling",5],["Walking",6]],
       "WorldOption": [["Car",1],["Motorcycle",2],["Bus",3],["Train",4],["Cycling",5],["Walking",6]]
     },
     "1": {
-      "Question": "What kind of car do you drive?",
+      "Question": "WHAT KIND OF CAR DO YOU DRIVE?",
       "UKOption": [["Electric",0.00008],["Hybrid",0.00011],["Small/Medium Petrol",0.00031],["Large Petrol",0.00046],["Small/Medium Diesel",0.00028],["Large Diesel",0.00034]],
       "EUOption": [["Electric",0.00008],["Hybrid",0.00011],["Small/Medium Petrol",0.00031],["Large Petrol",0.00046],["Small/Medium Diesel",0.00028],["Large Diesel",0.00034]],
       "USOption": [["Electric",0.00008],["Hybrid",0.00011],["Small/Medium Petrol",0.00031],["Large Petrol",0.00046],["Small/Medium Diesel",0.00028],["Large Diesel",0.00034]],
       "WorldOption": [["Electric",0.00008],["Hybrid",0.00011],["Small/Medium Petrol",0.00031],["Large Petrol",0.00046],["Small/Medium Diesel",0.00028],["Large Diesel",0.00034]]
     },
     "2": {
-      "Question": "How long do you spend driving each week?",
+      "Question": "HOW LONG DO YOU SPEND DRIVING EACH WEEK?",
       "UKOption": [["0-1 Hours",1040],["1-3 Hours",4160],["4-8 Hours",12480],["9-15 Hours",24960],["16-25 Hours",42640],["More than 25 Hours",57200]],
       "EUOption": [["0-1 Hours",1040],["1-3 Hours",4160],["4-8 Hours",12480],["9-15 Hours",24960],["16-25 Hours",42640],["More than 25 Hours",57200]],
       "USOption": [["0-1 Hours",1040],["1-3 Hours",4160],["4-8 Hours",12480],["9-15 Hours",24960],["16-25 Hours",42640],["More than 25 Hours",57200]],
       "WorldOption": [["0-1 Hours",1040],["1-3 Hours",4160],["4-8 Hours",12480],["9-15 Hours",24960],["16-25 Hours",42640],["More than 25 Hours",57200]]
     },
     "3": {
-      "Question": "How long do you spend driving each week?",
+      "Question": "HOW LONG DO YOU SPEND DRIVING EACH WEEK?",
       "UKOption": [["0-1 Hours",0.1768],["1-3 Hours",0.7072],["4-8 Hours",2.1216],["9-15 Hours",4.2443],["16-25 Hours",7.2488],["More than 25 Hours",9.724]],
       "EUOption": [["0-1 Hours",0.1768],["1-3 Hours",0.7072],["4-8 Hours",2.1216],["9-15 Hours",4.2443],["16-25 Hours",7.2488],["More than 25 Hours",9.724]],
       "USOption": [["0-1 Hours",0.1768],["1-3 Hours",0.7072],["4-8 Hours",2.1216],["9-15 Hours",4.2443],["16-25 Hours",7.2488],["More than 25 Hours",9.724]],
       "WorldOption": [["0-1 Hours",0.1768],["1-3 Hours",0.7072],["4-8 Hours",2.1216],["9-15 Hours",4.2443],["16-25 Hours",7.2488],["More than 25 Hours",9.724]]
     },
     "4": {
-      "Question": "How long do you spend travelling by bus each week?",
+      "Question": "HOW LONG DO YOU SPEND TRAVELLING BY BUS EACH WEEK?",
       "UKOption": [["0-1 Hours", 0.1768],["1-3 Hours",0.7072],["4-8 Hours",2.1216],["9-15 Hours",4.2432],["16-25 Hours",7.2488],["More than 25 Hours",9.724]],
       "EUOption": [["0-1 Hours", 0.1768],["1-3 Hours",0.7072],["4-8 Hours",2.1216],["9-15 Hours",4.2432],["16-25 Hours",7.2488],["More than 25 Hours",9.724]],
       "USOption": [["0-1 Hours", 0.1768],["1-3 Hours",0.7072],["4-8 Hours",2.1216],["9-15 Hours",4.2432],["16-25 Hours",7.2488],["More than 25 Hours",9.724]],
       "WorldOption": [["0-1 Hours", 0.1768],["1-3 Hours",0.7072],["4-8 Hours",2.1216],["9-15 Hours",4.2432],["16-25 Hours",7.2488],["More than 25 Hours",9.724]]
     },
     "5": {
-      "Question": "How long do you spend travelling by train each week?",
+      "Question": "HOW LONG DO YOU SPEND TRAVELLING BY TRAIN EACH WEEK?",
       "UKOption": [["0-1 Hours", 0.1456],["1-3 Hours",0.5824],["4-8 Hours",1.7472],["9-15 Hours",3.4944],["16-25 Hours",5.9696],["More than 25 Hours",8.008]],
       "EUOption": [["0-1 Hours", 0.1456],["1-3 Hours",0.5824],["4-8 Hours",1.7472],["9-15 Hours",3.4944],["16-25 Hours",5.9696],["More than 25 Hours",8.008]],
       "USOption": [["0-1 Hours", 0.1456],["1-3 Hours",0.5824],["4-8 Hours",1.7472],["9-15 Hours",3.4944],["16-25 Hours",5.9696],["More than 25 Hours",8.008]],
       "WorldOption": [["0-1 Hours", 0.1456],["1-3 Hours",0.5824],["4-8 Hours",1.7472],["9-15 Hours",3.4944],["16-25 Hours",5.9696],["More than 25 Hours",8.008]]
     },
     "6": {
-      "Question": "How many flights have you taken in the past year?",
+      "Question": "HOW MANY FLIGHTS HAVE YOU TAKEN IN THE PAST YEAR?",
       "UKOption": [["Domestic",0.14],["Europe",0.22],["Asia",1.01],["North America",1.32],["South America",1.33],["Africa",0.89]],
       "EUOption": [["Europe",0.25],["Asia",0.81],["North America",1.29],["South America",1.54],["Africa",0.84]],
       "USOption": [["Domestic",0.28],["Europe",1.29],["Asia",1.78],["South America",0.93],["Africa",1.98]],
       "WorldOption": [["Domestic",0.09],["Up to 1000km",0.16],["Up to 2500km",0.32],["Up to 5000km",0.78],["Up to 10,000km",1.43],["More than 10,000km",2.04]]
     },
     "7": {
-      "Question": "What percentage of your flights did you offset?",
+      "Question": "WHAT PERCENTAGE OF YOUR FLIGHTS DID YOU OFFSET?",
       "UKOption": [["0%",1],["25%",0.75],["50%",0.5],["75%",0.25],["100%",0]],
       "EUOption": [["0%",1],["25%",0.75],["50%",0.5],["75%",0.25],["100%",0]],
       "USOption": [["0%",1],["25%",0.75],["50%",0.5],["75%",0.25],["100%",0]],
       "WorldOption": [["0%",1],["25%",0.75],["50%",0.5],["75%",0.25],["100%",0]]
     },
     "8": {
-      "Question": "What type of building do you live in?",
+      "Question": "WHAT TYPE OF BUILDING DO YOU LIVE IN?",
       "UKOption": [["Terrace",0.883],["Mid Terrace",0.5917],["End Terrace",0.7333],["Apartment",0.6],["Semi-detached",0.8167],["Bungalow",0.825]],
       "EUOption": [["Terrace",0.883],["Mid Terrace",0.5917],["End Terrace",0.7333],["Apartment",0.6],["Semi-detached",0.8167],["Bungalow",0.825]],
       "USOption": [["Single-Family Home",0.883],["Condo",0.6],["Townhouse",0.7333],["Multi-family Home (duplex, triplex, etc.)",0.6467],["Co-op",0.62]],
@@ -66,28 +66,28 @@
       "Options3": [["0",1],["1",2],["2",3],["3",4],["4",5],["5",6],["6+",7]]
     },
     "9": {
-      "Question": "Is your electricity on a green tariff?",
+      "Question": "IS YOUR ELECTRICITY ON A GREEN TARIFF?",
       "UKOption": [["Yes",0],["No",1],["Don't know",1]],
       "EUOption": [["Yes",0],["No",1],["Don't know",1]],
       "USOption": [["Yes",0],["No",1],["Don't know",1]],
       "WorldOption": [["Yes",0],["No",1],["Don't know",1]]
     },
     "10": {
-      "Question": "Which home improvements do you have?",
+      "Question": "WHICH HOME IMPROVEMENTS DO YOU HAVE?",
       "UKOption": [["Double Glazing",0.09],["Solar Panels",0.51],["Energy-saving light bulbs",0.08],["Cavity Insulation",0.48]],
       "EUOption": [["Double Glazing",0.09],["Solar Panels",0.51],["Energy-saving light bulbs",0.08],["Cavity Insulation",0.48]],
       "USOption": [["Double Glazing",0.09],["Solar Panels",0.51],["Energy-saving light bulbs",0.08],["Cavity Insulation",0.48]],
       "WorldOption": [["Double Glazing",0.09],["Solar Panels",0.51],["Energy-saving light bulbs",0.08],["Cavity Insulation",0.48]]
     },
     "11": {
-      "Question": "Which of these best describes your diet?",
+      "Question": "WHICH OF THESE BEST DESCRIBES YOUR DIET?",
       "UKOption": [["I eat a lot of meat",1.76],["I eat meat a few times a week",1.37],["I rarely eat meat",1.14],["I'm vegetarian",0.93],["I'm vegan",0.71]],
       "EUOption": [["I eat a lot of meat",1.76],["I eat meat a few times a week",1.37],["I rarely eat meat",1.14],["I'm vegetarian",0.93],["I'm vegan",0.71]],
       "USOption": [["I eat a lot of meat",1.76],["I eat meat a few times a week",1.37],["I rarely eat meat",1.14],["I'm vegetarian",0.93],["I'm vegan",0.71]],
       "WorldOption": [["I eat a lot of meat",1.76],["I eat meat a few times a week",1.37],["I rarely eat meat",1.14],["I'm vegetarian",0.93],["I'm vegan",0.71]]
     },
     "12": {
-      "Question": "How much of your food is locally sourced?",
+      "Question": "HOW MUCH OF YOUR FOOD IS LOCALLY SOURCED?",
       "UKOption": [["0%",1],["25%",0.75],["50%",0.5],["75%",0.25],["100%",0]],
       "EUOption": [["0%",1],["25%",0.75],["50%",0.5],["75%",0.25],["100%",0]],
       "USOption": [["0%",1],["25%",0.75],["50%",0.5],["75%",0.25],["100%",0]],
@@ -95,35 +95,35 @@
 
     },
     "13": {
-      "Question": "What percentage of your food is wasted?",
+      "Question": "WHAT PERCENTAGE OF YOUR FOOD IS WASTED?",
       "UKOption": [["0%",1],["1-10%",1.05],["10-20%",1.15],["20-40%",1.3],["More than 40%",1.45]],
       "EUOption": [["0%",1],["1-10%",1.05],["10-20%",1.15],["20-40%",1.3],["More than 40%",1.45]],
       "USOption": [["0%",1],["1-10%",1.05],["10-20%",1.15],["20-40%",1.3],["More than 40%",1.45]],
       "WorldOption": [["0%",1],["1-10%",1.05],["10-20%",1.15],["20-40%",1.3],["More than 40%",1.45]]
     },
     "14": {
-      "Question": "How much do you spend on restaurants/takeaway each month?",
+      "Question": "HOW MUCH DO YOU SPEND ON RESTAURANTS/TAKEAWAY EACH MONTH?",
       "UKOption": [["£0",0],["£1-20",0.07404],["£20-50",0.25914],["£50-80",0.48126],["More than £80",0.7404]],
       "EUOption": [["€0",0],["€1-20",0.07404],["€20-50",0.25914],["€50-80",0.48126],["More than €80",0.7404]],
       "USOption": [["$0",0],["$1-30",0.07404],["$30-70",0.25914],["$70-100",0.48126],["More than $100",0.7404]],
       "WorldOption": [["$0",0],["$1-30",0.07404],["$30-70",0.25914],["$70-100",0.48126],["More than $100",0.7404]]
     },
     "15": {
-      "Question": "How much do you spend on hotels each month?",
+      "Question": "HOW MUCH DO YOU SPEND ON HOTELS EACH MONTH?",
       "UKOption": [["£0",0],["£1-20",0.07404],["£20-50",0.25914],["£50-80",0.48126],["More than £80",0.7404]],
       "EUOption": [["€0",0],["€1-20",0.07404],["€20-50",0.25914],["€50-80",0.48126],["More than €80",0.7404]],
       "USOption": [["$0",0],["$1-30",0.07404],["$30-70",0.25914],["$70-100",0.48126],["More than $100",0.7404]],
       "WorldOption": [["$0",0],["$1-30",0.07404],["$30-70",0.25914],["$70-100",0.48126],["More than $100",0.7404]]
     },
     "16": {
-      "Question": "How much do you spend on clothes each month?",
+      "Question": "HOW MUCH DO YOU SPEND ON CLOTHES EACH MONTH?",
       "UKOption": [["£0",0],["£1-30",0.07164],["£30-50",0.19104],["£50-100",0.3582],["£100-200",0.7164],["More than £200",1.194]],
       "EUOption": [["€0",0],["€1-30",0.07164],["€30-50",0.19104],["€50-100",0.3582],["€100-200",0.7164],["More than €200",1.194]],
       "USOption": [["$0",0],["$1-50",0.07164],["$50-100",0.19104],["$100-150",0.3582],["$150-250",0.7164],["More than $250",1.194]],
       "WorldOption": [["$0",0],["$1-50",0.07164],["$50-100",0.19104],["$100-150",0.3582],["$150-250",0.7164],["More than $250",1.194]]
     },
     "17": {
-      "Question": "Which of these have you bought in the last 12 months?",
+      "Question": "WHICH OF THESE HAVE YOU BOUGHT IN THE LAST 12 MONTHS?",
       "UKOption": [["Laptop",0.33],["Mobile Phone",0.2],["Car",10.1]],
       "EUOption": [["Laptop",0.33],["Mobile Phone",0.2],["Car",10.1]],
       "USOption": [["Laptop",0.33],["Mobile Phone",0.2],["Car",10.1]],

@@ -5,27 +5,34 @@ import MetaTags                             from 'react-meta-tags'
 import axios from 'axios'
 import {
   Button,
+  ButtonGroup,
   Grid,
   CircularProgress,
   Divider,
   Card
 }                                           from '@material-ui/core'
-import { PieChart, Pie, Label } from 'recharts'
-import ReactPlayer                          from 'react-player'
-import { ethers } from 'ethers'
+import { PieChart, Pie }             from 'recharts'
+import { ethers }                           from 'ethers'
+import LocalGasStationIcon                  from '@mui/icons-material/LocalGasStation'
+import MailOutlineIcon                      from '@mui/icons-material/MailOutline'
+import CloudQueueIcon                       from '@mui/icons-material/CloudQueue'
+import { Typography } from '@mui/material'
 
 import AccomSelect                          from './components/AccomadationSelect'
-import CoverImage                           from '../../assets/images/green-wormhole.jpg'
+import CoverImage                           from '../../assets/images/green-wormhole-transparent.jpg'
 import LogoGif                              from '../../assets/images/LogoGif.gif'
 import RegionSelect                         from './components/RegionSelection'
 import { styles }                           from './styles.scss'
 import Question                             from './components/Question'
 import QuestionCheckbox                     from './components/Checkbox'
 import FlightCounter                        from './components/FlightCounter'
-import LinearWithValueLabel                 from './components/LinearProgressWithLabel'
-import IERC20 from '../../data/QuestionnaireData/IERC20'
-import PairContract from '../../data/QuestionnaireData/PairContract'
-import addresses from '../../data/QuestionnaireData/contractAddresses'
+import CreolKlima                           from '../../assets/images/KLIMAxCreol.png'
+import tCO2e                                from '../../assets/images/QuestionnaireView/tCO2e.png'
+import KLIMA                                from '../../assets/images/QuestionnaireView/KLIMA.png'
+import IERC20                               from '../../data/QuestionnaireData/IERC20'
+import PairContract                         from '../../data/QuestionnaireData/PairContract'
+import addresses                            from '../../data/QuestionnaireData/contractAddresses'
+import CreolLogo                            from '../../assets/images/Creol.png'
 
 /*
 The parent component incorporating the calculator questions, components and result display
@@ -509,37 +516,6 @@ class QuestionnaireView extends Component {
       }
     ]
 
-    const CustomLabel = ({ viewBox, CO2e = 0 }) => {
-      const { cx, cy } = viewBox
-      return (
-        <React.Fragment>
-          <text x={cx - 60} y={cy - 5}>
-            <tspan
-              style={{
-                fontWeight: 700,
-                fontSize: '48pt',
-                fill: '#33972d',
-                fontFamily: 'Roboto'
-              }}
-            >
-              {CO2e}
-            </tspan>
-          </text>
-          <text x={cx - 65} y={cy + 35}>
-            <tspan
-              style={{
-                fontSize: '20pt',
-                fill: 'primary',
-                fontFamily: 'Roboto'
-              }}
-            >
-              Tons CO2e
-            </tspan>
-          </text>
-        </React.Fragment>
-      )
-    }
-
     return (
       <div className={styles}>
         <MetaTags>
@@ -569,74 +545,6 @@ class QuestionnaireView extends Component {
           />
           <meta property="twitter:image" content={`https://beta.creol.io/${LogoGif}`} />
         </MetaTags>
-        <div className={`progress-icon${ProgressOn}`}>
-          <div className="circular-progress-background">
-            <CircularProgress
-              style={{
-                color: 'lightGrey'
-              }}
-              variant="determinate"
-              size={120}
-              thickness={6}
-              value={100}
-            />
-          </div>
-          <div className="circular-progress-transport">
-            <CircularProgress
-              style={{
-                color: '#33972d',
-                opacity: 1
-              }}
-              variant="determinate"
-              size={120}
-              thickness={6}
-              value={(TransportNo / 18) * 100}
-            />
-          </div>
-          <div className="circular-progress-energy">
-            <CircularProgress
-              style={{
-                color: '#33972d',
-                opacity: 0.7
-              }}
-              variant="determinate"
-              size={120}
-              thickness={6}
-              value={(EnergyNo / 18) * 100}
-            />
-          </div>
-          <div className="circular-progress-food">
-            <CircularProgress
-              style={{
-                color: '#33972d',
-                opacity: 0.4
-              }}
-              variant="determinate"
-              size={120}
-              thickness={6}
-              value={(FoodNo / 18) * 100}
-            />
-          </div>
-          <div className="circular-progress-extras">
-            <CircularProgress
-              style={{
-                color: '#33972d',
-                opacity: 0.1
-              }}
-              variant="determinate"
-              size={120}
-              thickness={6}
-              value={(ExtrasNo / 18) * 100}
-            />
-          </div>
-          <div className="footprint-display">
-            <h2 className="footprint-text"> {TotalFootprint.toFixed(1)} </h2>
-            <h4 style={{ marginTop: 0 }}> t CO2 e </h4>
-          </div>
-          <div className="category-display">
-            <h2 className="category-text"> {QuestionCategory} </h2>
-          </div>
-        </div>
 
         <ReactFullpage
           pluginWrapper={this.pluginWrapper}
@@ -663,18 +571,29 @@ class QuestionnaireView extends Component {
               <ReactFullpage.Wrapper>
                 <div
                   className="section"
-                  style={{
-                    backgroundImage: `url(${CoverImage})`,
-                    backgroundSize: 'cover'
-                  }}
                 >
                   <div
                     className="slide"
-                    style={{
-                      background: 'linear-gradient(115deg,#121212 21.2%,hsla(0,0%,7%,.75) 44.88%,' +
-                          'hsla(0,0%,7%,0) 89.75%)'
-                    }}
                   >
+                    <Grid
+                      container
+                      direction="column"
+                      justifyContent="center"
+                      alignItems="flex-start"
+                      spacing={1}
+                    >
+                      <Grid item xs>
+                        <img
+                          src={CreolKlima}
+                          alt="Creol x KLIMA Logo"
+                          style={
+                            {
+                              height: 30, position: 'fixed', left: '10%', top: '1%'
+                            }
+                          }
+                        />
+                      </Grid>
+                    </Grid>
                     <Grid
                       container
                       direction="column"
@@ -683,8 +602,9 @@ class QuestionnaireView extends Component {
                       spacing={1}
                     >
                       <Grid item xs>
-                        <h2>Calculate your carbon footprint</h2>
-                        <h2>with Creol and Offset with Klima Infinity</h2>
+                        <h2>CALCULATE YOUR FOOTPRINT</h2>
+                        <h4 style={{ color: 'grey', marginBottom: 0 }}>Calculate your carbon footprint</h4>
+                        <h4 style={{ color: 'grey', marginTop: 0 }}>with Creol and Offset with Klima Infinity</h4>
                       </Grid>
                       <Grid item xs style={{ paddingBottom: 100 }}>
                         <Button
@@ -693,7 +613,7 @@ class QuestionnaireView extends Component {
                           color="primary"
                           onClick={() =>
                             this.StartQuestionnaire(fullpageApi)}
-                        >Take the Questionnaire!
+                        >Start
                         </Button>
                       </Grid>
                       <Grid item xs>
@@ -706,17 +626,24 @@ class QuestionnaireView extends Component {
                   </div>
                 </div>
                 <div className="section">
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
-                          <Grid item xs>
+                          <Grid item xs style={{ width: '50%' }}>
                             <Question
                               QuestionNumber={0}
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(0, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                         </Grid>
@@ -724,10 +651,16 @@ class QuestionnaireView extends Component {
                       <Grid item xs={12} md={3} />
                     </Grid>
                   </div>
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -735,6 +668,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(1, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                             <div className="previous-button">
                               <Button onClick={() => {
@@ -751,10 +685,16 @@ class QuestionnaireView extends Component {
                     </Grid>
                   </div>
 
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -762,6 +702,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(2, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                         </Grid>
@@ -770,10 +711,16 @@ class QuestionnaireView extends Component {
                     </Grid>
                   </div>
 
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -781,6 +728,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(3, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                         </Grid>
@@ -788,10 +736,16 @@ class QuestionnaireView extends Component {
                       <Grid item xs />
                     </Grid>
                   </div>
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -799,6 +753,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(4, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                         </Grid>
@@ -806,10 +761,16 @@ class QuestionnaireView extends Component {
                       <Grid item xs />
                     </Grid>
                   </div>
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -817,6 +778,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(5, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                         </Grid>
@@ -824,9 +786,15 @@ class QuestionnaireView extends Component {
                       <Grid item xs />
                     </Grid>
                   </div>
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" spacing={1} justifyContent="center" alignItems="center">
                           <Grid item xs={12} md={6} style={{ paddingTop: 70, paddingBottom: 30 }}>
                             <FlightCounter
@@ -834,25 +802,24 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(6, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
+                              onNext={() => { fullpageApi.moveTo(2, 7) }}
                             />
-                          </Grid>
-                          <Grid item xs>
-                            <Button
-                              variant="contained"
-                              className="question-button"
-                              color="secondary"
-                              onClick={() => { fullpageApi.moveTo(2, 7) }}
-                            > Next Question
-                            </Button>
                           </Grid>
                         </Grid>
                       </Grid>
                     </Grid>
                   </div>
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -860,6 +827,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(7, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                         </Grid>
@@ -869,32 +837,40 @@ class QuestionnaireView extends Component {
                   </div>
                 </div>
                 <div className="section">
-                  <div className="slide">
-                    <Grid container direction="row">
-                      <Grid item xs />
-                      <Grid item xs={12} md={6} style={{ paddingTop: 70 }}>
-                        <AccomSelect
-                          QuestionNumber={8}
-                          RegionID={RegionID}
-                          onChange={footprintAddition =>
-                            this.UpdateStateVariable(8, fullpageApi, footprintAddition)}
-                        />
-                        <Button
-                          className="question-button"
-                          variant="contained"
-                          color="secondary"
-                          onClick={() => fullpageApi.moveTo(3, 1)}
-                        >
-                          Next Question
-                        </Button>
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
+                    <Grid container direction="row" alignItems="center" justifyContent="center">
+                      <Grid item xs={12} md={12} style={{ paddingTop: 70 }}>
+                        <Grid container direction="column" justifyContent="center" alignItems="center">
+                          <Grid item xs>
+                            <AccomSelect
+                              QuestionNumber={8}
+                              RegionID={RegionID}
+                              onChange={footprintAddition =>
+                                this.UpdateStateVariable(8, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
+                              onNext={() => { fullpageApi.moveTo(3, 1) }}
+                            />
+                          </Grid>
+                        </Grid>
                       </Grid>
-                      <Grid item xs />
                     </Grid>
                   </div>
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs >
                             <Question
@@ -902,6 +878,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(9, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                           <Grid item xs>
@@ -912,10 +889,16 @@ class QuestionnaireView extends Component {
                       <Grid item xs />
                     </Grid>
                   </div>
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center" spacing={2}>
                           <Grid item xs>
                             <QuestionCheckbox
@@ -923,20 +906,9 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(10, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
+                              onNext={() => { fullpageApi.moveTo(4, 0) }}
                             />
-                          </Grid>
-                          <Grid item xs>
-                            <Button
-                              variant="contained"
-                              className="question-button"
-                              color="secondary"
-                              onClick={() => {
-                                this.setState({ QuestionCategory: 'Food' })
-                                fullpageApi.moveTo(4, 0)
-                              }}
-                            >
-                              NEXT QUESTION
-                            </Button>
                           </Grid>
                         </Grid>
                       </Grid>
@@ -945,10 +917,16 @@ class QuestionnaireView extends Component {
                   </div>
                 </div>
                 <div className="section">
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -956,6 +934,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(11, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                         </Grid>
@@ -963,10 +942,16 @@ class QuestionnaireView extends Component {
                       <Grid item xs />
                     </Grid>
                   </div>
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -974,6 +959,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(12, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                         </Grid>
@@ -981,10 +967,16 @@ class QuestionnaireView extends Component {
                       <Grid item xs />
                     </Grid>
                   </div>
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -992,6 +984,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(13, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                           <Grid item xs />
@@ -1000,10 +993,16 @@ class QuestionnaireView extends Component {
                       <Grid item xs />
                     </Grid>
                   </div>
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -1011,6 +1010,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(14, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                         </Grid>
@@ -1020,10 +1020,16 @@ class QuestionnaireView extends Component {
                   </div>
                 </div>
                 <div className="section">
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -1031,6 +1037,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(15, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                         </Grid>
@@ -1038,11 +1045,16 @@ class QuestionnaireView extends Component {
                       <Grid item xs />
                     </Grid>
                   </div>
-
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <Question
@@ -1050,6 +1062,7 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(16, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
                             />
                           </Grid>
                         </Grid>
@@ -1058,10 +1071,16 @@ class QuestionnaireView extends Component {
                     </Grid>
                   </div>
 
-                  <div className="slide">
+                  <div
+                    className="slide"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <QuestionCheckbox
@@ -1069,16 +1088,9 @@ class QuestionnaireView extends Component {
                               RegionID={RegionID}
                               onChange={footprintAddition =>
                                 this.UpdateStateVariable(17, fullpageApi, footprintAddition)}
+                              onPrevious={() => { this.handlePreviousQuestion() }}
+                              onNext={() => { this.EndQuestionnaire(fullpageApi) }}
                             />
-                          </Grid>
-                          <Grid item xs>
-                            <Button
-                              variant="contained"
-                              className="question-button"
-                              color="secondary"
-                              onClick={() => { this.EndQuestionnaire(fullpageApi) }}
-                            > See Results
-                            </Button>
                           </Grid>
                         </Grid>
                       </Grid>
@@ -1091,670 +1103,331 @@ class QuestionnaireView extends Component {
                     className="slide"
                     styles="secondary"
                     style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
                     }}
                   >
-                    {/*
-                      <DialogContent ModalOn={ModalOn}
-                          TotalFootprint={TotalFootprint}
-                                     CarFootprint={CarFootprint}
-                                     MotorcycleFootprint={MotorcycleFootprint}
-                                     BusFootprint={BusFootprint}
-                                     TrainFootprint={TrainFootprint}
-                                     FlightFootprint={FlightFootprint}
-                                     HomeFootprint={HomeFootprint}
-                                     HomeImprovements={HomeImprovements}
-                                     FoodFootprint={FoodFootprint}
-                                     RestaurantFootprint={RestaurantFootprint}
-                                     HotelFootprint={HotelFootprint}
-                                     FashionFootprint={FashionFootprint}
-                                     AccessoryFootprint={AccessoryFootprint}
-                                     Region={RegionID}
-                      onChange={setOpen => this.setState({ModalOn:setOpen})}/>
-                      */}
-                    <Grid
-                      container
-                      direction="column"
-                      spacing={0}
-                      justifyContent="center"
-                      alignItems="center"
-                    >
-                      <Grid item xs={12} md={12}>
-                        <h2 className="results-h3"> RESULTS </h2>
+                    <Grid container direction="row" alignItems="center" justifyContent="center">
+                      <Grid item xs={3} md={3} />
+                      <Grid item xs={3} md={3}>
+                        <Card style={{ margin: 12, padding: 32 }}>
+                          <Grid container direction="row" alignItems="center" justifyContent="center">
+                            <Grid item xs={6} md={6}>
+                              <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
+                                <Grid item xs>
+                                  <Grid container direction="row" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
+                                    <Grid item xs>
+                                      <LocalGasStationIcon />
+                                    </Grid>
+                                    <Grid item xs>
+                                      <h3 style={{
+                                        marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
+                                      }}
+                                      >FOOTPRINT
+                                      </h3>
+                                    </Grid>
+                                  </Grid>
+                                </Grid>
+                                <Grid item xs>
+                                  <h1 style={{ marginTop: 0, marginBottom: 0, fontSize: '42pt' }}>{TotalFootprint.toFixed(1)}</h1>
+                                </Grid>
+                                <Grid item xs>
+                                  <h4 style={{
+                                    marginTop: 0, color: 'grey', fontSize: '18pt', fontWeight: 400
+                                  }}
+                                  >TONNES
+                                  </h4>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                            <Grid item xs={6} md={6}>
+                              <Grid container direction="column" alignItems="right" justifyContent="right">
+                                <Grid item xs>
+                                  <PieChart width={120} height={120}>
+                                    <Pie
+                                      data={resultData}
+                                      cx="50%"
+                                      cy="50%"
+                                      dataKey="value" // make sure to map the dataKey to "value"
+                                      innerRadius={45}
+                                      outerRadius={60}
+                                      fill="#33972d"
+                                    />
+                                  </PieChart>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                          <Grid container direction="row" alignItems="center" justifyContent="center">
+                            <Grid item xs={6} md={6}>
+                              <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
+                                <Grid item xs>
+                                  <h4 style={{
+                                    marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
+                                  }}
+                                  >TRANSPORT
+                                  </h4>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                            <Grid item xs={6} md={6}>
+                              <Grid container direction="column" alignItems="right" justifyContent="right" style={{ textAlign: 'right' }}>
+                                <Grid item xs>
+                                  <h4 style={{
+                                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
+                                  }}
+                                  >{(
+                                      CarFootprint +
+                                    MotorcycleFootprint +
+                                    TrainFootprint +
+                                    BusFootprint +
+                                    FlightFootprint).toFixed(1)} |
+                                    <strong>{(((
+                                      CarFootprint +
+                                    MotorcycleFootprint +
+                                    TrainFootprint +
+                                    BusFootprint +
+                                    FlightFootprint) / TotalFootprint) * 100).toFixed(1)}%
+                                    </strong>
+                                  </h4>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                          <Grid container direction="row" alignItems="center" justifyContent="center">
+                            <Grid item xs={6} md={6}>
+                              <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
+                                <Grid item xs>
+                                  <h4 style={{
+                                    marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
+                                  }}
+                                  >ENERGY
+                                  </h4>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                            <Grid item xs={6} md={6}>
+                              <Grid container direction="column" alignItems="right" justifyContent="right" style={{ textAlign: 'right' }}>
+                                <Grid item xs>
+                                  <h4 style={{
+                                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
+                                  }}
+                                  >{(
+                                      HomeFootprint + HomeImprovements).toFixed(1)} |
+                                    <strong>{(((
+                                      HomeFootprint +
+                                      HomeImprovements) /
+                                      TotalFootprint) * 100).toFixed(1)}%
+                                    </strong>
+                                  </h4>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                          <Grid container direction="row" alignItems="center" justifyContent="center">
+                            <Grid item xs={6} md={6}>
+                              <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
+                                <Grid item xs>
+                                  <h4 style={{
+                                    marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
+                                  }}
+                                  >FOOD
+                                  </h4>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                            <Grid item xs={6} md={6}>
+                              <Grid container direction="column" alignItems="right" justifyContent="right" style={{ textAlign: 'right' }}>
+                                <Grid item xs>
+                                  <h4 style={{
+                                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
+                                  }}
+                                  >{(
+                                      FoodFootprint +
+                                    RestaurantFootprint).toFixed(1)} |
+                                    <strong>{(((
+                                      FoodFootprint +
+                                      RestaurantFootprint) /
+                                      TotalFootprint) * 100).toFixed(1)}%
+                                    </strong>
+                                  </h4>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                          <Grid container direction="row" alignItems="center" justifyContent="center">
+                            <Grid item xs={6} md={6}>
+                              <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
+                                <Grid item xs>
+                                  <h4 style={{
+                                    marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
+                                  }}
+                                  >EXTRAS
+                                  </h4>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                            <Grid item xs={6} md={6}>
+                              <Grid container direction="column" alignItems="right" justifyContent="right" style={{ textAlign: 'right' }}>
+                                <Grid item xs>
+                                  <h4 style={{
+                                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
+                                  }}
+                                  >{(
+                                      FashionFootprint +
+                                    AccessoryFootprint +
+                                    HotelFootprint).toFixed(1)} |
+                                    <strong>{(((
+                                      FashionFootprint +
+                                    AccessoryFootprint +
+                                    HotelFootprint) /
+                                    TotalFootprint) * 100).toFixed(1)}%
+                                    </strong>
+                                  </h4>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                        </Card>
+                        <Card style={{ margin: 12, padding: 32, textAlign: 'left' }}>
+                          <Grid container direction="row" alignItems="left" justifyContent="left">
+                            <Grid item xs={1}>
+                              <MailOutlineIcon />
+                            </Grid>
+                            <Grid item xs={11}>
+                              <h3 style={{
+                                marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
+                              }}
+                              >REDUCING YOUR FOOTPRINT
+                              </h3>
+                            </Grid>
+                          </Grid>
+                          <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
+                            There are many ways to live a lower carbon life. With these results you
+                            can start to assess the largest contributors and what you might change.
+                          </h4>
+                          <h4> </h4>
+                          <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
+                            Can you take public transport rather than driving?
+                          </h4>
+                          <h4> </h4>
+                          <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
+                            Are there any clean energy providers in your area?
+                          </h4>
+                        </Card>
                       </Grid>
-                      <Grid item xs={12} md={12}>
-                        <PieChart width={730} height={250}>
-                          <Pie
-                            data={resultData}
-                            cx="50%"
-                            cy="50%"
-                            dataKey="value" // make sure to map the dataKey to "value"
-                            innerRadius={90}
-                            outerRadius={120}
-                            label={({
-                              cx,
-                              cy,
-                              midAngle,
-                              innerRadius,
-                              outerRadius,
-                              value,
-                              index
-                            }) => {
-                              const RADIAN = Math.PI / 180
-                              // eslint-disable-next-line
-                                  const radius = 25 + innerRadius + (outerRadius - innerRadius);
-                              // eslint-disable-next-line
-                                  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                              // eslint-disable-next-line
-                                  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-                              return (
-                                <text
-                                  x={x}
-                                  y={y}
-                                  fill="#8884d8"
-                                  textAnchor={x > cx ? 'start' : 'end'}
-                                  dominantBaseline="central"
+                      <Grid item xs={3} md={3}>
+                        <Card style={{ margin: 12, padding: 32 }}>
+                          <Grid container direction="column" alignItems="left" justifyContent="left">
+                            <Grid item xs>
+                              <Grid container direction="row" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
+                                <Grid item xs={1}>
+                                  <CloudQueueIcon />
+                                </Grid>
+                                <Grid item xs={11}>
+                                  <h3 style={{
+                                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
+                                  }}
+                                  >OFFSET
+                                  </h3>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                            <Grid item xs>
+                              <h4 style={{ fontSize: '14pt', fontWeight: 600, color: 'grey' }}>
+                                Reduce where you can, offset where you can&apos;t.
+                              </h4>
+                            </Grid>
+                            <Grid item xs>
+                              <h4 style={{ fontSize: '12pt' }}>
+                                KLIMA DAO is fighting climate change by embedding the cost of
+                                carbon into a carbon backed currency called KLIMA.
+                              </h4>
+                            </Grid>
+                            <Grid item xs>
+                              <h4 style={{ fontSize: '12pt' }}>
+                                Each KLIMA token is backed by at least 1 ton of carbon. Below is a
+                                conversion of your footprint in Klima, you can choose to offset
+                                this.
+                              </h4>
+                            </Grid>
+                            <Grid item xs>
+                              <Grid container direction="row" >
+                                <Grid item xs={2}>
+                                  <img src={tCO2e} alt="tCO2e Circle" style={{ height: 40, marginBottom: 10 }} />
+                                </Grid>
+                                <Grid item xs={10}>
+                                  <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
+                                    <Grid item xs>
+                                      <h3 style={{
+                                        fontSize: '12pt', fontWeight: 500, marginTop: 0, marginBottom: 0
+                                      }}
+                                      >YOUR FOOTPRINT
+                                      </h3>
+                                    </Grid>
+                                    <Grid item xs>
+                                      <h3 style={{
+                                        fontSize: '14pt', fontWeight: 500, marginTop: 0, marginBottom: 0, color: '#33972d'
+                                      }}
+                                      >{TotalFootprint.toFixed(1)} TONS
+                                      </h3>
+                                    </Grid>
+                                  </Grid>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                            <Divider />
+                            <Grid item xs>
+                              <Grid container direction="row" >
+                                <Grid item xs={2}>
+                                  <img src={KLIMA} alt="KLIMA Circle" style={{ height: 40, marginTop: 10 }} />
+                                </Grid>
+                                <Grid item xs={10}>
+                                  <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
+                                    <Grid item xs>
+                                      <h3 style={{
+                                        fontSize: '12pt', fontWeight: 500, marginTop: 0, marginBottom: 0
+                                      }}
+                                      >IS EQUIVALENT TO
+                                      </h3>
+                                    </Grid>
+                                    <Grid item xs>
+                                      <h3 style={{
+                                        fontSize: '14pt', fontWeight: 500, marginTop: 0, marginBottom: 0, color: '#33972d'
+                                      }}
+                                      >{(TotalFootprint / klimaBacking).toFixed(1)} KLIMA
+                                      </h3>
+                                    </Grid>
+                                  </Grid>
+                                </Grid>
+                              </Grid>
+                            </Grid>
+                            <Grid item xs>
+                              <a href="https://www.klimadao.finance/buy">
+                                <Button
+                                  variant="contained"
+                                  className="next-button"
+                                  color="primary"
+                                  style={{ color: 'white', backgroundColor: '#33972d' }}
                                 >
-                                  {resultData[index].name} ({value})
-                                </text>
-                              )
-                            }}
-                            fill="#33972d"
-                          >
-
-                            <Label
-                              content={<CustomLabel CO2e={TotalFootprint.toPrecision(3)} />}
-                              position="center"
-                            />
-                          </Pie>
-                        </PieChart>
+                                  OFFSET
+                                </Button>
+                              </a>
+                            </Grid>
+                          </Grid>
+                        </Card>
+                        <a href="https://www.creol.io/">
+                          <Grid container direction="row" alignItems="flex-end" justifyContent="flex-end">
+                            <Grid item>
+                              <h4 className="creol-footer" style={{ margin: 3 }}>Powered by Creol</h4>
+                            </Grid>
+                            <Grid item>
+                              <img src={CreolLogo} alt="Creol Logo" style={{ height: 15 }} />
+                            </Grid>
+                          </Grid>
+                        </a>
                       </Grid>
-                      {/*
-                        <Grid item xs={12} md={6}>
-                          <h3 className="results-value">{TotalFootprint.toFixed(1)}</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3 className="results-unit">Tons CO2e</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <div className={`results-container${ResultsOn}`} />
-                          <h4>*This is only a rough estimate of your total carbon footprint</h4>
-                        </Grid>
-                        */
-                      }
-                    </Grid>
-                    <Grid
-                      container
-                      direction="row"
-                      spacing={0}
-                      justifyContent="center"
-                      alignItems="center"
-                      style={{ paddingTop: 30 }}
-                    >
-                      <Grid item xs={12} md={3}>
-                        <Button
-                          variant="outlined"
-                          className="question-button"
-                          color="primary"
-                          onClick={() =>
-                            fullpageApi.moveTo(6, 1)}
-                        >Detailed Breakdown
-                        </Button>
-                      </Grid>
-                      <Grid item xs={12} md={3}>
-                        <Button
-                          variant="contained"
-                          className="question-button"
-                          color="primary"
-                          onClick={() =>
-                            fullpageApi.moveTo(7, 0)}
-                        >Reducing your footprint
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </div>
-                  <div className="slide">
-                    <Grid
-                      container
-                      direction="row"
-                      spacing={0}
-                      justifyContent="center"
-                      alignItems="center"
-                    >
-                      <Grid
-                        container
-                        direction="column"
-                        spacing={0}
-                        justifyContent="center"
-                        alignItems="center"
-                      >
-                        <Grid item xs={12} md={6}>
-                          <h1 className="results-h1">Footprint Breakdown</h1>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Transport</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid
-                            container
-                            direction="row"
-                            spacing={0}
-                            justifyContent="center"
-                            alignItems="center"
-                          >
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((
-                                  CarFootprint +
-                                  MotorcycleFootprint +
-                                  TrainFootprint +
-                                  BusFootprint +
-                                  FlightFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Home</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid
-                            container
-                            direction="row"
-                            spacing={0}
-                            justifyContent="center"
-                            alignItems="center"
-                          >
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((
-                                  HomeFootprint +
-                                  HomeImprovements) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Food</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid
-                            container
-                            direction="row"
-                            spacing={0}
-                            justifyContent="center"
-                            alignItems="center"
-                          >
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((
-                                  FoodFootprint +
-                                  RestaurantFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Extras</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid
-                            container
-                            direction="row"
-                            spacing={0}
-                            justifyContent="center"
-                            alignItems="center"
-                          >
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((
-                                  HotelFootprint +
-                                  FashionFootprint +
-                                  AccessoryFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid
-                          container
-                          direction="row"
-                          spacing={0}
-                          justifyContent="center"
-                          alignItems="center"
-                          style={{ paddingTop: 30 }}
-                        >
-                          <Grid item xs={12} md={3}>
-                            <Button
-                              variant="outlined"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(6, 2)}
-                            >Transport
-                            </Button>
-                          </Grid>
-                          <Grid item xs={12} md={3}>
-                            <Button
-                              variant="contained"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(7, 0)}
-                            >Reducing your footprint
-                            </Button>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </div>
-                  <div className="slide">
-                    <Grid
-                      container
-                      direction="row"
-                      spacing={0}
-                      justifyContent="center"
-                      alignItems="center"
-                    >
-                      <Grid
-                        container
-                        direction="column"
-                        spacing={0}
-                        justifyContent="center"
-                        alignItems="center"
-                      >
-                        <Grid item xs={12} md={6}>
-                          <h1 className="results-h1">Transport</h1>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Car</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((CarFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Motorcycle</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((MotorcycleFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Bus</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((BusFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Train</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((TrainFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Flights</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((FlightFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center" style={{ paddingTop: 30 }}>
-                          <Grid item xs={12} md={3}>
-                            <Button
-                              variant="outlined"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(6, 3)}
-                            >Home
-                            </Button>
-                          </Grid>
-                          <Grid item xs={12} md={3}>
-                            <Button
-                              variant="contained"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(7, 0)}
-                            >Reducing your footprint
-                            </Button>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </div>
-                  <div className="slide">
-                    <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                      <Grid container direction="column" spacing={0} justifyContent="center" alignItems="center">
-                        <Grid item xs={12} md={6}>
-                          <h1 className="results-h1">Home</h1>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Energy Usage</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((HomeFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Home Improvements</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((HomeImprovements) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center" style={{ paddingTop: 30 }}>
-                          <Grid item xs={12} md={3}>
-                            <Button
-                              variant="outlined"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(6, 4)}
-                            >Food
-                            </Button>
-                          </Grid>
-                          <Grid item xs={12} md={3}>
-                            <Button
-                              variant="contained"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(7, 0)}
-                            >Reducing your footprint
-                            </Button>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </div>
-                  <div className="slide">
-                    <Grid
-                      container
-                      direction="row"
-                      spacing={0}
-                      justifyContent="center"
-                      alignItems="center"
-                    >
-                      <Grid
-                        container
-                        direction="column"
-                        spacing={0}
-                        justifyContent="center"
-                        alignItems="center"
-                      >
-                        <Grid item xs={12} md={6}>
-                          <h1 className="results-h1">Food</h1>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Food</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((FoodFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Restaurants</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((RestaurantFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center" style={{ paddingTop: 30 }}>
-                          <Grid item xs={12} md={3}>
-                            <Button
-                              variant="outlined"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(6, 5)}
-                            >Extras
-                            </Button>
-                          </Grid>
-                          <Grid item xs={12} md={3}>
-                            <Button
-                              variant="contained"
-                              className="question-button"
-                              color="primary"
-                              onClick={() =>
-                                fullpageApi.moveTo(7, 0)}
-                            >Reducing your footprint
-                            </Button>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </div>
-                  <div className="slide">
-                    <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                      <Grid container direction="column" spacing={0} justifyContent="center" alignItems="center">
-                        <Grid item xs={12} md={6}>
-                          <h1 className="results-h1">Extras</h1>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Hotels</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((HotelFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Fashion</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((FashionFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                          <h3>Accessory</h3>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ width: '100%' }}>
-                          <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
-                            <Grid item xs={12} md={6} style={{ width: '70%' }}>
-                              <LinearWithValueLabel
-                                value={((AccessoryFootprint) / TotalFootprint) * 100}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={6} style={{ paddingTop: 30 }}>
-                          <Button
-                            variant="contained"
-                            className="question-button"
-                            color="primary"
-                            onClick={() =>
-                              fullpageApi.moveTo(7, 0)}
-                          >Reducing your footprint
-                          </Button>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </div>
-                </div>
-                <div className="section">
-                  <div className="slide">
-                    <Grid
-                      container
-                      direction="column"
-                      spacing={0}
-                      justifyContent="center"
-                      alignItems="center"
-                    >
-                      <Grid item xs={12} md={6}>
-                        <h1 className="results-h1">Reducing your footprint</h1>
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <h4>There are hundreds of ways to live a lower carbon life, we hope that
-                          this calculator has helped identify the largest contributors to your
-                          carbon footprint
-                        </h4>
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <h3 className="results-h1">What can I do about my footprint?</h3>
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <h4>A simple mantra to live by is `&quot;`Reduce where you can, offset
-                          where you can`&apos;`t`&quot;`. Now that you have identified the high
-                          emission aspects of your life, you can start assessing which lifestyle
-                          choices aren`&apos;`t as necessary as you first thought: Can you take
-                          public transport rather than driving? Are there any clean energy
-                          providers in your area? How often are you updating your wardrobe?
-                        </h4>
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <Divider />
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <h4>Inevitably, there will be areas of your life which will be difficult to
-                          decarbonize - in these situations, offsetting provides an effective way
-                          to support green projects and also reduce your net carbon footprint
-                        </h4>
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <Button
-                          variant="contained"
-                          className="question-button"
-                          color="primary"
-                          onClick={() =>
-                            fullpageApi.moveTo(7, 1)}
-                        >Offsetting with KLIMA
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </div>
-                  <div className="slide">
-                    <Grid
-                      container
-                      direction="column"
-                      spacing={0}
-                      justifyContent="center"
-                      alignItems="center"
-                    >
-                      <Grid item xs={12} md={6}>
-                        <h1 className="results-h1">Offsetting with KLIMA</h1>
-                      </Grid>
-                      <Card style={{ paddingBottom: 30 }}>
-                        <Grid item xs={12} md={12}>
-                          <Grid
-                            container
-                            direction="row"
-                            spacing={0}
-                            justifyContent="center"
-                            alignItems="center"
-                          >
-                            <Grid item xs={1} md={1} />
-                            <Grid item xs={10} md={10}>
-                              <h3>To offset your calculated footprint, you would need</h3>
-                            </Grid>
-                            <Grid item xs={1} md={1} />
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={12}>
-                          <Grid
-                            container
-                            direction="row"
-                            spacing={0}
-                            justifyContent="center"
-                            alignItems="center"
-                          >
-                            <Grid item xs={12} md={4}>
-                              <h1 className="conversion-h1">{TotalFootprint.toFixed(1)}</h1>
-                              <h3 className="results-h1">tCO2e</h3>
-                            </Grid>
-                            <Grid item xs={12} md={2}>
-                              <h1 className="results-h1">=</h1>
-                            </Grid>
-                            <Grid item xs={12} md={4}>
-                              <h1 className="conversion-h1">
-                                {(TotalFootprint / klimaBacking).toFixed(1)}
-                              </h1>
-                              <h3 className="results-h1">KLIMA</h3>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={12} md={12} style={{ paddingBottom: 10 }}>
-                          <Button
-                            variant="contained"
-                            className="question-button"
-                            color="primary"
-                            onClick={() =>
-                              window.location.replace('https://dapp.klimadao.finance/#/offset')
-                            }
-                          >Buy KLIMA
-                          </Button>
-                        </Grid>
-                      </Card>
-                      <Grid item xs={12} md={6}>
-                        <h4>
-                          KLIMA DAO is fighting climate change by embedding the cost of carbon
-                          into a carbon-backed currency called KLIMA. Each KLIMA token is backed by
-                          at least 1 ton of carbon. As well as creating a carbon-backed currency,
-                          KLIMA is also pushing the price of carbon higher, forcing large
-                          corporations to reconsider their carbon emissions or pay a much more
-                          substantial fee to meet their net zero commitments
-                        </h4>
-                        <h4>Read more at <a href="https://www.klimadao.finance/">https://www.klimadao.finance/</a></h4>
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <ReactPlayer width={512} height={288} url="https://www.youtube.com/watch?v=N3cCs0Am7cg" />
-                      </Grid>
+                      <Grid item xs={3} md={3} />
                     </Grid>
                   </div>
                 </div>
@@ -1762,8 +1435,95 @@ class QuestionnaireView extends Component {
             )
           }}
         />
-        <div className={`previous-button${ProgressOn}`}>
-          <Button onClick={() => { this.handlePreviousQuestion() }}> Previous Question </Button>
+        <div className={`progress-icon${ProgressOn}`}>
+          <Grid container direction="row" alignItems="center" justifyContent="center">
+            <Grid item xs>
+              <Typography style={{ position: 'fixed', right: '40%', fontSize: '20pt' }}>
+                YOUR <strong>CARBON</strong> TOTAL
+              </Typography>
+            </Grid>
+          </Grid>
+
+          <div className="circular-progress-background">
+            <CircularProgress
+              style={{
+                color: 'lightGrey'
+              }}
+              variant="determinate"
+              size={120}
+              thickness={4}
+              value={100}
+            />
+          </div>
+          <div className="circular-progress-transport">
+            <CircularProgress
+              style={{
+                color: '#33972d',
+                opacity: 1
+              }}
+              variant="determinate"
+              size={120}
+              thickness={4}
+              value={(TransportNo / 18) * 100}
+            />
+          </div>
+          <div className="circular-progress-energy">
+            <CircularProgress
+              style={{
+                color: '#33972d',
+                opacity: 0.7
+              }}
+              variant="determinate"
+              size={120}
+              thickness={4}
+              value={(EnergyNo / 18) * 100}
+            />
+          </div>
+          <div className="circular-progress-food">
+            <CircularProgress
+              style={{
+                color: '#33972d',
+                opacity: 0.4
+              }}
+              variant="determinate"
+              size={120}
+              thickness={4}
+              value={(FoodNo / 18) * 100}
+            />
+          </div>
+          <div className="circular-progress-extras">
+            <CircularProgress
+              style={{
+                color: '#33972d',
+                opacity: 0.1
+              }}
+              variant="determinate"
+              size={120}
+              thickness={4}
+              value={(ExtrasNo / 18) * 100}
+            />
+          </div>
+          <div className="footprint-display">
+            <h2 className="footprint-text"> {TotalFootprint.toFixed(1)} </h2>
+            <h4 style={{ marginTop: 0 }}> t CO2 e </h4>
+          </div>
+          <div className="category-display">
+            <h2 className="category-text"> {QuestionCategory} </h2>
+          </div>
+        </div>
+        <div className="footer">
+          <Grid container direction="row">
+            <Grid item xs>
+              <ButtonGroup variant="text" style={{ color: 'grey' }}>
+                <Button className="footer-button" onClick={() => { window.location.href = 'https://offset.creol.io/#/office/' }}>Business Calculator</Button>
+                <Button className="footer-button" onClick={() => { window.location.href = 'https://www.klimadao.finance/' }}>Klima Dao</Button>
+                <Button className="footer-button" onClick={() => { window.location.href = 'https://app.klimadao.finance/#/stake' }}>App</Button>
+                <Button className="footer-button" onClick={() => { window.location.href = 'https://docs.klimadao.finance/' }}>Docs</Button>
+                <Button className="footer-button" onClick={() => { window.location.href = 'https://www.klimadao.finance/blog' }}>Newsletter</Button>
+                <Button className="footer-button" onClick={() => { window.location.href = 'https://www.klimadao.finance/community' }}>Community</Button>
+              </ButtonGroup>
+            </Grid>
+          </Grid>
         </div>
       </div>
     )

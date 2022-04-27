@@ -13,6 +13,10 @@
   .flight-container {
     max-height: 10px
   }
+  .next-button {
+    border-radius: 4px;
+    background-color: $primary;
+  }
 
   @media (max-width: 500px) {
     .button-options {

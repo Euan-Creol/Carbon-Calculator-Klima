@@ -15,7 +15,8 @@ class RegionSelect extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      RegionID: 2
+      RegionID: 2,
+      RegionName: 'US'
     }
   }
 
@@ -25,8 +26,26 @@ class RegionSelect extends Component {
     @param NewValue: A number corresponding to a region
     @param props: required to pass the state to the parent component
      */
+    let newRegionName = 'US'
+    switch (NewValue) {
+    case 0:
+      newRegionName = 'UK'
+      break
+    case 1:
+      newRegionName = 'EU'
+      break
+    case 2:
+      newRegionName = 'US'
+      break
+    case 3:
+      newRegionName = 'World'
+      break
+    default:
+      newRegionName = 'USd'
+    }
     this.setState({
-      RegionID: NewValue
+      RegionID: NewValue,
+      RegionName: newRegionName
     }, () => { this.handleRegionChange(props) })
     this.GetRegionImage(NewValue)
   }
@@ -94,6 +113,7 @@ class RegionSelect extends Component {
 
   render() {
     const { displayText } = this.props
+    const { RegionName } = this.state
     return (
       <div className={styles}>
         <Grid container direction="column" justifyContent="center" alignItems="center" spacing={2}>
@@ -123,7 +143,9 @@ class RegionSelect extends Component {
           </Grid>
           { displayText ? (
             <Grid item xs>
-              <h2 className="average-footprint">Average carbon footprint = {this.GetAverageFootprint()} tCO2e</h2>
+              <h3 className="average-footprint">
+                {this.GetAverageFootprint()} tCO2e Average {RegionName} footprint
+              </h3>
             </Grid>
           ) : (
             <div />
