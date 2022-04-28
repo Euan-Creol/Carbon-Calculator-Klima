@@ -7,16 +7,10 @@ import {
   Button,
   ButtonGroup,
   Grid,
-  CircularProgress,
-  Divider,
-  Card
+  CircularProgress
 }                                           from '@material-ui/core'
-import { PieChart, Pie }             from 'recharts'
 import { ethers }                           from 'ethers'
-import LocalGasStationIcon                  from '@mui/icons-material/LocalGasStation'
-import MailOutlineIcon                      from '@mui/icons-material/MailOutline'
-import CloudQueueIcon                       from '@mui/icons-material/CloudQueue'
-import { Typography } from '@mui/material'
+import { Typography }                       from '@mui/material'
 
 import AccomSelect                          from './components/AccomadationSelect'
 import CoverImage                           from '../../assets/images/green-wormhole-transparent.jpg'
@@ -26,13 +20,12 @@ import { styles }                           from './styles.scss'
 import Question                             from './components/Question'
 import QuestionCheckbox                     from './components/Checkbox'
 import FlightCounter                        from './components/FlightCounter'
+import FAQs                                 from './components/FAQs'
+import ResultsSection                       from './components/ResultsSection'
 import CreolKlima                           from '../../assets/images/KLIMAxCreol.png'
-import tCO2e                                from '../../assets/images/QuestionnaireView/tCO2e.png'
-import KLIMA                                from '../../assets/images/QuestionnaireView/KLIMA.png'
 import IERC20                               from '../../data/QuestionnaireData/IERC20'
 import PairContract                         from '../../data/QuestionnaireData/PairContract'
 import addresses                            from '../../data/QuestionnaireData/contractAddresses'
-import CreolLogo                            from '../../assets/images/Creol.png'
 
 /*
 The parent component incorporating the calculator questions, components and result display
@@ -44,8 +37,6 @@ class QuestionnaireView extends Component {
       TotalFootprint: 0.0,
 
       RegionID: 2,
-
-      QuestionCategory: 'Transport',
 
       TransportNo: 0,
       EnergyNo: 0,
@@ -270,23 +261,19 @@ class QuestionnaireView extends Component {
      */
     if (QuestionNo < 8) {
       this.setState({
-        TransportNo: QuestionNo,
-        QuestionCategory: 'Transport'
+        TransportNo: QuestionNo
       })
     } else if (QuestionNo > 8 && QuestionNo < 11) {
       this.setState({
-        EnergyNo: QuestionNo,
-        QuestionCategory: 'Energy'
+        EnergyNo: QuestionNo
       })
     } else if (QuestionNo > 11 && QuestionNo < 15) {
       this.setState({
-        FoodNo: QuestionNo,
-        QuestionCategory: 'Food'
+        FoodNo: QuestionNo
       })
     } else if (QuestionNo > 15) {
       this.setState({
-        ExtrasNo: QuestionNo,
-        QuestionCategory: 'Extras'
+        ExtrasNo: QuestionNo
       })
     }
   }
@@ -365,8 +352,7 @@ class QuestionnaireView extends Component {
       break
     case 7:
       this.setState({
-        FlightFootprint: this.state.FlightFootprint * value,
-        QuestionCategory: 'Energy'
+        FlightFootprint: this.state.FlightFootprint * value
       }, () => { this.UpdateTotalFootprint() })
       fullpageApi.moveTo(3, 0)
       break
@@ -406,8 +392,7 @@ class QuestionnaireView extends Component {
       break
     case 14:
       this.setState({
-        RestaurantFootprint: value,
-        QuestionCategory: 'Extras'
+        RestaurantFootprint: value
       }, () => { this.UpdateTotalFootprint() })
       fullpageApi.moveTo(5, 0)
       break
@@ -477,7 +462,6 @@ class QuestionnaireView extends Component {
       FoodNo,
       ExtrasNo,
       ProgressOn,
-      QuestionCategory,
       CarFootprint,
       MotorcycleFootprint,
       BusFootprint,
@@ -493,28 +477,7 @@ class QuestionnaireView extends Component {
       klimaBacking
     } = this.state
     // const { history } = this.props
-    const resultData = [
-      {
-        name: 'Transport',
-        value: ((CarFootprint +
-            MotorcycleFootprint +
-            TrainFootprint +
-            BusFootprint +
-            FlightFootprint) / TotalFootprint) * 100
-      },
-      {
-        name: 'Energy',
-        value: (HomeFootprint + HomeImprovements) / TotalFootprint
-      },
-      {
-        name: 'Food',
-        value: FoodFootprint + RestaurantFootprint
-      },
-      {
-        name: 'Extras',
-        value: HotelFootprint + FashionFootprint + AccessoryFootprint
-      }
-    ]
+
 
     return (
       <div className={styles}>
@@ -620,6 +583,8 @@ class QuestionnaireView extends Component {
                         <RegionSelect
                           onChange={regionID => this.UpdateRegion(regionID)}
                           displayText
+                          onFAQ={() => { fullpageApi.moveTo(7, 0) }}
+                          RegionID={RegionID}
                         />
                       </Grid>
                     </Grid>
@@ -1107,327 +1072,43 @@ class QuestionnaireView extends Component {
                       backgroundSize: 'cover'
                     }}
                   >
-                    <Grid container direction="row" alignItems="center" justifyContent="center">
-                      <Grid item xs={3} md={3} />
-                      <Grid item xs={3} md={3}>
-                        <Card style={{ margin: 12, padding: 32 }}>
-                          <Grid container direction="row" alignItems="center" justifyContent="center">
-                            <Grid item xs={6} md={6}>
-                              <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
-                                <Grid item xs>
-                                  <Grid container direction="row" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
-                                    <Grid item xs>
-                                      <LocalGasStationIcon />
-                                    </Grid>
-                                    <Grid item xs>
-                                      <h3 style={{
-                                        marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                                      }}
-                                      >FOOTPRINT
-                                      </h3>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                                <Grid item xs>
-                                  <h1 style={{ marginTop: 0, marginBottom: 0, fontSize: '42pt' }}>{TotalFootprint.toFixed(1)}</h1>
-                                </Grid>
-                                <Grid item xs>
-                                  <h4 style={{
-                                    marginTop: 0, color: 'grey', fontSize: '18pt', fontWeight: 400
-                                  }}
-                                  >TONNES
-                                  </h4>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            <Grid item xs={6} md={6}>
-                              <Grid container direction="column" alignItems="right" justifyContent="right">
-                                <Grid item xs>
-                                  <PieChart width={120} height={120}>
-                                    <Pie
-                                      data={resultData}
-                                      cx="50%"
-                                      cy="50%"
-                                      dataKey="value" // make sure to map the dataKey to "value"
-                                      innerRadius={45}
-                                      outerRadius={60}
-                                      fill="#33972d"
-                                    />
-                                  </PieChart>
-                                </Grid>
-                              </Grid>
-                            </Grid>
+                    <ResultsSection
+                      TotalFootprint={TotalFootprint}
+                      CarFootprint={CarFootprint}
+                      MotorcycleFootprint={MotorcycleFootprint}
+                      BusFootprint={BusFootprint}
+                      TrainFootprint={TrainFootprint}
+                      FlightFootprint={FlightFootprint}
+                      HomeFootprint={HomeFootprint}
+                      HomeImprovements={HomeImprovements}
+                      FoodFootprint={FoodFootprint}
+                      RestaurantFootprint={RestaurantFootprint}
+                      FashionFootprint={FashionFootprint}
+                      HotelFootprint={HotelFootprint}
+                      AccessoryFootprint={AccessoryFootprint}
+                      klimaBacking={klimaBacking}
+                    />
+                  </div>
+                </div>
+                <div className="section faqs-section">
+                  <div
+                    className="slide"
+                    styles="secondary"
+                    style={{
+                      backgroundImage: `url(${CoverImage})`,
+                      backgroundSize: 'cover'
+                    }}
+                  >
+                    <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
+                      <Grid item xs />
+                      <Grid item xs={6} md={6}>
+                        <Grid container direction="column" justifyContent="center" alignItems="center">
+                          <Grid item xs>
+                            <FAQs onHome={() => { fullpageApi.moveTo(1, 0) }} />
                           </Grid>
-                          <Grid container direction="row" alignItems="center" justifyContent="center">
-                            <Grid item xs={6} md={6}>
-                              <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
-                                <Grid item xs>
-                                  <h4 style={{
-                                    marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
-                                  }}
-                                  >TRANSPORT
-                                  </h4>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            <Grid item xs={6} md={6}>
-                              <Grid container direction="column" alignItems="right" justifyContent="right" style={{ textAlign: 'right' }}>
-                                <Grid item xs>
-                                  <h4 style={{
-                                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                                  }}
-                                  >{(
-                                      CarFootprint +
-                                    MotorcycleFootprint +
-                                    TrainFootprint +
-                                    BusFootprint +
-                                    FlightFootprint).toFixed(1)} |
-                                    <strong>{(((
-                                      CarFootprint +
-                                    MotorcycleFootprint +
-                                    TrainFootprint +
-                                    BusFootprint +
-                                    FlightFootprint) / TotalFootprint) * 100).toFixed(1)}%
-                                    </strong>
-                                  </h4>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                          </Grid>
-                          <Grid container direction="row" alignItems="center" justifyContent="center">
-                            <Grid item xs={6} md={6}>
-                              <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
-                                <Grid item xs>
-                                  <h4 style={{
-                                    marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
-                                  }}
-                                  >ENERGY
-                                  </h4>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            <Grid item xs={6} md={6}>
-                              <Grid container direction="column" alignItems="right" justifyContent="right" style={{ textAlign: 'right' }}>
-                                <Grid item xs>
-                                  <h4 style={{
-                                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                                  }}
-                                  >{(
-                                      HomeFootprint + HomeImprovements).toFixed(1)} |
-                                    <strong>{(((
-                                      HomeFootprint +
-                                      HomeImprovements) /
-                                      TotalFootprint) * 100).toFixed(1)}%
-                                    </strong>
-                                  </h4>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                          </Grid>
-                          <Grid container direction="row" alignItems="center" justifyContent="center">
-                            <Grid item xs={6} md={6}>
-                              <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
-                                <Grid item xs>
-                                  <h4 style={{
-                                    marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
-                                  }}
-                                  >FOOD
-                                  </h4>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            <Grid item xs={6} md={6}>
-                              <Grid container direction="column" alignItems="right" justifyContent="right" style={{ textAlign: 'right' }}>
-                                <Grid item xs>
-                                  <h4 style={{
-                                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                                  }}
-                                  >{(
-                                      FoodFootprint +
-                                    RestaurantFootprint).toFixed(1)} |
-                                    <strong>{(((
-                                      FoodFootprint +
-                                      RestaurantFootprint) /
-                                      TotalFootprint) * 100).toFixed(1)}%
-                                    </strong>
-                                  </h4>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                          </Grid>
-                          <Grid container direction="row" alignItems="center" justifyContent="center">
-                            <Grid item xs={6} md={6}>
-                              <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
-                                <Grid item xs>
-                                  <h4 style={{
-                                    marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
-                                  }}
-                                  >EXTRAS
-                                  </h4>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            <Grid item xs={6} md={6}>
-                              <Grid container direction="column" alignItems="right" justifyContent="right" style={{ textAlign: 'right' }}>
-                                <Grid item xs>
-                                  <h4 style={{
-                                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                                  }}
-                                  >{(
-                                      FashionFootprint +
-                                    AccessoryFootprint +
-                                    HotelFootprint).toFixed(1)} |
-                                    <strong>{(((
-                                      FashionFootprint +
-                                    AccessoryFootprint +
-                                    HotelFootprint) /
-                                    TotalFootprint) * 100).toFixed(1)}%
-                                    </strong>
-                                  </h4>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                          </Grid>
-                        </Card>
-                        <Card style={{ margin: 12, padding: 32, textAlign: 'left' }}>
-                          <Grid container direction="row" alignItems="left" justifyContent="left">
-                            <Grid item xs={1}>
-                              <MailOutlineIcon />
-                            </Grid>
-                            <Grid item xs={11}>
-                              <h3 style={{
-                                marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                              }}
-                              >REDUCING YOUR FOOTPRINT
-                              </h3>
-                            </Grid>
-                          </Grid>
-                          <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
-                            There are many ways to live a lower carbon life. With these results you
-                            can start to assess the largest contributors and what you might change.
-                          </h4>
-                          <h4> </h4>
-                          <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
-                            Can you take public transport rather than driving?
-                          </h4>
-                          <h4> </h4>
-                          <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
-                            Are there any clean energy providers in your area?
-                          </h4>
-                        </Card>
+                        </Grid>
                       </Grid>
-                      <Grid item xs={3} md={3}>
-                        <Card style={{ margin: 12, padding: 32 }}>
-                          <Grid container direction="column" alignItems="left" justifyContent="left">
-                            <Grid item xs>
-                              <Grid container direction="row" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
-                                <Grid item xs={1}>
-                                  <CloudQueueIcon />
-                                </Grid>
-                                <Grid item xs={11}>
-                                  <h3 style={{
-                                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                                  }}
-                                  >OFFSET
-                                  </h3>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            <Grid item xs>
-                              <h4 style={{ fontSize: '14pt', fontWeight: 600, color: 'grey' }}>
-                                Reduce where you can, offset where you can&apos;t.
-                              </h4>
-                            </Grid>
-                            <Grid item xs>
-                              <h4 style={{ fontSize: '12pt' }}>
-                                KLIMA DAO is fighting climate change by embedding the cost of
-                                carbon into a carbon backed currency called KLIMA.
-                              </h4>
-                            </Grid>
-                            <Grid item xs>
-                              <h4 style={{ fontSize: '12pt' }}>
-                                Each KLIMA token is backed by at least 1 ton of carbon. Below is a
-                                conversion of your footprint in Klima, you can choose to offset
-                                this.
-                              </h4>
-                            </Grid>
-                            <Grid item xs>
-                              <Grid container direction="row" >
-                                <Grid item xs={2}>
-                                  <img src={tCO2e} alt="tCO2e Circle" style={{ height: 40, marginBottom: 10 }} />
-                                </Grid>
-                                <Grid item xs={10}>
-                                  <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
-                                    <Grid item xs>
-                                      <h3 style={{
-                                        fontSize: '12pt', fontWeight: 500, marginTop: 0, marginBottom: 0
-                                      }}
-                                      >YOUR FOOTPRINT
-                                      </h3>
-                                    </Grid>
-                                    <Grid item xs>
-                                      <h3 style={{
-                                        fontSize: '14pt', fontWeight: 500, marginTop: 0, marginBottom: 0, color: '#33972d'
-                                      }}
-                                      >{TotalFootprint.toFixed(1)} TONS
-                                      </h3>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            <Divider />
-                            <Grid item xs>
-                              <Grid container direction="row" >
-                                <Grid item xs={2}>
-                                  <img src={KLIMA} alt="KLIMA Circle" style={{ height: 40, marginTop: 10 }} />
-                                </Grid>
-                                <Grid item xs={10}>
-                                  <Grid container direction="column" alignItems="left" justifyContent="left" style={{ textAlign: 'left' }}>
-                                    <Grid item xs>
-                                      <h3 style={{
-                                        fontSize: '12pt', fontWeight: 500, marginTop: 0, marginBottom: 0
-                                      }}
-                                      >IS EQUIVALENT TO
-                                      </h3>
-                                    </Grid>
-                                    <Grid item xs>
-                                      <h3 style={{
-                                        fontSize: '14pt', fontWeight: 500, marginTop: 0, marginBottom: 0, color: '#33972d'
-                                      }}
-                                      >{(TotalFootprint / klimaBacking).toFixed(1)} KLIMA
-                                      </h3>
-                                    </Grid>
-                                  </Grid>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            <Grid item xs>
-                              <a href="https://www.klimadao.finance/buy">
-                                <Button
-                                  variant="contained"
-                                  className="next-button"
-                                  color="primary"
-                                  style={{ color: 'white', backgroundColor: '#33972d' }}
-                                >
-                                  OFFSET
-                                </Button>
-                              </a>
-                            </Grid>
-                          </Grid>
-                        </Card>
-                        <a href="https://www.creol.io/">
-                          <Grid container direction="row" alignItems="flex-end" justifyContent="flex-end">
-                            <Grid item>
-                              <h4 className="creol-footer" style={{ margin: 3 }}>Powered by Creol</h4>
-                            </Grid>
-                            <Grid item>
-                              <img src={CreolLogo} alt="Creol Logo" style={{ height: 15 }} />
-                            </Grid>
-                          </Grid>
-                        </a>
-                      </Grid>
-                      <Grid item xs={3} md={3} />
+                      <Grid item xs />
                     </Grid>
                   </div>
                 </div>
@@ -1507,9 +1188,12 @@ class QuestionnaireView extends Component {
             <h2 className="footprint-text"> {TotalFootprint.toFixed(1)} </h2>
             <h4 style={{ marginTop: 0 }}> t CO2 e </h4>
           </div>
+          {/*
           <div className="category-display">
             <h2 className="category-text"> {QuestionCategory} </h2>
           </div>
+          */
+          }
         </div>
         <div className="footer">
           <Grid container direction="row">

@@ -59,9 +59,9 @@
     "8": {
       "Question": "WHAT TYPE OF BUILDING DO YOU LIVE IN?",
       "UKOption": [["Terrace",0.883],["Mid Terrace",0.5917],["End Terrace",0.7333],["Apartment",0.6],["Semi-detached",0.8167],["Bungalow",0.825]],
-      "EUOption": [["Terrace",0.883],["Mid Terrace",0.5917],["End Terrace",0.7333],["Apartment",0.6],["Semi-detached",0.8167],["Bungalow",0.825]],
+      "EUOption": [["Single-Family Home",0.883],["Condo",0.6],["Townhouse",0.7333],["Multi-family Home (duplex, triplex, etc.)",0.6467],["Co-op",0.62]],
       "USOption": [["Single-Family Home",0.883],["Condo",0.6],["Townhouse",0.7333],["Multi-family Home (duplex, triplex, etc.)",0.6467],["Co-op",0.62]],
-      "WorldOption": [["Terrace",0.883],["Mid Terrace",0.5917],["End Terrace",0.7333],["Apartment",0.6],["Semi-detached",0.8167],["Bungalow",0.825]],
+      "WorldOption": [["Single-Family Home",0.883],["Condo",0.6],["Townhouse",0.7333],["Multi-family Home (duplex, triplex, etc.)",0.6467],["Co-op",0.62]],
       "Options2": [["1",1],["2",2],["3",3],["4",4],["5",5],["6+",6]],
       "Options3": [["0",1],["1",2],["2",3],["3",4],["4",5],["5",6],["6+",7]]
     },

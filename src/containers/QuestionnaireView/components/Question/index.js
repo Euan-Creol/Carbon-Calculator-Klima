@@ -86,12 +86,11 @@ class Question extends Component {
   returnButtonArray(QuestionJSON, QuestionNumber, RegionID, props) {
     const ButtonArray = this.formatQuestionOptions(QuestionJSON, QuestionNumber, RegionID)
     return ButtonArray.map(OptionArray => (
-      <Grid item style={{ width: '60%' }}>
+      <Grid item style={{ width: '60%' }} key={OptionArray[0]}>
         <Card
           style={{
             backgroundColor: '#F7F7F7', width: '100%', margin: 6, textAlign: 'left'
           }}
-          key={OptionArray[0]}
           elevation={0}
         >
           <CardActionArea onClick={() => this.updateFootprint(OptionArray[1], props)}>
@@ -210,7 +209,7 @@ Question.propTypes = {
   QuestionNumber: PropTypes.number.isRequired,
   /** The chosen region of the questionnaire taker */
   RegionID: PropTypes.number.isRequired,
-  onPrevious: PropTypes.number.isRequired
+  onPrevious: PropTypes.func.isRequired
 }
 
 export default (Question)

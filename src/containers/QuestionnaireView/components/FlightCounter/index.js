@@ -290,7 +290,7 @@ class FlightCounter extends Component {
               </Grid>
             </Grid>
           </Grid>
-          <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start">
+          <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start" style={{ marginTop: 10 }}>
             <Grid item xs>
               <Button style={{ color: 'grey' }} onClick={() => { this.handlePreviousQuestion(this.props) }} startIcon={<ArrowBackIosIcon />}>
                 Previous Question

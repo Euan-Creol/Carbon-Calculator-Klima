@@ -1,12 +1,18 @@
-import React, { Component }                     from 'react'
-import { Grid, FormControl, MenuItem, Select }  from '@material-ui/core'
-import PropTypes                                from 'prop-types'
-import DialogBox                                from './components/DialogBox'
-import UKFlag                                   from '../../../../assets/images/QuestionnaireView/Flag_of_the_United_Kingdom.svg'
-import EUFlag                                   from '../../../../assets/images/QuestionnaireView/Flag_of_Europe.svg'
-import USFlag                                   from '../../../../assets/images/QuestionnaireView/Flag_of_the_United_States.svg'
-import WorldFlag                                from '../../../../assets/images/QuestionnaireView/Flag_of_World.svg'
-import { styles }                               from './styles.scss'
+import React, { Component }                             from 'react'
+import { Grid,
+  FormControl,
+  MenuItem,
+  Select,
+  Card,
+  CardActionArea }                                       from '@material-ui/core'
+import PropTypes                                        from 'prop-types'
+import ArrowDownwardIcon                                from '@mui/icons-material/ArrowDownward'
+
+import UKFlag                                           from '../../../../assets/images/QuestionnaireView/Flag_of_the_United_Kingdom.svg'
+import EUFlag                                           from '../../../../assets/images/QuestionnaireView/Flag_of_Europe.svg'
+import USFlag                                           from '../../../../assets/images/QuestionnaireView/Flag_of_the_United_States.svg'
+import WorldFlag                                        from '../../../../assets/images/QuestionnaireView/Flag_of_World.svg'
+import { styles }                                       from './styles.scss'
 
 /*
 The component that allows for the user to select their region
@@ -17,6 +23,12 @@ class RegionSelect extends Component {
     this.state = {
       RegionID: 2,
       RegionName: 'US'
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.RegionID !== this.props.RegionID) {
+      this.SetRegion(this.props.RegionID, this.props)
     }
   }
 
@@ -41,7 +53,7 @@ class RegionSelect extends Component {
       newRegionName = 'World'
       break
     default:
-      newRegionName = 'USd'
+      newRegionName = 'US'
     }
     this.setState({
       RegionID: NewValue,
@@ -111,9 +123,13 @@ class RegionSelect extends Component {
     return AverageFootprint
   }
 
+  handleFAQSelection() {
+    this.props.onFAQ()
+  }
+
   render() {
     const { displayText } = this.props
-    const { RegionName } = this.state
+    const { RegionName, RegionID } = this.state
     return (
       <div className={styles}>
         <Grid container direction="column" justifyContent="center" alignItems="center" spacing={2}>
@@ -124,7 +140,7 @@ class RegionSelect extends Component {
                 labelWidth={100}
                 id="simple-select"
                 autoWidth
-                defaultValue={2}
+                value={RegionID}
                 onChange={event => this.SetRegion(event.target.value, this.props)}
                 classes={{
                   selectMenu: 'select-menu',
@@ -152,7 +168,20 @@ class RegionSelect extends Component {
           )}
           { displayText ? (
             <Grid item xs>
-              <DialogBox />
+              <Card elevation={0}>
+                <CardActionArea onClick={() => { this.handleFAQSelection() }}>
+                  <Grid container direction="column" justifyContent="center" alignItems="center">
+                    <Grid item xs>
+                      <h4 style={{ fontWeight: 600, margin: 0 }}>
+                        FAQS
+                      </h4>
+                    </Grid>
+                    <Grid item xs>
+                      <ArrowDownwardIcon />
+                    </Grid>
+                  </Grid>
+                </CardActionArea>
+              </Card>
             </Grid>
           ) : (
             <div />
@@ -164,7 +193,9 @@ class RegionSelect extends Component {
 }
 
 RegionSelect.propTypes = {
-  displayText: PropTypes.bool.isRequired
+  displayText: PropTypes.bool.isRequired,
+  onFAQ: PropTypes.func.isRequired,
+  RegionID: PropTypes.number.isRequired
 }
 
 export default RegionSelect
