@@ -86,60 +86,72 @@ class QuestionnaireView extends Component {
     }
   }
 
-  getKlimaData = async () => {
-    const provider = new ethers.providers.JsonRpcProvider('https://polygon-rpc.com')
-    const bctContract = new ethers.Contract(
-      addresses.mainnet.bct,
-      IERC20.abi,
-      provider
-    )
+  async getKlimaData() {
+    try {
+      const provider = new ethers.providers.JsonRpcProvider('https://polygon-rpc.com')
+      const bctContract = new ethers.Contract(
+        addresses.mainnet.bct,
+        IERC20.abi,
+        provider
+      )
 
-    const nakedBCT = await bctContract.balanceOf(addresses.mainnet.treasury)
+      const nakedBCT = await bctContract.balanceOf(addresses.mainnet.treasury)
 
-    const klimaTokenContract = new ethers.Contract(
-      addresses.mainnet.klima,
-      IERC20.abi,
-      provider
-    )
+      const klimaTokenContract = new ethers.Contract(
+        addresses.mainnet.klima,
+        IERC20.abi,
+        provider
+      )
 
-    const totalSupply = await klimaTokenContract.totalSupply()
+      const totalSupply = await klimaTokenContract.totalSupply()
 
-    // const bctUSDC = await this.getOwnedBCTFromSLP(provider, addresses.mainnet.bctUsdcLp)
-    const klimaBCT = await this.getOwnedBCTFromSLP(provider, addresses.mainnet.klimaBctLp)
+      // const bctUSDC = await this.getOwnedBCTFromSLP(provider, addresses.mainnet.bctUsdcLp)
+      const klimaBCT = await this.getOwnedBCTFromSLP(provider, addresses.mainnet.klimaBctLp)
 
-    const nakedBCTInt = this.getInteger(nakedBCT)
-    const totalSupplyInt = totalSupply.toNumber() / 1000000000
+      const nakedBCTInt = this.getInteger(nakedBCT)
+      const totalSupplyInt = totalSupply.toNumber() / 1000000000
 
-    // Backing per KLIMA = (nakedBCTInt + klimaBCT) / totalSupplyInt)
+      // Backing per KLIMA = (nakedBCTInt + klimaBCT) / totalSupplyInt)
 
-    this.setState({
-      klimaBacking: ((nakedBCTInt + klimaBCT) / totalSupplyInt)
-    })
+      this.setState({
+        klimaBacking: ((nakedBCTInt + klimaBCT) / totalSupplyInt)
+      })
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err)
+    }
   }
 
-  getOwnedBCTFromSLP = async (provider, slpAddress) => {
-    const contract = new ethers.Contract(slpAddress, PairContract.abi, provider)
-    const [token0, token1, [reserve0, reserve1], treasurySLP, totalSLP] =
-      await Promise.all([
-        contract.token0(),
-        contract.token1(),
-        contract.getReserves(),
-        contract.balanceOf(addresses.mainnet.treasury),
-        contract.totalSupply()
-      ])
-    let reserve
-    if (token0.toLowerCase() === addresses.mainnet.bct.toLowerCase()) {
-      reserve = reserve0
-    } else if (token1.toLowerCase() === addresses.mainnet.bct.toLowerCase()) {
-      reserve = reserve1
-    } else {
-      throw new Error('No BCT reserve found')
+  async getOwnedBCTFromSLP(provider, slpAddress) {
+    let bctOwned = 0
+    try {
+      const contract = new ethers.Contract(slpAddress, PairContract.abi, provider)
+      const [token0, token1, [reserve0, reserve1], treasurySLP, totalSLP] =
+        await Promise.all([
+          contract.token0(),
+          contract.token1(),
+          contract.getReserves(),
+          contract.balanceOf(addresses.mainnet.treasury),
+          contract.totalSupply()
+        ])
+      let reserve
+      if (token0.toLowerCase() === addresses.mainnet.bct.toLowerCase()) {
+        reserve = reserve0
+      } else if (token1.toLowerCase() === addresses.mainnet.bct.toLowerCase()) {
+        reserve = reserve1
+      } else {
+        throw new Error('No BCT reserve found')
+      }
+      const bctSupply = this.getInteger(reserve)
+      const ownership = treasurySLP / totalSLP // decimal (percent) e.g. 0.95999
+      bctOwned = Math.floor(bctSupply * ownership)
+      return bctOwned
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err)
     }
-    const bctSupply = this.getInteger(reserve)
-    const ownership = treasurySLP / totalSLP // decimal (percent) e.g. 0.95999
-    const bctOwned = Math.floor(bctSupply * ownership)
     return bctOwned
-  };
+  }
 
   getInteger = (num) => {
     const str = ethers.utils.formatUnits(num)
