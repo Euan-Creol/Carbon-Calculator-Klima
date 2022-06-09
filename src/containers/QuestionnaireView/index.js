@@ -13,7 +13,7 @@ import { ethers }                           from 'ethers'
 import { Typography }                       from '@mui/material'
 
 import AccomSelect                          from './components/AccomadationSelect'
-import CoverImage                           from '../../assets/images/green-wormhole-transparent.jpg'
+import CoverImage                           from '../../assets/images/grey_cover_background.png'
 import LogoGif                              from '../../assets/images/LogoGif.gif'
 import RegionSelect                         from './components/RegionSelection'
 import { styles }                           from './styles.scss'
@@ -523,7 +523,7 @@ class QuestionnaireView extends Component {
 
         <ReactFullpage
           pluginWrapper={this.pluginWrapper}
-          licenseKey="0628BF63-A12B4E50-ADE30A94-A3F386A1"
+          licenseKey="0628BF63-A12B4E50-ADE30A94-A3F386A1" // REMOVE API KEYS
           scrollingSpeed={1500}
           scrollHorizontally
           continuousHorizontal
@@ -578,8 +578,8 @@ class QuestionnaireView extends Component {
                     >
                       <Grid item xs>
                         <h2>CALCULATE YOUR FOOTPRINT</h2>
-                        <h4 style={{ color: 'grey', marginBottom: 0 }}>Calculate your carbon footprint</h4>
-                        <h4 style={{ color: 'grey', marginTop: 0 }}>with Creol and Offset with Klima Infinity</h4>
+                        <h4 style={{ color: 'grey', marginBottom: 0 }}>Calculate your carbon footprint with Creol</h4>
+                        <h4 style={{ color: 'grey', marginTop: 0 }}>and Offset with Klima Infinity</h4>
                       </Grid>
                       <Grid item xs style={{ paddingBottom: 100 }}>
                         <Button
