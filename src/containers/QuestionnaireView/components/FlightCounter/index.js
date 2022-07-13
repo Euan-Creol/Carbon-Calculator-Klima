@@ -217,34 +217,33 @@ class FlightCounter extends Component {
       const currentQuestionState = this.lookupButtonStateName(Options[index][0])
       return (
         // eslint-disable-next-line react/no-array-index-key
-        <Grid item xs key={index}>
-          <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2} style={{ maxHeight: 70 }}>
-            <Grid item xs={6} >
-              <h4 className="region-title" style={{ margin: 12, fontWeight: 600 }}>{Options[index][0]}</h4>
-            </Grid>
-            <Grid item xs={6}>
-              <ButtonGroup style={{ backgroundColor: '#F7F7F7', height: 35, color: 'black' }} size="large" color="primary" aria-label="flight-counter">
-                <Button
-                  style={{ color: 'black', border: 'black' }}
-                  onClick={() => {
-                    this.updateFlights(Options[index][0], -1,
-                      currentQuestionState, QuestionNumber, RegionID, props)
-                  }}
-                >-
-                </Button>
-                <Button style={{ color: 'black', border: 'black' }}>{ currentQuestionState }</Button>
-                <Button
-                  style={{ color: 'black', border: 'black' }}
-                  onClick={() => {
-                    this.updateFlights(Options[index][0], 1,
-                      currentQuestionState, QuestionNumber, RegionID, props)
-                  }}
-                >+
-                </Button>
-              </ButtonGroup>
-            </Grid>
+        <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2} style={{ maxHeight: 70 }} key={index}>
+          <Grid item xs={6} >
+            <h4 className="region-title" style={{ marginTop: 12, marginBottom: 12, fontWeight: 600 }}>{Options[index][0]}</h4>
           </Grid>
-        </Grid>)
+          <Grid item xs={6}>
+            <ButtonGroup style={{ backgroundColor: '#F7F7F7', height: 35, color: 'black' }} size="large" color="primary" aria-label="flight-counter">
+              <Button
+                style={{ color: 'black', border: 'black' }}
+                onClick={() => {
+                  this.updateFlights(Options[index][0], -1,
+                    currentQuestionState, QuestionNumber, RegionID, props)
+                }}
+              >-
+              </Button>
+              <Button style={{ color: 'black', border: 'black' }}>{ currentQuestionState }</Button>
+              <Button
+                style={{ color: 'black', border: 'black' }}
+                onClick={() => {
+                  this.updateFlights(Options[index][0], 1,
+                    currentQuestionState, QuestionNumber, RegionID, props)
+                }}
+              >+
+              </Button>
+            </ButtonGroup>
+          </Grid>
+        </Grid>
+      )
     })
     return questions
   }
@@ -267,7 +266,7 @@ class FlightCounter extends Component {
     return (
       <div className={styles}>
         <Card style={{
-          width: '100%', padding: 32, borderRadius: '0.8rem', marginTop: 120
+          padding: 32, borderRadius: '0.8rem', marginTop: 120, marginLeft: 10, marginRight: 10
         }}
         >
           <Grid
@@ -281,13 +280,7 @@ class FlightCounter extends Component {
               <h3 style={{ fontWeight: 1000, marginTop: 0 }}>{QuestionTitle}</h3>
             </Grid>
             <Grid item xs>
-              <Grid container direction="row" justifyContent="center" alignItems="center" className="button-options">
-                <Grid item xs>
-                  <Grid container direction="column" justifyContent="center" alignItems="center">
-                    {FlightQuestions}
-                  </Grid>
-                </Grid>
-              </Grid>
+              {FlightQuestions}
             </Grid>
           </Grid>
           <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start" style={{ marginTop: 10 }}>

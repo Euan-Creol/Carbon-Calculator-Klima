@@ -6,6 +6,7 @@ import { Pie, PieChart }                from 'recharts'
 import MailOutlineIcon                  from '@mui/icons-material/MailOutline'
 import CloudQueueIcon                   from '@mui/icons-material/CloudQueue'
 
+import { styles }                       from './styles.scss'
 import tCO2e                            from '../../../../assets/images/QuestionnaireView/tCO2e.png'
 import KLIMA                            from '../../../../assets/images/QuestionnaireView/KLIMA.png'
 import CreolLogo                        from '../../../../assets/images/Creol.png'
@@ -53,11 +54,11 @@ class ResultsSection extends Component {
     ]
 
     return (
-      <div>
+      <div className={styles}>
         <Grid container direction="row" alignItems="center" justifyContent="center">
-          <Grid item xs={3} md={3} />
-          <Grid item xs={3} md={3}>
-            <Card style={{ margin: 12, padding: 32 }}>
+          <Grid item xs={false} md={3} />
+          <Grid item xs={12} md={3}>
+            <Card className="result-card">
               <Grid container direction="row" alignItems="center" justifyContent="center">
                 <Grid item xs={6} md={6}>
                   <Grid container direction="column" alignItems="flex-start" justifyContent="flex-start" style={{ textAlign: 'left' }}>
@@ -229,7 +230,7 @@ class ResultsSection extends Component {
                 </Grid>
               </Grid>
             </Card>
-            <Card style={{ margin: 12, padding: 20, textAlign: 'left' }}>
+            <Card style={{ textAlign: 'left' }} className="result-card">
               <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start">
                 <Grid item xs={1}>
                   <Button startIcon={<MailOutlineIcon />} disabled style={{ color: 'black', fontSize: 'large', width: 280 }}>REDUCE YOUR FOOTPRINT</Button>
@@ -249,8 +250,8 @@ class ResultsSection extends Component {
               </h4>
             </Card>
           </Grid>
-          <Grid item xs={3} md={3}>
-            <Card style={{ margin: 12, padding: 32 }}>
+          <Grid item xs={12} md={3}>
+            <Card className="result-card">
               <Grid container direction="column" alignItems="flex-start" justifyContent="flex-start">
                 <Grid item xs>
                   <Grid container direction="row" alignItems="flex-end" justifyContent="flex-end" style={{ textAlign: 'left' }}>
@@ -260,24 +261,24 @@ class ResultsSection extends Component {
                   </Grid>
                 </Grid>
                 <Grid item xs>
-                  <h4 style={{ fontSize: '14pt', fontWeight: 600, color: 'grey' }}>
+                  <h4 style={{ fontSize: '14pt', fontWeight: 600, color: 'grey' }} className="result-text">
                     Reduce where you can, offset where you can&apos;t.
                   </h4>
                 </Grid>
                 <Grid item xs>
-                  <h4 style={{ fontSize: '12pt' }}>
+                  <h4 style={{ fontSize: '12pt' }} className="result-text">
                     KLIMA DAO is fighting climate change by embedding the cost of
                     carbon into a carbon backed currency called KLIMA.
                   </h4>
                 </Grid>
                 <Grid item xs>
-                  <h4 style={{ fontSize: '12pt' }}>
+                  <h4 style={{ fontSize: '12pt' }} className="result-text">
                     Each KLIMA token is backed by at least 1 ton of carbon. Below is a
                     conversion of your footprint in Klima, you can choose to offset
                     this.
                   </h4>
                 </Grid>
-                <Grid item xs>
+                <Grid item xs style={{ paddingTop: 5 }}>
                   <Grid container direction="row" >
                     <Grid item xs={2}>
                       <img src={tCO2e} alt="tCO2e Circle" style={{ height: 40, marginBottom: 5 }} />
@@ -334,10 +335,10 @@ class ResultsSection extends Component {
                 <Grid item xs>
                   <Button
                     variant="contained"
-                    className="next-button"
+                    className="offset-button"
                     color="primary"
-                    style={{ color: 'white', backgroundColor: '#33972d', marginTop: 20 }}
-                    onClick={() => { window.location.href = `http://app.klimadao.finance/#/offset?quantity=${ (TotalFootprint / klimaBacking).toFixed(1) }&inputToken=klima&retirementToken=bct` }}
+                    style={{ color: 'white', backgroundColor: '#33972d' }}
+                    onClick={() => { window.location.href = `http://app.klimadao.finance/#/offset?quantity=${ (TotalFootprint).toFixed(1) }&inputToken=klima&retirementToken=bct` }}
                   >
                     OFFSET
                   </Button>
@@ -355,7 +356,7 @@ class ResultsSection extends Component {
               </Grid>
             </a>
           </Grid>
-          <Grid item xs={3} md={3} />
+          <Grid item xs={false} md={3} />
         </Grid>
       </div>
     )

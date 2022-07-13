@@ -181,10 +181,9 @@ class AccomSelect extends Component {
     return (
       <div
         className={styles}
-        style={{ width: '100%' }}
       >
         <Card style={{
-          width: '100%', padding: 32, borderRadius: '0.8rem', marginTop: 120
+          padding: 32, borderRadius: '0.8rem', margin: 10
         }}
         >
           <Grid container direction="column">

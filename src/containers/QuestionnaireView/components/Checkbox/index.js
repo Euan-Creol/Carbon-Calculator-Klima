@@ -79,7 +79,7 @@ class QuestionCheckbox extends Component {
     return CheckboxArray.map(Array => (
       <FormControlLabel
         key={Array[0]}
-        control={<Checkbox name={Array[0]} />}
+        control={<Checkbox name={Array[0]} style={{ color: '#33972d' }} />}
         label={Array[0]}
         onChange={(event, newValue) => this.updateFootprint(Array[1], newValue, props)}
       />
@@ -132,7 +132,7 @@ class QuestionCheckbox extends Component {
     return (
       <div className={styles}>
         <Card style={{
-          width: '100%', padding: 32, borderRadius: '0.8rem', marginTop: 120
+          padding: 32, borderRadius: '0.8rem', marginLeft: 10, marginRight: 10
         }}
         >
           <Grid

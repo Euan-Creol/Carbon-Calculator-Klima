@@ -74,6 +74,10 @@
     margin: auto;
     top: 40px;
     visibility: hidden;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
   }
   .progress-icon-active {
     position: fixed;
@@ -87,7 +91,9 @@
   .footprint-display {
     text-align: center;
     position: fixed;
-    right: 45%;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
     top: 110px;
     z-index: 6;
     width: 120px;
@@ -105,31 +111,41 @@
   }
   .circular-progress-background {
     position: fixed;
-    right: 45%;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
     z-index: 1;
     top: 80px;
   }
   .circular-progress-transport {
     position: fixed;
-    right: 45%;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
     z-index: 5;
     top: 80px;
   }
   .circular-progress-energy {
     position: fixed;
-    right: 45%;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
     z-index: 4;
     top: 80px;
   }
   .circular-progress-food {
     position: fixed;
-    right: 45%;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
     z-index: 3;
     top: 80px;
   }
   .circular-progress-extras {
     position: fixed;
-    right: 45%;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
     z-index: 2;
     top: 80px;
   }
@@ -190,5 +206,10 @@
   }
   .footer-button {
     color: grey;
+  }
+  @media (max-width: 500px) {
+    .footer {
+      display: none;
+    }
   }
 }

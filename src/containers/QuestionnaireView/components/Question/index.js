@@ -144,9 +144,11 @@ class Question extends Component {
     const QuestionTitle = this.formatQuestionTitle(QuestionData, QuestionNumber)
     return (
       <div className={styles}>
-        <Card style={{
-          width: '100%', padding: 32, borderRadius: '0.8rem', marginTop: 120
-        }}
+        <Card
+          className="question-card"
+          style={{
+            padding: 32, borderRadius: '0.8rem', margin: 10, marginTop: 120
+          }}
         >
           <Grid
             container

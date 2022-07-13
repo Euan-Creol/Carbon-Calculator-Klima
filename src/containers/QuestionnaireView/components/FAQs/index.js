@@ -59,13 +59,13 @@ class FAQs extends Component {
             </Grid>
             <Grid item xs style={{ textAlign: 'left' }}>
               <h4>
-                This average and the calculations in this calculator are based on data provided by
-                the <a href="https://data.worldbank.org/indicator/EN.ATM.CO2E.PC">World Bank</a>
+                This average and the calculations in this
+                calculator are based on data provided by the
+                <a href="https://data.worldbank.org/indicator/EN.ATM.CO2E.PC"> World Bank </a>
                 and the
-                <a href="https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2019">
-                  UK Government
-                </a>
-                . Read more about carbon footprints <a href="https://www.footprintnetwork.org/our-work/climate-change/">here</a>.
+                <a href="https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2019"> UK Government </a>
+                . Read more about carbon footprints
+                <a href="https://www.footprintnetwork.org/our-work/climate-change/"> here</a>.
               </h4>
             </Grid>
             <Grid item xs>

@@ -498,16 +498,14 @@ class QuestionnaireView extends Component {
           <meta name="title" content="Creol Offsets - Carbon Footprint Calculator" />
           <meta
             name="description"
-            content="Calculate your Carbon Footprint And Offset your Flights and lifestyle
-                  today for as little as £2.37/week! Start a 2-week free Trial today!"
+            content="Calculate your Carbon Footprint And Offset with KLIMA Infinity!"
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://footprint.creol.io/" />
           <meta property="og:title" content="Creol Offsets - Carbon Footprint Calculator" />
           <meta
             property="og:description"
-            content="Calculate your Carbon Footprint And Offset your Flights and lifestyle
-                  today for as little as £2.37/week! Start a 2-week free Trial today!"
+            content="Calculate your Carbon Footprint And Offset with KLIMA Infinity!"
           />
           <meta property="og:image" content={`https://beta.creol.io/${LogoGif}`} />
           <meta property="twitter:card" content="summary_large_image" />
@@ -515,8 +513,7 @@ class QuestionnaireView extends Component {
           <meta property="twitter:title" content="Creol Offsets - Carbon Footprint Calculator" />
           <meta
             property="twitter:description"
-            content="Calculate your Carbon Footprint And Offset your Flights and lifestyle
-                  today for as little as £2.37/week! Start a 2-week free Trial today!"
+            content="Calculate your Carbon Footprint And Offset with KLIMA Infinity!"
           />
           <meta property="twitter:image" content={`https://beta.creol.io/${LogoGif}`} />
         </MetaTags>
@@ -584,11 +581,15 @@ class QuestionnaireView extends Component {
                       <Grid item xs style={{ paddingBottom: 100 }}>
                         <Button
                           variant="contained"
-                          className="question-button"
                           color="primary"
+                          style={{ color: 'white', backgroundColor: '#33972d' }}
+                          className="question-button"
                           onClick={() =>
                             this.StartQuestionnaire(fullpageApi)}
                         >Start
+                        </Button>
+                        <Button onClick={() => { this.EndQuestionnaire(fullpageApi) }}>
+                          SKIP
                         </Button>
                       </Grid>
                       <Grid item xs>
@@ -612,9 +613,9 @@ class QuestionnaireView extends Component {
                   >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={12} md={12}>
+                      <Grid item xs={12} md={6}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
-                          <Grid item xs style={{ width: '50%' }}>
+                          <Grid item>
                             <Question
                               QuestionNumber={0}
                               RegionID={RegionID}
@@ -639,7 +640,7 @@ class QuestionnaireView extends Component {
                       <Grid item xs />
                       <Grid item xs={12} md={12}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
-                          <Grid item xs>
+                          <Grid item xs={12}>
                             <Question
                               QuestionNumber={1}
                               RegionID={RegionID}
@@ -1129,72 +1130,91 @@ class QuestionnaireView extends Component {
           }}
         />
         <div className={`progress-icon${ProgressOn}`}>
-          <Grid container direction="row" alignItems="center" justifyContent="center">
+          <Grid container direction="column" alignItems="center" justifyContent="center">
             <Grid item xs>
-              <Typography style={{ position: 'fixed', right: '40%', fontSize: '20pt' }}>
+              <Typography style={{ fontSize: '20pt', textAlign: 'center' }}>
                 YOUR <strong>CARBON</strong> TOTAL
               </Typography>
             </Grid>
           </Grid>
-
           <div className="circular-progress-background">
-            <CircularProgress
-              style={{
-                color: 'lightGrey'
-              }}
-              variant="determinate"
-              size={120}
-              thickness={4}
-              value={100}
-            />
+            <Grid container direction="column" alignItems="center" justifyContent="center">
+              <Grid item xs>
+                <CircularProgress
+                  style={{
+                    color: 'lightGrey'
+                  }}
+                  variant="determinate"
+                  size={120}
+                  thickness={4}
+                  value={100}
+                />
+              </Grid>
+            </Grid>
           </div>
           <div className="circular-progress-transport">
-            <CircularProgress
-              style={{
-                color: '#33972d',
-                opacity: 1
-              }}
-              variant="determinate"
-              size={120}
-              thickness={4}
-              value={(TransportNo / 18) * 100}
-            />
+            <Grid container direction="column" alignItems="center" justifyContent="center">
+              <Grid item xs>
+                <CircularProgress
+                  style={{
+                    color: '#33972d',
+                    opacity: 1
+                  }}
+                  variant="determinate"
+                  size={120}
+                  thickness={4}
+                  value={(TransportNo / 18) * 100}
+                />
+              </Grid>
+            </Grid>
           </div>
           <div className="circular-progress-energy">
-            <CircularProgress
-              style={{
-                color: '#33972d',
-                opacity: 0.7
-              }}
-              variant="determinate"
-              size={120}
-              thickness={4}
-              value={(EnergyNo / 18) * 100}
-            />
+            <Grid container direction="column" alignItems="center" justifyContent="center">
+              <Grid item xs>
+                <CircularProgress
+                  style={{
+                    color: '#33972d',
+                    opacity: 0.7
+                  }}
+                  variant="determinate"
+                  size={120}
+                  thickness={4}
+                  value={(EnergyNo / 18) * 100}
+                />
+              </Grid>
+            </Grid>
           </div>
           <div className="circular-progress-food">
-            <CircularProgress
-              style={{
-                color: '#33972d',
-                opacity: 0.4
-              }}
-              variant="determinate"
-              size={120}
-              thickness={4}
-              value={(FoodNo / 18) * 100}
-            />
+            <Grid container direction="column" alignItems="center" justifyContent="center">
+              <Grid item xs>
+                <CircularProgress
+                  style={{
+                    color: '#33972d',
+                    opacity: 0.4
+                  }}
+                  variant="determinate"
+                  size={120}
+                  thickness={4}
+                  value={(FoodNo / 18) * 100}
+                />
+              </Grid>
+            </Grid>
           </div>
           <div className="circular-progress-extras">
-            <CircularProgress
-              style={{
-                color: '#33972d',
-                opacity: 0.1
-              }}
-              variant="determinate"
-              size={120}
-              thickness={4}
-              value={(ExtrasNo / 18) * 100}
-            />
+            <Grid container direction="column" alignItems="center" justifyContent="center">
+              <Grid item xs>
+                <CircularProgress
+                  style={{
+                    color: '#33972d',
+                    opacity: 0.1
+                  }}
+                  variant="determinate"
+                  size={120}
+                  thickness={4}
+                  value={(ExtrasNo / 18) * 100}
+                />
+              </Grid>
+            </Grid>
           </div>
           <div className="footprint-display">
             <h2 className="footprint-text"> {TotalFootprint.toFixed(1)} </h2>

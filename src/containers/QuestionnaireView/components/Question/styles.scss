@@ -27,6 +27,17 @@
   .question-title {
     font-weight: 700;
   }
+  .question-card {
+    padding: 32;
+    border-radius:'0.8rem';
+    margin: 10;
+    margin-top: 100px;
+  }
+  @media (max-width: 500px) {
+    .question-card {
+      margin-top: 0px;
+    }
+  }
 
 
 }
