@@ -1082,6 +1082,7 @@ class QuestionnaireView extends Component {
                       backgroundSize: 'cover'
                     }}
                   >
+
                     <ResultsSection
                       TotalFootprint={TotalFootprint}
                       CarFootprint={CarFootprint}
@@ -1098,6 +1099,7 @@ class QuestionnaireView extends Component {
                       AccessoryFootprint={AccessoryFootprint}
                       klimaBacking={klimaBacking}
                     />
+
                   </div>
                 </div>
                 <div className="section faqs-section">
@@ -1217,12 +1219,6 @@ class QuestionnaireView extends Component {
             <h2 className="footprint-text"> {TotalFootprint.toFixed(1)} </h2>
             <h4 style={{ marginTop: 0 }}> t CO2 e </h4>
           </div>
-          {/*
-          <div className="category-display">
-            <h2 className="category-text"> {QuestionCategory} </h2>
-          </div>
-          */
-          }
         </div>
         <div className="footer">
           <Grid container direction="row">

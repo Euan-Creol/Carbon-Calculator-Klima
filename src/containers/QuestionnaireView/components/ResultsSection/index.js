@@ -68,7 +68,8 @@ class ResultsSection extends Component {
     function returnCategoryText(name, valueArray, totalFootprint, segment) {
       let categoryFootprint = 0
 
-      for (let i = 0; i < valueArray.length; i + 1) {
+
+      for (let i = 0; i < valueArray.length; i += 1) {
         categoryFootprint += valueArray[i]
       }
 
@@ -79,7 +80,6 @@ class ResultsSection extends Component {
       if (segment === name) {
         categoryTextWeight = 'bold'
       }
-
 
       return (
         <Grid container direction="row" alignItems="center" justifyContent="center">
@@ -148,6 +148,7 @@ class ResultsSection extends Component {
                 <Grid item xs={6} md={6}>
                   <Grid container direction="column" alignItems="flex-end" justifyContent="flex-end">
                     <Grid item xs>
+
                       <PieChart width={120} height={120}>
                         <Pie
                           data={resultData}
@@ -165,19 +166,23 @@ class ResultsSection extends Component {
                         >
                           {resultData.map((entry, index) => (
                             <Cell
+                              // key = {`cell-${index}`}
                               fill={COLOURS[index % COLOURS.length]}
                             />
                           ))}
                         </Pie>
                       </PieChart>
+
                     </Grid>
                   </Grid>
                 </Grid>
               </Grid>
+
               {returnCategoryText('Transport', [CarFootprint, MotorcycleFootprint, TrainFootprint, BusFootprint, FlightFootprint], TotalFootprint, selectedSegment)}
               {returnCategoryText('Energy', [HomeFootprint + HomeImprovements], TotalFootprint, selectedSegment)}
               {returnCategoryText('Food', [FoodFootprint, RestaurantFootprint], TotalFootprint, selectedSegment)}
               {returnCategoryText('Extras', [FashionFootprint, AccessoryFootprint, HotelFootprint], TotalFootprint, selectedSegment)}
+
             </Card>
             <Card style={{ textAlign: 'left' }} className="result-card">
               <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start">
