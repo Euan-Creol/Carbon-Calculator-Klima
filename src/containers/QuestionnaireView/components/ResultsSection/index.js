@@ -2,7 +2,7 @@ import React, { Component }             from 'react'
 import PropTypes                        from 'prop-types'
 import { Button, Card, Divider, Grid }  from '@material-ui/core'
 import LocalGasStationIcon              from '@mui/icons-material/LocalGasStation'
-import { Pie, PieChart }                from 'recharts'
+import { Pie, PieChart, Cell }                from 'recharts'
 import MailOutlineIcon                  from '@mui/icons-material/MailOutline'
 import CloudQueueIcon                   from '@mui/icons-material/CloudQueue'
 
@@ -12,6 +12,12 @@ import KLIMA                            from '../../../../assets/images/Question
 import CreolLogo                        from '../../../../assets/images/Creol.png'
 
 class ResultsSection extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedSegment: null
+    }
+  }
   render() {
     const {
       TotalFootprint,
@@ -29,6 +35,10 @@ class ResultsSection extends Component {
       AccessoryFootprint,
       klimaBacking
     } = this.props
+
+    const {
+      selectedSegment
+    } = this.state
 
     const resultData = [
       {
@@ -52,6 +62,60 @@ class ResultsSection extends Component {
         value: HotelFootprint + FashionFootprint + AccessoryFootprint
       }
     ]
+
+    const COLOURS = ['#33972d', '#3CB235', '#47D73F', '#54FE4A']
+
+    function returnCategoryText(name, valueArray, totalFootprint, segment) {
+      let categoryFootprint = 0
+
+      for (let i = 0; i < valueArray.length; i + 1) {
+        categoryFootprint += valueArray[i]
+      }
+
+      const percentageOfTotal = (categoryFootprint / totalFootprint) * 100
+
+      let categoryTextWeight = 'normal'
+
+      if (segment === name) {
+        categoryTextWeight = 'bold'
+      }
+
+
+      return (
+        <Grid container direction="row" alignItems="center" justifyContent="center">
+          <Grid item xs={6} md={6}>
+            <Grid container direction="column" alignItems="flex-start" justifyContent="flex-start" style={{ textAlign: 'left' }}>
+              <Grid item xs>
+                <h4
+                  style={{
+                    marginTop: 0, marginBottom: 0, fontSize: '14pt', color: 'grey', fontWeight: categoryTextWeight
+                  }}
+                  className="category-text"
+                >
+                  {name.toUpperCase()}
+                </h4>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <Grid container direction="column" alignItems="flex-end" justifyContent="flex-end" style={{ textAlign: 'right' }}>
+              <Grid item xs>
+                <h4
+                  style={{
+                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
+                  }}
+                >
+                  {categoryFootprint.toFixed(1)} |
+                  <strong>
+                    {percentageOfTotal.toFixed(1)}%
+                  </strong>
+                </h4>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      )
+    }
 
     return (
       <div className={styles}>
@@ -90,150 +154,35 @@ class ResultsSection extends Component {
                           cx="50%"
                           cy="50%"
                           dataKey="value" // make sure to map the dataKey to "value"
-                          innerRadius={45}
+                          innerRadius={40}
                           outerRadius={60}
                           fill="#33972d"
-                        />
+                          onMouseEnter={(e) => {
+                            this.setState({
+                              selectedSegment: e.name
+                            })
+                          }}
+                        >
+                          {resultData.map((entry, index) => (
+                            <Cell
+                              fill={COLOURS[index % COLOURS.length]}
+                            />
+                          ))}
+                        </Pie>
                       </PieChart>
                     </Grid>
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid container direction="row" alignItems="center" justifyContent="center">
-                <Grid item xs={6} md={6}>
-                  <Grid container direction="column" alignItems="flex-start" justifyContent="flex-start" style={{ textAlign: 'left' }}>
-                    <Grid item xs>
-                      <h4 style={{
-                        marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
-                      }}
-                      >TRANSPORT
-                      </h4>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item xs={6} md={6}>
-                  <Grid container direction="column" alignItems="flex-end" justifyContent="flex-end" style={{ textAlign: 'right' }}>
-                    <Grid item xs>
-                      <h4 style={{
-                        marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                      }}
-                      >{(
-                          CarFootprint +
-                        MotorcycleFootprint +
-                        TrainFootprint +
-                        BusFootprint +
-                        FlightFootprint).toFixed(1)} |
-                        <strong>{(((
-                          CarFootprint +
-                          MotorcycleFootprint +
-                          TrainFootprint +
-                          BusFootprint +
-                          FlightFootprint) / TotalFootprint) * 100).toFixed(1)}%
-                        </strong>
-                      </h4>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid container direction="row" alignItems="center" justifyContent="center">
-                <Grid item xs={6} md={6}>
-                  <Grid container direction="column" alignItems="flex-start" justifyContent="flex-start" style={{ textAlign: 'left' }}>
-                    <Grid item xs>
-                      <h4 style={{
-                        marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
-                      }}
-                      >ENERGY
-                      </h4>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item xs={6} md={6}>
-                  <Grid container direction="column" alignItems="flex-end" justifyContent="flex-end" style={{ textAlign: 'right' }}>
-                    <Grid item xs>
-                      <h4 style={{
-                        marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                      }}
-                      >{(
-                          HomeFootprint + HomeImprovements).toFixed(1)} |
-                        <strong>{(((
-                          HomeFootprint +
-                          HomeImprovements) /
-                          TotalFootprint) * 100).toFixed(1)}%
-                        </strong>
-                      </h4>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid container direction="row" alignItems="center" justifyContent="center">
-                <Grid item xs={6} md={6}>
-                  <Grid container direction="column" alignItems="flex-start" justifyContent="flex-start" style={{ textAlign: 'left' }}>
-                    <Grid item xs>
-                      <h4 style={{
-                        marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
-                      }}
-                      >FOOD
-                      </h4>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item xs={6} md={6}>
-                  <Grid container direction="column" alignItems="flex-end" justifyContent="flex-end" style={{ textAlign: 'right' }}>
-                    <Grid item xs>
-                      <h4 style={{
-                        marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                      }}
-                      >{(
-                          FoodFootprint +
-                        RestaurantFootprint).toFixed(1)} |
-                        <strong>{(((
-                          FoodFootprint +
-                          RestaurantFootprint) /
-                          TotalFootprint) * 100).toFixed(1)}%
-                        </strong>
-                      </h4>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid container direction="row" alignItems="center" justifyContent="center">
-                <Grid item xs={6} md={6}>
-                  <Grid container direction="column" alignItems="flex-start" justifyContent="flex-start" style={{ textAlign: 'left' }}>
-                    <Grid item xs>
-                      <h4 style={{
-                        marginTop: 0, marginBottom: 0, color: 'grey', fontSize: '14pt', fontWeight: 400
-                      }}
-                      >EXTRAS
-                      </h4>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid item xs={6} md={6}>
-                  <Grid container direction="column" alignItems="flex-end" justifyContent="flex-end" style={{ textAlign: 'right' }}>
-                    <Grid item xs>
-                      <h4 style={{
-                        marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                      }}
-                      >{(
-                          FashionFootprint +
-                        AccessoryFootprint +
-                        HotelFootprint).toFixed(1)} |
-                        <strong>{(((
-                          FashionFootprint +
-                          AccessoryFootprint +
-                          HotelFootprint) /
-                          TotalFootprint) * 100).toFixed(1)}%
-                        </strong>
-                      </h4>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
+              {returnCategoryText('Transport', [CarFootprint, MotorcycleFootprint, TrainFootprint, BusFootprint, FlightFootprint], TotalFootprint, selectedSegment)}
+              {returnCategoryText('Energy', [HomeFootprint + HomeImprovements], TotalFootprint, selectedSegment)}
+              {returnCategoryText('Food', [FoodFootprint, RestaurantFootprint], TotalFootprint, selectedSegment)}
+              {returnCategoryText('Extras', [FashionFootprint, AccessoryFootprint, HotelFootprint], TotalFootprint, selectedSegment)}
             </Card>
             <Card style={{ textAlign: 'left' }} className="result-card">
               <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start">
                 <Grid item xs={1}>
-                  <Button startIcon={<MailOutlineIcon />} disabled style={{ color: 'black', fontSize: 'large', width: 280 }}>REDUCE YOUR FOOTPRINT</Button>
+                  <Button startIcon={<MailOutlineIcon />} disabled style={{ color: 'black', fontSize: 'large' }}>REDUCE</Button>
                 </Grid>
               </Grid>
               <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>

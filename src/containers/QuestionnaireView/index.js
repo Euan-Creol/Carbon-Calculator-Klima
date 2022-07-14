@@ -588,9 +588,6 @@ class QuestionnaireView extends Component {
                             this.StartQuestionnaire(fullpageApi)}
                         >Start
                         </Button>
-                        <Button onClick={() => { this.EndQuestionnaire(fullpageApi) }}>
-                          SKIP
-                        </Button>
                       </Grid>
                       <Grid item xs>
                         <RegionSelect
