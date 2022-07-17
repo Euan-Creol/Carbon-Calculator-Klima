@@ -212,4 +212,9 @@
       display: none;
     }
   }
+  @media (max-height: 700px) {
+    .logo-header {
+      display: none;
+    }
+  }
 }

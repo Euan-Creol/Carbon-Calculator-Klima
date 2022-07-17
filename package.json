@@ -119,6 +119,7 @@
     "react-router-dom": "^5.1.2",
     "react-router-hash-link": "^1.2.2",
     "react-select-country-list": "^2.1.2",
+    "react-svg-radar-chart": "^1.4.0",
     "react-use": "^13.27.1",
     "recharts": "^2.1.9",
     "redux": "^4.0.0",

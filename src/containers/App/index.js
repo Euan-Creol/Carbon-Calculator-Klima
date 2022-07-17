@@ -1,15 +1,15 @@
 import React, { Component }       from 'react'
 import { connect }                from 'react-redux'
 import {
-  Redirect,
   Switch,
   withRouter
-}                                  from 'react-router-dom'
-import theme                       from 'configs/theme/config-theme'
-import QuestionnaireView           from 'containers/QuestionnaireView'
+}                                 from 'react-router-dom'
+import theme                      from 'configs/theme/config-theme'
+import QuestionnaireView          from 'containers/QuestionnaireView'
+import OfficeQuestionnaireView    from 'containers/OfficeQuestionnaireView'
 
 import './styles.scss'
-import LandingLayoutRoute from './layouts/LandingLayoutRoute'
+import LandingLayoutRoute         from './layouts/LandingLayoutRoute'
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class App extends Component {
           <div className="app-shell">
             <Switch>
               <LandingLayoutRoute path="/" component={QuestionnaireView} />
-              <Redirect from="/" to="/home" />
+              <LandingLayoutRoute path="/office" component={OfficeQuestionnaireView} />
             </Switch>
           </div>
         </div>

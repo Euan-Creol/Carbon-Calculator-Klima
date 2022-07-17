@@ -1,0 +1,19 @@
+:local(.styles) {
+  .MuiButton-root {
+    color: #fffcfc;
+    font-family: 'CenturyGothic-Bold', sans-serif;
+    border-color: white;
+    border-radius: 10px;
+  }
+  .option-text {
+    text-align: end;
+    width: 300px;
+  }
+  .option-label {
+    font-size: 18px;
+  }
+  .option-button {
+    align-items: start;
+  }
+
+}

@@ -184,25 +184,27 @@ class ResultsSection extends Component {
               {returnCategoryText('Extras', [FashionFootprint, AccessoryFootprint, HotelFootprint], TotalFootprint, selectedSegment)}
 
             </Card>
-            <Card style={{ textAlign: 'left' }} className="result-card">
-              <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start">
-                <Grid item xs={1}>
-                  <Button startIcon={<MailOutlineIcon />} disabled style={{ color: 'black', fontSize: 'large' }}>REDUCE</Button>
+            <div className="reduce-card">
+              <Card style={{ textAlign: 'left' }} className="result-card">
+                <Grid container direction="row" alignItems="flex-start" justifyContent="flex-start">
+                  <Grid item xs={1}>
+                    <Button startIcon={<MailOutlineIcon />} disabled style={{ color: 'black', fontSize: 'large' }}>REDUCE</Button>
+                  </Grid>
                 </Grid>
-              </Grid>
-              <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
-                There are many ways to live a lower carbon life. With these results you
-                can start to assess the largest contributors and what you might change.
-              </h4>
-              <h4> </h4>
-              <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
-                Can you take public transport rather than driving?
-              </h4>
-              <h4> </h4>
-              <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
-                Are there any clean energy providers in your area?
-              </h4>
-            </Card>
+                <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
+                  There are many ways to live a lower carbon life. With these results you
+                  can start to assess the largest contributors and what you might change.
+                </h4>
+                <h4> </h4>
+                <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
+                  Can you take public transport rather than driving?
+                </h4>
+                <h4> </h4>
+                <h4 style={{ marginTop: 0, marginBottom: 0, fontSize: '12pt' }}>
+                  Are there any clean energy providers in your area?
+                </h4>
+              </Card>
+            </div>
           </Grid>
           <Grid item xs={12} md={3}>
             <Card className="result-card">

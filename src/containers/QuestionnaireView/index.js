@@ -563,6 +563,7 @@ class QuestionnaireView extends Component {
                               height: 30, position: 'fixed', left: '10%', top: '1%'
                             }
                           }
+                          className="logo-header"
                         />
                       </Grid>
                     </Grid>
@@ -587,6 +588,13 @@ class QuestionnaireView extends Component {
                           onClick={() =>
                             this.StartQuestionnaire(fullpageApi)}
                         >Start
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            this.EndQuestionnaire(fullpageApi)
+                          }}
+                        >
+                          END
                         </Button>
                       </Grid>
                       <Grid item xs>
@@ -1113,7 +1121,7 @@ class QuestionnaireView extends Component {
                   >
                     <Grid container direction="row" spacing={0} justifyContent="center" alignItems="center">
                       <Grid item xs />
-                      <Grid item xs={6} md={6}>
+                      <Grid item xs={12} md={6}>
                         <Grid container direction="column" justifyContent="center" alignItems="center">
                           <Grid item xs>
                             <FAQs onHome={() => { fullpageApi.moveTo(1, 0) }} />
