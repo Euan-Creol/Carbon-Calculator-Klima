@@ -1,8 +1,8 @@
 :local(.styles) {
   .MuiButton-root {
-    color: #fffcfc;
+    color: black;
     font-family: 'CenturyGothic-Bold', sans-serif;
-    border-color: white;
+    border-color: black;
     border-radius: 10px;
   }
   .option-text {
@@ -11,6 +11,7 @@
   }
   .option-label {
     font-size: 18px;
+    color: black;
   }
   .option-button {
     align-items: start;

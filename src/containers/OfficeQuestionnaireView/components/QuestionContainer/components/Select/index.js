@@ -52,7 +52,7 @@ class Selection extends Component {
     return (
       <div className={styles}>
         <FormControl fullWidth={DefaultBool}>
-          <InputLabel style={{ color: 'white' }}> {DefaultValue} </InputLabel>
+          <InputLabel> {DefaultValue} </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"

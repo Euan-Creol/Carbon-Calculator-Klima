@@ -39,7 +39,7 @@ class QuestionContainer extends Component {
      @param RegionID: A numerical representation of the user's geographical location
      @return An array specifying which component to use and what the associated options are
       */
-    const { component } = OfficeData.Questions[QuestionNumber]
+    const component = OfficeData.Questions[QuestionNumber].Component
     let Options = OfficeData.Questions[QuestionNumber].Options.UKOptions
     switch (RegionID) {
     case 0:
@@ -86,66 +86,57 @@ class QuestionContainer extends Component {
      @param props: Required to pass state to parent component
      @return Relevant React component
       */
-    let component = (
-      <div>
-        <h2>Component Missing</h2>
-      </div>
-    )
     switch (RegionOptions[0]) {
     default:
-      break
+      return (
+        <h2>Component Missing</h2>
+      )
     case 'Number Input':
-      component = (<NumberInput
+      return (<NumberInput
         InputLabel={RegionOptions[1][0][0]}
         onChange={footprintAddition =>
           this.UpdateQuestionFootprint(footprintAddition, RegionOptions[1][0][1], props)}
       />)
-      break
     case 'Question':
-      component = (<Question
+      return (<Question
         QuestionOptions={RegionOptions[1]}
         onChange={footprintAddition =>
           this.UpdateQuestionFootprint(footprintAddition, 1, props)}
       />)
-      break
     case 'Checkbox':
-      component = (<QuestionCheckbox
+      return (<QuestionCheckbox
         CheckboxOptions={RegionOptions[1]}
         onChange={footprintAddition =>
           this.UpdateQuestionFootprint(footprintAddition, 1, props)}
       />)
-      break
     case 'Select':
-      component = (<Selection
+      return (<Selection
         SelectOptions={RegionOptions[1]}
         onChange={footprintAddition =>
           this.UpdateQuestionFootprint(footprintAddition, 1, props)}
       />)
-      break
+
     case 'Counter':
-      component = (<Counter
+      return (<Counter
         CounterOptions={RegionOptions[1]}
         onChange={footprintAddition =>
           this.UpdateQuestionFootprint(footprintAddition, 1, props)}
       />)
-      break
     case 'Multiple Number Input':
-      component = (<MultipleNumberInput
+      return (<MultipleNumberInput
         InputData={RegionOptions[1]}
         onChange={output =>
           this.UpdateQuestionFootprint(output, 1, props)}
       />)
-      break
     case 'Counter and Select':
-      component = (<Counter
+      return (<Counter
         CounterOptions={RegionOptions[1].Counter}
         SelectOptions={RegionOptions[1].Select}
         onChange={footprintAddition =>
           this.UpdateQuestionFootprint(footprintAddition, 1, props)}
       />)
-      break
     case 'Multiple Inputs':
-      component = (
+      return (
         <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
           <Grid item xs>
             <NumberInput
@@ -172,19 +163,12 @@ class QuestionContainer extends Component {
                 )}
             />
           </Grid>
-        </Grid>)
-      break
-    case 'Info':
-      component = (
-        <h2>
-          <a href="mailto:corporate@creol.io" style={{ color: 'white' }}>
-            corporate@creol.io
-          </a>
-        </h2>
+        </Grid>
       )
-      break
+    case 'Info':
+      return <h2><a href="mailto:corporate@creol.io">corporate@creol.io</a></h2>
     }
-    return component
+    // return component
   }
 
   ReturnQuestionContent(QuestionNumber, RegionID, props) {
@@ -202,7 +186,8 @@ class QuestionContainer extends Component {
       <div>
         <div>{QuestionTitle}</div>
         <div>{QuestionComponents}</div>
-      </div>)
+      </div>
+    )
   }
 
   handleFootprintChange(props) {

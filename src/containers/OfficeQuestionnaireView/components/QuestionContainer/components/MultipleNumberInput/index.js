@@ -44,7 +44,7 @@ class MultipleNumberInput extends Component {
             />
           </Grid>
           <Grid item xs>
-            <h4 style={{ color: 'white' }}> {array[1]} </h4>
+            <h4> {array[1]} </h4>
           </Grid>
         </Grid>
       </Grid>

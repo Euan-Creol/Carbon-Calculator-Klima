@@ -29,7 +29,7 @@
             "Input2": [["Number of Desks",15]]}
         },
         "Component": "Multiple Inputs",
-        "Category": "Premises, Energy & Recycling"
+        "Category": "Office"
       },
   
       "3": {
@@ -41,7 +41,7 @@
           "WorldOptions": [["Yes",1],["No",0]]
         },
         "Component": "Question",
-        "Category": "Premises, Energy & Recycling"
+        "Category": "Office"
       },
   
       "4": {
@@ -53,7 +53,7 @@
           "WorldOptions": [["1-20%",0.9],["20-40%",0.8],["40-60%",0.7],["60-80%",0.6],["80-100%",0.5],["Don't know",1]]
         },
         "Component": "Question",
-        "Category": "Premises, Energy & Recycling"
+        "Category": "Office"
       },
   
       "5": {
@@ -65,7 +65,7 @@
           "WorldOptions": [["Yes",1],["No",0]]
         },
         "Component": "Question",
-        "Category": "Premises, Energy & Recycling"
+        "Category": "Office"
       },
   
       "6": {
@@ -77,7 +77,7 @@
           "WorldOptions": [["Octopus",0.4],["SSE",0.4],["Bulb",0.4],["Other",0.6]]
         },
         "Component": "Select",
-        "Category": "Premises, Energy & Recycling"
+        "Category": "Office"
       },
   
       "7": {
@@ -89,7 +89,7 @@
           "WorldOptions": [["Fluorescent Lamps",0.001],["LED Lamps",0.001],["Halogen Lamps",0.05],["Don't know",0.025]]
         },
         "Component": "Question",
-        "Category": "Premises, Energy & Recycling"
+        "Category": "Office"
       },
   
       "8": {
@@ -101,7 +101,7 @@
           "WorldOptions": [["Cavity insulation",-0.5],["Solar Panels",-0.6],["Motion-controlled lighting",-0.24],["Device sleep mode",-0.17],["Lighting Controls",-0.35]]
         },
         "Component": "Checkbox",
-        "Category": "Premises, Energy & Recycling"
+        "Category": "Office"
       },
   
       "9": {
@@ -233,7 +233,7 @@
           "WorldOptions": []
         },
         "Component": "Info",
-        "Category": "Goods and Services"
+        "Category": "Goods & Services"
       }
     }
   }

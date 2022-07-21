@@ -1,0 +1,30 @@
+:local(.styles) {
+
+  .result-card {
+    margin: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px
+  }
+  .offset-button {
+    color: 'white';
+    background-color: '#33972d';
+    margin-top: 20
+  }
+  .category-text {
+    color: red
+  }
+  @media (max-width: 500px) {
+    .result-text {
+      margin: 0;
+    }
+    .offset-button {
+      margin-top: 0
+    }
+  }
+  @media (max-height: 800px) {
+    .reduce-card {
+      display: none;
+    }
+  }
+}

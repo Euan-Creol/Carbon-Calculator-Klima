@@ -1,10 +1,10 @@
 :local(.styles) {
   .text-input {
-    color: #fffcfc;
+    color: black;
     font-family: 'CenturyGothic-Bold', sans-serif;
   }
   .MuiFormLabel-root {
-    color: white;
+    color: black;
     font-family: 'CenturyGothic-Bold', sans-serif;
   }
   .Mui-focused{
@@ -14,14 +14,14 @@
     border-radius: 10px;
   }
   .MuiInputBase-input{
-    color: lightgray;
+    color: black;
     font-family: 'CenturyGothic-Bold', sans-serif;
   }
   .MuiOutlinedInput-notchedOutline {
-    border-color: #fffcfc;
+    border-color: black;
     border-radius: 10px;
   }
   .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    border-color: lightgray;
+    border-color: black;
   }
 }

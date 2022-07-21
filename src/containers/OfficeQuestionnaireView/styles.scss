@@ -1,7 +1,7 @@
 :local(.styles) {
   .section{
     text-align: center;
-    background-color: #5f4b8b;
+    background-color: #dadada;
   }
 
   .footprint-display{
@@ -16,7 +16,8 @@
     position: fixed;
     left: 5%;
     bottom: 4%;
-    z-index: 7
+    z-index: 7;
+    color: black;
   }
   .previous-button-active {
     position: fixed;
@@ -41,69 +42,133 @@
     opacity: 0.15;
   }
   .category-text {
-    color: #fffcfc;
+    color: black;
     margin-bottom: 0;
     margin-top: 0;
     font-size: 3pc;
   }
-  .MuiCircularProgress-colorPrimary {
-    color: lightgray;
-    opacity: 30%;
+  .progress-icon {
+    position: fixed;
+    margin: auto;
+    top: 40px;
+    visibility: hidden;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+  .progress-icon-active {
+    position: fixed;
+    margin: auto;
+    top: 40px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+  .footprint-display {
+    text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
+    top: 110px;
+    z-index: 6;
+    width: 120px;
+    height: 120px;
+    justify-content: center;
+  }
+  .category-display {
+    text-align: right;
+    position: fixed;
+    right: 5%;
+    bottom: 8%;
+    z-index: 6;
+    justify-content: center;
+    opacity: 0.15;
   }
   .circular-progress-background {
     position: fixed;
-    right: 47%;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
     z-index: 1;
-    top: 3%;
+    top: 80px;
   }
-  .circular-progress-office {
+  .circular-progress-employees {
     position: fixed;
-    right: 47%;
-    top: 3%;
-    z-index: 2;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
+    z-index: 5;
+    top: 80px;
   }
   .circular-progress-energy {
     position: fixed;
-    right: 47%;
-    top: 3%;
-    z-index: 3;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
+    z-index: 4;
+    top: 80px;
   }
   .circular-progress-goods {
     position: fixed;
-    right: 47%;
-    top: 3%;
-    z-index: 4;
-  }
-  .circular-progress-travel {
-    position: fixed;
-    right: 47%;
-    top: 3%;
-    z-index: 5;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
+    z-index: 3;
+    top: 80px;
   }
   .circular-progress-equipment {
     position: fixed;
-    right: 47%;
-    top: 3%;
-    z-index: 6;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
+    z-index: 2;
+    top: 80px;
   }
   .circular-progress-food {
     position: fixed;
-    right: 47%;
-    top: 3%;
-    z-index: 7;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
+    z-index: 1;
+    top: 80px;
   }
-  .menu-buttons {
+  .footprint-equipment {
+    color: #33972d;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .category-text {
+    color: #33972d;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 5pc;
+  }
+  .MuiCircularProgress-colorPrimary {
+    color: #33972d;
+    opacity: 30%;
+  }
+  .menu-buttons- {
     position: fixed;
-    top: 30%;
+    top: 35%;
     z-index: 10;
-    right: 4%
+    left: 0%;
+    visibility: hidden;
+  }
+  .menu-buttons-active {
+    position: fixed;
+    top: 35%;
+    z-index: 10;
+    left: 0%
   }
   .menu-button {
-    color: #fffcfc;
+    color: black;
   }
   .question-button {
-    color: $primary;
-    background-color: $white;
+    color: white;
+    background-color: $primary;
     border-radius: 15px;
     font-family: CenturyGothic-Bold,sans-serif;
     font-size: 18px;
@@ -112,10 +177,23 @@
   }
 
   .progress-icon- {
+    position: fixed;
+    margin: auto;
+    top: 40px;
     visibility: hidden;
-    z-index: 2;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
   }
   .progress-icon-active {
+    position: fixed;
+    margin: auto;
+    top: 40px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
   }
 
   .contact-button- {
@@ -123,7 +201,8 @@
     z-index:2;
     position: fixed;
     bottom: 4%;
-    right: 50%
+    right: 50%;
+    color: black;
 
   }
   .contact-button-active {
@@ -133,7 +212,7 @@
     left: 50%;
     text-align: center;
     transform: translate(-50%,0);
-
+    color: black;
   }
 
   .shape {
@@ -145,7 +224,7 @@
     z-index:100
   }
   .caption {
-    fill:#fffcfc;
+    fill:black;
     font-family: 'CenturyGothic-Bold', sans-serif;
     font-size: 24px;
   }
@@ -161,11 +240,11 @@
   .goods-text{
     text-align: center;
     font-size: 20px;
-    color: #fffcfc;
+    color: black;
     padding-bottom: 0;
   }
   .email-link{
-    color: #fffcfc;
+    color: black;
     padding-top: 0;
     font-size: 24px;
   }

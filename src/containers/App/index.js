@@ -2,7 +2,8 @@ import React, { Component }       from 'react'
 import { connect }                from 'react-redux'
 import {
   Switch,
-  withRouter
+  withRouter,
+  Redirect
 }                                 from 'react-router-dom'
 import theme                      from 'configs/theme/config-theme'
 import QuestionnaireView          from 'containers/QuestionnaireView'
@@ -24,8 +25,9 @@ class App extends Component {
         <div>
           <div className="app-shell">
             <Switch>
-              <LandingLayoutRoute path="/" component={QuestionnaireView} />
+              <LandingLayoutRoute path="/footprint" component={QuestionnaireView} />
               <LandingLayoutRoute path="/office" component={OfficeQuestionnaireView} />
+              <Redirect from="/" to="/footprint" />
             </Switch>
           </div>
         </div>

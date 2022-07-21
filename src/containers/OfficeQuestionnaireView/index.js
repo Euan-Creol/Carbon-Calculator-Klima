@@ -1,14 +1,16 @@
 import React, { Component }                 from 'react'
 import ReactFullpage                        from '@fullpage/react-fullpage'
-import { Button, CircularProgress, Grid }   from '@material-ui/core'
-import RadarChart                           from 'react-svg-radar-chart'
+import { Button,
+  CircularProgress,
+  Grid,
+  Typography }                              from '@material-ui/core'
 import { withRouter }                       from 'react-router-dom'
 
 import QuestionContainer                    from './components/QuestionContainer'
 import { styles }                           from './styles.scss'
 import RegionSelect                         from './components/RegionSelection'
-import OfficeData                           from '../../data/OfficeQuestionnaireData/OfficeQuestionnaireData'
-import EmailSignup                          from './components/EmailSignup'
+import OfficeQuestionnaireData              from '../../data/OfficeQuestionnaireData/OfficeQuestionnaireData.json'
+import ResultsSection                       from './components/ResultsSection'
 
 /*
 The parent component of the office footprint calculator tool
@@ -28,7 +30,6 @@ class OfficeQuestionnaire extends Component {
       EnergyFootprint: 1.227, // TBC
       EnergyUsedByEmployee: 1.6, // TBC
       TotalEmployeeNumber: 0,
-      TotalEmployeeFootprint: 0,
       LowTravelEmployees: 0,
       MidTravelEmployees: 0,
       HighTravelEmployees: 0,
@@ -136,7 +137,7 @@ class OfficeQuestionnaire extends Component {
         @notice A function to update the text in the category display
         @param QuestionNumber: Numerical representation of current question
         */
-    const NewCategory = OfficeData.Questions[QuestionNumber + 1].Category
+    const NewCategory = OfficeQuestionnaireData.Questions[QuestionNumber + 1].Category
     this.setState({
       Category: NewCategory
     }, () => { this.UpdateProgress(QuestionNumber, NewCategory) })
@@ -156,12 +157,12 @@ class OfficeQuestionnaire extends Component {
         EmployeeProgress: Percentage
       })
       break
-    case 'Premises, Energy & Recycling':
+    case 'Office':
       this.setState({
         EnergyProgress: Percentage
       })
       break
-    case 'Goods and Services':
+    case 'Goods & Services':
       this.setState({
         GoodsProgress: Percentage
       })
@@ -196,6 +197,7 @@ class OfficeQuestionnaire extends Component {
             <QuestionContainer
               QuestionNumber={QuestionNumber}
               RegionID={RegionID}
+              data={OfficeQuestionnaireData}
               onChange={footprintAddition =>
                 this.UpdateQuestionFootprint(footprintAddition, QuestionNumber, fullpageApi)}
             />
@@ -396,13 +398,12 @@ class OfficeQuestionnaire extends Component {
     }
 
     this.setState({
-      TotalEmployeeFootprint: EmployeeResult,
       EmployeeResult,
       EnergyResult,
       EquipmentResult,
       FoodResult,
       TotalFootprint: EmployeeResult + EnergyResult + EquipmentResult + FoodResult
-    }, () => { this.ScaleResults([EmployeeResult, EnergyResult, EquipmentResult, FoodResult]) })
+    })
   }
 
   ScaleResults() {
@@ -452,21 +453,10 @@ class OfficeQuestionnaire extends Component {
       EquipmentResult,
       FoodResult,
       fullpage,
-      ProgressOn,
-      TotalEmployeeNumber,
-      RecyclingPercentage,
-      EnergyFootprint,
-      GreenSupplierReduction,
-      LightingType,
-      OfficeImprovements,
-      TechPurchases,
-      DeviceReplacementRate,
-      FleetVehicleFootprint,
-      MeatFreeDays,
-      LocallySourced,
-      FoodWasted,
-      TotalEmployeeFootprint
+      ProgressOn
     } = this.state
+
+    /*
     const data = [
       {
         data: {
@@ -480,6 +470,7 @@ class OfficeQuestionnaire extends Component {
       }
     ]
 
+
     const captions = {
       // columns
       office: 'Office',
@@ -489,10 +480,11 @@ class OfficeQuestionnaire extends Component {
       food: 'Food'
     }
     const FootprintPerCapita = TotalEmployeeFootprint / TotalEmployeeNumber
+    */
     return (
       <div className={styles}>
-        <div className="menu-buttons">
-          <Grid container direction="column" justify="flex-end" alignItems="center" spacing={1}>
+        <div className={`menu-buttons-${ProgressOn}`}>
+          <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
             <Grid item xs={2}>
               <Button className="menu-button" onClick={() => { fullpage.moveTo(2, 0) }}>
                 EMPLOYEES
@@ -520,90 +512,129 @@ class OfficeQuestionnaire extends Component {
             </Grid>
           </Grid>
         </div>
-        <div className={`progress-icon-${ ProgressOn}`}>
+        <div className={`progress-icon${ProgressOn}`}>
+          <Grid container direction="column" alignItems="center" justifyContent="center">
+            <Grid item xs>
+              <Typography style={{ fontSize: '20pt', textAlign: 'center' }}>
+                YOUR <strong>CARBON</strong> TOTAL
+              </Typography>
+            </Grid>
+          </Grid>
           <div className="circular-progress-background">
-            <CircularProgress
-              variant="static"
-              size={120}
-              thickness={6}
-              value={100}
-            />
+            <Grid container direction="column" alignItems="center" justifyContent="center">
+              <Grid item xs>
+                <CircularProgress
+                  style={{
+                    color: 'lightGrey'
+                  }}
+                  variant="determinate"
+                  size={120}
+                  thickness={4}
+                  value={100}
+                />
+              </Grid>
+            </Grid>
           </div>
-          <div className="circular-progress-office">
-            <CircularProgress
-              style={{
-                color: 'white',
-                opacity: 0.7
-              }}
-              variant="static"
-              size={120}
-              thickness={6}
-              value={EmployeeProgress}
-            />
+          <div className="circular-progress-employees">
+            <Grid container direction="column" alignItems="center" justifyContent="center">
+              <Grid item xs>
+                <CircularProgress
+                  style={{
+                    color: '#33972d',
+                    opacity: 1
+                  }}
+                  variant="determinate"
+                  size={120}
+                  thickness={4}
+                  value={EmployeeProgress}
+                />
+              </Grid>
+            </Grid>
           </div>
           <div className="circular-progress-energy">
-            <CircularProgress
-              style={{
-                color: 'white',
-                opacity: 0.5
-              }}
-              variant="static"
-              size={120}
-              thickness={6}
-              value={EnergyProgress}
-            />
-          </div>
-          <div className="circular-progress-equipment">
-            <CircularProgress
-              style={{
-                color: 'white',
-                opacity: 0.1
-              }}
-              variant="static"
-              size={120}
-              thickness={6}
-              value={EquipmentProgress}
-            />
-          </div>
-          <div className="circular-progress-food">
-            <CircularProgress
-              style={{
-                color: 'white',
-                opacity: 0.1
-              }}
-              variant="static"
-              size={120}
-              thickness={6}
-              value={FoodProgress}
-            />
+            <Grid container direction="column" alignItems="center" justifyContent="center">
+              <Grid item xs>
+                <CircularProgress
+                  style={{
+                    color: '#33972d',
+                    opacity: 0.7
+                  }}
+                  variant="determinate"
+                  size={120}
+                  thickness={4}
+                  value={EnergyProgress}
+                />
+              </Grid>
+            </Grid>
           </div>
           <div className="circular-progress-goods">
-            <CircularProgress
-              style={{
-                color: 'white',
-                opacity: 0.3
-              }}
-              variant="static"
-              size={120}
-              thickness={6}
-              value={GoodsProgress}
-            />
+            <Grid container direction="column" alignItems="center" justifyContent="center">
+              <Grid item xs>
+                <CircularProgress
+                  style={{
+                    color: '#33972d',
+                    opacity: 0.4
+                  }}
+                  variant="determinate"
+                  size={120}
+                  thickness={4}
+                  value={GoodsProgress}
+                />
+              </Grid>
+            </Grid>
+          </div>
+          <div className="circular-progress-equipment">
+            <Grid container direction="column" alignItems="center" justifyContent="center">
+              <Grid item xs>
+                <CircularProgress
+                  style={{
+                    color: '#33972d',
+                    opacity: 0.1
+                  }}
+                  variant="determinate"
+                  size={120}
+                  thickness={4}
+                  value={EquipmentProgress}
+                />
+              </Grid>
+            </Grid>
+          </div>
+          <div className="circular-progress-food">
+            <Grid container direction="column" alignItems="center" justifyContent="center">
+              <Grid item xs>
+                <CircularProgress
+                  style={{
+                    color: '#33972d',
+                    opacity: 0.1
+                  }}
+                  variant="determinate"
+                  size={120}
+                  thickness={4}
+                  value={FoodProgress}
+                />
+              </Grid>
+            </Grid>
           </div>
         </div>
         <div className={`category-display-${ProgressOn}`}>
           <h2 className="category-text"> {Category} </h2>
         </div>
+
         <div className={`previous-button-${ProgressOn}`}>
-          <Button
-            style={{ color: 'white' }}
-            onClick={() => { this.MoveToPreviousQuestion(fullpage, QuestionNumber) }}
-          >Previous Question
-          </Button>
-        </div>
-        <div className={`contact-button-${ProgressOn}`}>
-          <a href="mailto:corporate@creol.io" style={{ color: 'white' }}>
-            Please contact Creol if a personalised calculator is required for your business
-          </a>
+          <Grid container direction="row" alignItems="center" justifyContent="center">
+            <Grid item xs>
+              <Button
+                onClick={() => { this.MoveToPreviousQuestion(fullpage, QuestionNumber) }}
+              >
+                Previous Question
+              </Button>
+            </Grid>
+            <Grid item xs>
+              <a href="mailto:corporate@creol.io" style={{ textAlign: 'center' }}>
+                Please contact Creol if a personalised calculator is required for your business
+              </a>
+            </Grid>
+          </Grid>
         </div>
         <ReactFullpage
           pluginWrapper={this.pluginWrapper}
@@ -627,6 +658,7 @@ class OfficeQuestionnaire extends Component {
             }
             return (
               <div className={styles}>
+                {OfficeQuestionnaireData !== undefined &&
                 <ReactFullpage.Wrapper>
                   <div className="section">
                     <div className="slide">
@@ -672,52 +704,19 @@ class OfficeQuestionnaire extends Component {
                   </div>
                   <div className="section">
                     <div className="slide">
-                      <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
-                        <Grid item xs>
-                          <h2> RESULTS </h2>
-                        </Grid>
-                        <Grid item xs>
-                          <div>
-                            <RadarChart
-                              captions={captions}
-                              data={data}
-                              size={300}
-                            />
-                          </div>
-                        </Grid>
-                        <Grid item xs>
-                          <EmailSignup
-                            TotalFootprint={TotalFootprint}
-                            EmployeeFootprint={FootprintPerCapita}
-                            EnergyFootprint={EnergyFootprint}
-                            RecyclingPercentage={RecyclingPercentage}
-                            GreenSupplierReduction={GreenSupplierReduction}
-                            LightingType={LightingType}
-                            OfficeImprovements={OfficeImprovements}
-                            TechPurchases={TechPurchases}
-                            DeviceReplacementRate={DeviceReplacementRate}
-                            FleetVehicleFootprint={FleetVehicleFootprint}
-                            MeatFreeDays={MeatFreeDays}
-                            LocallySourced={LocallySourced}
-                            FoodWasted={FoodWasted}
-                            RegionID={RegionID}
-                          />
-                        </Grid>
-                        <Grid item xs>
-                          <h4 className="goods-text">
-                            Please contact Creol for More personalised footprint
-                            calculations on the carbon impact of your business
-                          </h4>
-                          <h2 style={{ paddingTop: 0 }}>
-                            <a href="mailto:corporate@creol.io" className="email-link">
-                              corporate@creol.io
-                            </a>
-                          </h2>
-                        </Grid>
-                      </Grid>
+                      <ResultsSection
+                        TotalFootprint={TotalFootprint}
+                        EmployeeResult={EmployeeResult}
+                        EnergyResult={EnergyResult}
+                        GoodsResult={GoodsResult}
+                        EquipmentResult={EquipmentResult}
+                        FoodResult={FoodResult}
+                        klimaBacking={2}
+                      />
                     </div>
                   </div>
                 </ReactFullpage.Wrapper>
+                }
               </div>
             )
           }}

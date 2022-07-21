@@ -1142,7 +1142,7 @@ class QuestionnaireView extends Component {
               <Grid item xs>
                 <CircularProgress
                   style={{
-                    color: 'lightGrey'
+                    color: 'grey'
                   }}
                   variant="determinate"
                   size={120}
