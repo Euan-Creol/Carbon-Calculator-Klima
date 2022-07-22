@@ -207,6 +207,10 @@
   .footer-button {
     color: grey;
   }
+  .progress-text {
+    font-size: '20pt';
+    text-align: 'center';
+  }
   @media (max-width: 500px) {
     .footer {
       display: none;
@@ -215,6 +219,27 @@
   @media (max-height: 700px) {
     .logo-header {
       display: none;
+    }
+    .progress-text {
+      visibility: hidden;
+    }
+    .circular-progress-background {
+      top: 10px;
+    }
+    .circular-progress-transport {
+      top: 10px;
+    }
+    .circular-progress-energy {
+      top: 10px;
+    }
+    .circular-progress-food {
+      top: 10px;
+    }
+    .circular-progress-extras {
+      top: 10px;
+    }
+    .footprint-display {
+      top: 40px;
     }
   }
 }

@@ -1132,7 +1132,7 @@ class QuestionnaireView extends Component {
         <div className={`progress-icon${ProgressOn}`}>
           <Grid container direction="column" alignItems="center" justifyContent="center">
             <Grid item xs>
-              <Typography style={{ fontSize: '20pt', textAlign: 'center' }}>
+              <Typography className="progress-text">
                 YOUR <strong>CARBON</strong> TOTAL
               </Typography>
             </Grid>
