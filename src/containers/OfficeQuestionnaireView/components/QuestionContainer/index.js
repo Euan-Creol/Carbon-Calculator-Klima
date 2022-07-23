@@ -1,6 +1,6 @@
 import React, { Component }                   from 'react'
 import PropTypes                              from 'prop-types'
-import { Grid }                               from '@material-ui/core'
+import { Grid, Card }                         from '@material-ui/core'
 
 import OfficeData                             from '../../../../data/OfficeQuestionnaireData/OfficeQuestionnaireData'
 import { styles }                             from './styles.scss'
@@ -29,7 +29,7 @@ class QuestionContainer extends Component {
      @param QuestionNumber: A numerical representation of current question
      @return React component of the question title
       */
-    return <h2>{OfficeData.Questions[QuestionNumber].Question}</h2>
+    return <h2>{OfficeData.Questions[QuestionNumber].Question.toUpperCase()}</h2>
   }
 
   DetermineRegionOptions = (QuestionNumber, RegionID) => {
@@ -210,9 +210,17 @@ class QuestionContainer extends Component {
     const { QuestionNumber, RegionID } = this.props
     return (
       <div className={styles}>
-        <Grid style={{ paddingTop: 50 }} container direction="column" justify="center" alignItems="center" spacing={1}>
-          <Grid item xs={10}>
-            {this.ReturnQuestionContent(QuestionNumber, RegionID, this.props)}
+        <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
+          <Grid item xs={10} md={10}>
+            <Card
+              className="question-card"
+            >
+              <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
+                <Grid item xs={10} md={10}>
+                  {this.ReturnQuestionContent(QuestionNumber, RegionID, this.props)}
+                </Grid>
+              </Grid>
+            </Card>
           </Grid>
         </Grid>
       </div>

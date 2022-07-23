@@ -3,10 +3,10 @@
       "1": {
         "Question": "How many employees would you like to offset?",
         "Options": {
-          "UKOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car and zero flights"], [["Mid-travel Employees",2],"Between 4000-8000 miles travelled by car and 10 short-haul flights or up to 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]],
-          "EUOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car + zero flights"], [["Mid-travel Employees",2],"Between 4000-8000 miles travelled by car + 10 short-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car + 10+ flights"]],
-          "USOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car + zero flights"], [["Mid-travel Employees",2],"Between 4000-8000 miles travelled by car + 10 short-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car + 10+ flights"]],
-          "WorldOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car + zero flights"], [["Mid-travel Employees",2],"Between 4000-8000 miles travelled by car + 10 short-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car + 10+ flights"]]
+          "UKOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car and zero flights"], [["Mid-travel Employees",2],"4000-8000 miles travelled by car and 10 short-haul flights or up to 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]],
+          "EUOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car + zero flights"], [["Mid-travel Employees",2],"4000-8000 miles travelled by car + 10 short-haul flights or up to 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]],
+          "USOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car + zero flights"], [["Mid-travel Employees",2],"4000-8000 miles travelled by car + 10 short-haul flights or up to 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]],
+          "WorldOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car + zero flights"], [["Mid-travel Employees",2],"4000-8000 miles travelled by car + 10 short-haul flights or up to 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]]
         },
         "Component": "Multiple Number Input",
         "Category": "Employees"
@@ -59,28 +59,15 @@
       "5": {
         "Question": "Do you use a green energy supplier?",
         "Options": {
-          "UKOptions": [["Yes",1],["No",0]],
-          "EUOptions": [["Yes",1],["No",0]],
-          "USOptions": [["Yes",1],["No",0]],
-          "WorldOptions": [["Yes",1],["No",0]]
+          "UKOptions": [["Yes",0.4],["No",1]],
+          "EUOptions": [["Yes",0.4],["No",1]],
+          "USOptions": [["Yes",0.4],["No",1]],
+          "WorldOptions": [["Yes",0.4],["No",1]]
         },
         "Component": "Question",
         "Category": "Office"
       },
-  
       "6": {
-        "Question": "Which green energy supplier do you use?",
-        "Options": {
-          "UKOptions": [["Octopus",0.4],["SSE",0.4],["Bulb",0.4],["Other",0.6]],
-          "EUOptions": [["Octopus",0.4],["SSE",0.4],["Bulb",0.4],["Other",0.6]],
-          "USOptions": [["Octopus",0.4],["SSE",0.4],["Bulb",0.4],["Other",0.6]],
-          "WorldOptions": [["Octopus",0.4],["SSE",0.4],["Bulb",0.4],["Other",0.6]]
-        },
-        "Component": "Select",
-        "Category": "Office"
-      },
-  
-      "7": {
         "Question": "What type of lighting does your business use?",
         "Options": {
           "UKOptions": [["Fluorescent Lamps",0.001],["LED Lamps",0.001],["Halogen Lamps",0.05],["Don't know",0.025]],
@@ -92,7 +79,7 @@
         "Category": "Office"
       },
   
-      "8": {
+      "7": {
         "Question": "Which of these does your business currently use?",
         "Options": {
           "UKOptions": [["Cavity insulation",-0.5],["Solar Panels",-0.6],["Motion-controlled lighting",-0.24],["Device sleep mode",-0.17],["Lighting Controls",-0.35]],
@@ -104,7 +91,7 @@
         "Category": "Office"
       },
   
-      "9": {
+      "8": {
         "Question": "Which of these has your business purchased in the past 12 months?",
         "Options": {
           "UKOptions": [["Mobile Phone",0.3],["Laptop",0.6],["Desktop Computer",0.8],["Company Car",9.4]],
@@ -116,7 +103,7 @@
         "Category": "Equipment"
       },
   
-      "10": {
+      "9": {
         "Question": "How often are the devices in your office replaced?",
         "Options": {
           "UKOptions": [["Every 6 months",1],["Yearly",0.5],["Every 3 years",0.125],["Every 5 years",0.1],["Every 10 years",0.05],["Never",0.04]],
@@ -128,7 +115,7 @@
         "Category": "Equipment"
       },
   
-      "11": {
+      "10": {
         "Question": "Does your business own any fleet vehicles?",
         "Options": {
           "UKOptions": [["Yes",1],["No",0]],
@@ -140,7 +127,7 @@
         "Category": "Equipment"
       },
   
-      "12": {
+      "11": {
         "Question": "What type of vehicle does your company use?",
         "Options": {
           "UKOptions": {
@@ -164,7 +151,7 @@
         "Category": "Equipment"
       },
   
-      "13": {
+      "12": {
         "Question": "Does your business have a canteen or make food available to employees?",
         "Options": {
           "UKOptions": [["Yes",1],["No",0]],
@@ -176,7 +163,7 @@
         "Category": "Food"
       },
   
-      "14": {
+      "13": {
         "Question": "What percentage food offered is meat based?",
         "Options": {
           "UKOptions": [["100%",1.76],["75%",1.37],["50%",1.14],["25%",0.93],["0%",0.71],["Don't know",1.76]],
@@ -188,7 +175,7 @@
         "Category": "Food"
       },
   
-      "15": {
+      "14": {
         "Question": "Does your business offer meat-free days?",
         "Options": {
           "UKOptions": [["Yes",0.6],["No",1]],
@@ -200,7 +187,7 @@
         "Category": "Food"
       },
   
-      "16": {
+      "15": {
         "Question": "What percentage of food is locally sourced?",
         "Options": {
           "UKOptions": [["0%",1],["25%",0.75],["50%",0.5],["75%",0.25],["100%",0],["Don't know",1]],
@@ -212,7 +199,7 @@
         "Category": "Food"
       },
   
-      "17": {
+      "16": {
         "Question": "What percentage of food is wasted?",
         "Options": {
           "UKOptions": [["0%",1],["1-10%",1.05],["10-20%",1.15],["20-40%",1.3],["More than 40%",1.45],["Don't know",1.45]],
@@ -224,7 +211,7 @@
         "Category": "Food"
       },
   
-      "18": {
+      "17": {
         "Question": "Please contact Creol for personalised footprint calculations on the carbon impact of your business' goods and services",
         "Options": {
           "UKOptions": [],

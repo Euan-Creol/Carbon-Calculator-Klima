@@ -1,12 +1,12 @@
 import React, { Component }                   from 'react'
 import PropTypes                              from 'prop-types'
 import { Grid }                               from '@material-ui/core'
+import ApartmentIcon from '@mui/icons-material/Apartment'
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
+import FlightIcon from '@mui/icons-material/Flight'
 
 import NumberInput                            from '../NumberInput'
 import { styles }                             from './styles.scss'
-import LowTravel                              from '../../../../../../assets/images/OfficeQuestionnaireView/Office.png'
-import MidTravel                              from '../../../../../../assets/images/OfficeQuestionnaireView/SuvCar.png'
-import HighTravel                             from '../../../../../../assets/images/OfficeQuestionnaireView/FlyingAirplane.png'
 
 class MultipleNumberInput extends Component {
   constructor() {
@@ -30,14 +30,11 @@ class MultipleNumberInput extends Component {
       <Grid item xs key={array[0][0]}>
         <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
           <Grid item xs>
-            <img
-              style={{ height: 100 }}
-              alt={this.DetermineImage(array[0][0])}
-              src={this.DetermineImage(array[0][0])}
-            />
+            {this.DetermineImage(array[0][0])}
           </Grid>
           <Grid item xs>
             <NumberInput
+              className="number-input"
               InputLabel={array[0][0]}
               onChange={footprintAddition =>
                 this.UpdateQuestionFootprint(footprintAddition, array[0][0], props)}
@@ -57,21 +54,16 @@ class MultipleNumberInput extends Component {
      @param TierName: String used to determine the appropriate image
      @return Relevant option image
       */
-    let image = LowTravel
     switch (TierName) {
     default:
-      break
+      return (<h2>ICON MISSING</h2>)
     case 'Low-travel Employees':
-      image = LowTravel
-      break
+      return (<ApartmentIcon fontSize="large" />)
     case 'Mid-travel Employees':
-      image = MidTravel
-      break
+      return (<DirectionsCarIcon fontSize="large" />)
     case 'High-travel Employees':
-      image = HighTravel
-      break
+      return (<FlightIcon fontSize="large" />)
     }
-    return image
   }
 
   UpdateQuestionFootprint(footprintAddition, InputType, props) {

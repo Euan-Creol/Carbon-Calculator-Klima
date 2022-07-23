@@ -11,6 +11,7 @@ import { styles }                           from './styles.scss'
 import RegionSelect                         from './components/RegionSelection'
 import OfficeQuestionnaireData              from '../../data/OfficeQuestionnaireData/OfficeQuestionnaireData.json'
 import ResultsSection                       from './components/ResultsSection'
+import CoverImage                           from '../../assets/images/grey_cover_background.png'
 
 /*
 The parent component of the office footprint calculator tool
@@ -191,7 +192,13 @@ class OfficeQuestionnaire extends Component {
         @return The React components based on the specified regionID and QuestionNumber
         */
     return (
-      <div className="slide">
+      <div
+        className="slide"
+        style={{
+          backgroundColor: '#fafafa',
+          backgroundSize: 'cover'
+        }}
+      >
         <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
           <Grid item xs>
             <QuestionContainer
@@ -253,78 +260,71 @@ class OfficeQuestionnaire extends Component {
       },)
       break
     case 5:
-      if (footprintAddition === 1) {
-        fullpageApi.moveTo(2, 5)
-      } else if (footprintAddition === 0) {
-        fullpageApi.moveTo(2, 6)
-      }
-      break
-    case 6:
-      fullpageApi.moveTo(2, 6)
+      fullpageApi.moveTo(2, 5)
       this.setState({
         GreenSupplierReduction: footprintAddition
       },)
       break
-    case 7:
-      fullpageApi.moveTo(2, 7)
+    case 6:
+      fullpageApi.moveTo(2, 6)
       this.setState({
         LightingType: footprintAddition
       },)
       break
-    case 8:
+    case 7:
       this.setState({
         OfficeImprovements: footprintAddition
       },)
       break
-    case 9:
+    case 8:
       this.setState({
         TechPurchases: footprintAddition
       },)
       break
-    case 10:
+    case 9:
       this.setState({
         DeviceReplacementRate: footprintAddition
       },)
       break
-    case 11:
+    case 10:
       if (footprintAddition === 1) {
-        fullpageApi.moveTo(2, 11)
+        fullpageApi.moveTo(2, 10)
       } else if (footprintAddition === 0) {
-        fullpageApi.moveTo(2, 12)
+        fullpageApi.moveTo(2, 11)
       }
       break
-    case 12:
+    case 11:
       this.setState({
         FleetVehicleFootprint: footprintAddition
       },)
       break
-    case 13:
+    case 12:
       if (footprintAddition === 1) {
-        fullpageApi.moveTo(2, 13)
+        fullpageApi.moveTo(2, 12)
       } else if (footprintAddition === 0) {
-        fullpageApi.moveTo(2, 17)
+        fullpageApi.moveTo(2, 16)
       }
+      break
+    case 13:
+      fullpageApi.moveTo(2, 13)
+      this.setState({
+        FoodFootprint: footprintAddition
+      },)
       break
     case 14:
       fullpageApi.moveTo(2, 14)
       this.setState({
-        FoodFootprint: footprintAddition
+        MeatFreeDays: footprintAddition
       },)
       break
     case 15:
       fullpageApi.moveTo(2, 15)
       this.setState({
-        MeatFreeDays: footprintAddition
-      },)
-      break
-    case 16:
-      fullpageApi.moveTo(2, 16)
-      this.setState({
         LocallySourced: footprintAddition
       }, () => { this.UpdateTotalFootprint() })
       break
-    case 17:
-      fullpageApi.moveTo(2, 17)
+    case 16:
+      fullpageApi.moveTo(2, 16)
       this.setState({
         FoodWasted: footprintAddition
       }, () => { this.UpdateTotalFootprint() })
@@ -483,6 +483,7 @@ class OfficeQuestionnaire extends Component {
     */
     return (
       <div className={styles}>
+        {/*
         <div className={`menu-buttons-${ProgressOn}`}>
           <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
             <Grid item xs={2}>
@@ -512,10 +513,11 @@ class OfficeQuestionnaire extends Component {
             </Grid>
           </Grid>
         </div>
+        */}
         <div className={`progress-icon${ProgressOn}`}>
           <Grid container direction="column" alignItems="center" justifyContent="center">
             <Grid item xs>
-              <Typography style={{ fontSize: '20pt', textAlign: 'center' }}>
+              <Typography className="progress-text">
                 YOUR <strong>CARBON</strong> TOTAL
               </Typography>
             </Grid>
@@ -629,11 +631,13 @@ class OfficeQuestionnaire extends Component {
                 Previous Question
               </Button>
             </Grid>
+            {/*
             <Grid item xs>
               <a href="mailto:corporate@creol.io" style={{ textAlign: 'center' }}>
                 Please contact Creol if a personalised calculator is required for your business
               </a>
             </Grid>
+            */}
           </Grid>
         </div>
         <ReactFullpage
@@ -664,14 +668,18 @@ class OfficeQuestionnaire extends Component {
                     <div className="slide">
                       <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
                         <Grid item xs>
-                          <h2> Calculate the carbon footprint for your office </h2>
+                          <h2 style={{ marginBottom: 0 }}> CALCULATE YOUR COMPANY FOOTPRINT </h2>
+                        </Grid>
+                        <Grid item xs>
+                          <h4 style={{ color: 'grey', marginBottom: 0 }}>Calculate the carbon footprint of your office</h4>
+                          <h4 style={{ color: 'grey', marginTop: 0 }}>with Creol and Offset with Klima Infinity</h4>
                         </Grid>
                         <Grid item xs>
                           <Button
                             variant="contained"
                             className="question-button"
                             onClick={() => { this.StartQuestionnaire(fullpageApi) }}
-                          > Take the Questionnaire
+                          > START
                           </Button>
                         </Grid>
                       </Grid>
@@ -700,10 +708,15 @@ class OfficeQuestionnaire extends Component {
                     {this.ReturnQuestion(14, RegionID, fullpageApi)}
                     {this.ReturnQuestion(15, RegionID, fullpageApi)}
                     {this.ReturnQuestion(16, RegionID, fullpageApi)}
-                    {this.ReturnQuestion(17, RegionID, fullpageApi)}
                   </div>
                   <div className="section">
-                    <div className="slide">
+                    <div
+                      className="slide"
+                      style={{
+                        backgroundImage: `url(${CoverImage})`,
+                        backgroundSize: 'cover'
+                      }}
+                    >
                       <ResultsSection
                         TotalFootprint={TotalFootprint}
                         EmployeeResult={EmployeeResult}
