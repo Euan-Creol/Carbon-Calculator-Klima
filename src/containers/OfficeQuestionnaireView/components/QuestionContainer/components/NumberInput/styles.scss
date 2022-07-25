@@ -1,27 +1,19 @@
 :local(.styles) {
   .text-input {
-    color: black;
-    font-family: 'CenturyGothic-Bold', sans-serif;
   }
   .MuiFormLabel-root {
-    color: black;
-    font-family: 'CenturyGothic-Bold', sans-serif;
   }
   .Mui-focused{
-    color: white;
-    font-family: 'CenturyGothic-Bold', sans-serif;
-    border-color: lightgray;
     border-radius: 10px;
   }
   .MuiInputBase-input{
-    color: black;
-    font-family: 'CenturyGothic-Bold', sans-serif;
   }
   .MuiOutlinedInput-notchedOutline {
-    border-color: black;
-    border-radius: 10px;
+    background-color: #F7F7F7;
+    border-radius: 3px;
+    border: 0;
   }
   .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    border-color: black;
+    background-color: #FAFAFA;
   }
 }

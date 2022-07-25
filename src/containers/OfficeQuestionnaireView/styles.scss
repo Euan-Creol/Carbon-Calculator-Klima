@@ -92,7 +92,7 @@
     right: 0;
     margin: 0% auto;
     z-index: 1;
-    top: 80px;
+    top: 50px;
   }
   .circular-progress-employees {
     position: fixed;
@@ -100,7 +100,7 @@
     right: 0;
     margin: 0% auto;
     z-index: 5;
-    top: 80px;
+    top: 50px;
   }
   .circular-progress-energy {
     position: fixed;
@@ -108,7 +108,7 @@
     right: 0;
     margin: 0% auto;
     z-index: 4;
-    top: 80px;
+    top: 50px;
   }
   .circular-progress-goods {
     position: fixed;
@@ -116,7 +116,7 @@
     right: 0;
     margin: 0% auto;
     z-index: 3;
-    top: 80px;
+    top: 50px;
   }
   .circular-progress-equipment {
     position: fixed;
@@ -124,7 +124,7 @@
     right: 0;
     margin: 0% auto;
     z-index: 2;
-    top: 80px;
+    top: 50px;
   }
   .circular-progress-food {
     position: fixed;
@@ -132,7 +132,7 @@
     right: 0;
     margin: 0% auto;
     z-index: 1;
-    top: 80px;
+    top: 50px;
   }
   .footprint-equipment {
     color: #33972d;
@@ -195,8 +195,14 @@
     justify-items: center;
   }
   .progress-text {
-    font-size: '20pt';
-    text-align: 'center';
+    font-size: 20pt;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
+    z-index: 1;
+    top: 10px;
   }
   .contact-button- {
     visibility: hidden;

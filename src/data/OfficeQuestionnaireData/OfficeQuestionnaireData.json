@@ -3,10 +3,10 @@
       "1": {
         "Question": "How many employees would you like to offset?",
         "Options": {
-          "UKOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car and zero flights"], [["Mid-travel Employees",2],"4000-8000 miles travelled by car and 10 short-haul flights or up to 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]],
-          "EUOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car + zero flights"], [["Mid-travel Employees",2],"4000-8000 miles travelled by car + 10 short-haul flights or up to 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]],
-          "USOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car + zero flights"], [["Mid-travel Employees",2],"4000-8000 miles travelled by car + 10 short-haul flights or up to 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]],
-          "WorldOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car + zero flights"], [["Mid-travel Employees",2],"4000-8000 miles travelled by car + 10 short-haul flights or up to 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]]
+          "UKOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car and zero short or long-haul flights"], [["Mid-travel Employees",2],"Up to 8000 miles travelled by car and 10 short-haul flights or 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]],
+          "EUOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car and zero short or long-haul flights"], [["Mid-travel Employees",2],"Up to 8000 miles travelled by car and 10 short-haul flights or 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]],
+          "USOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car and zero short or long-haul flights"], [["Mid-travel Employees",2],"Up to 8000 miles travelled by car and 10 short-haul flights or 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]],
+          "WorldOptions": [[["Low-travel Employees",1],"Under 4000 miles travelled by car and zero short or long-haul flights"], [["Mid-travel Employees",2],"Up to 8000 miles travelled by car and 10 short-haul flights or 3 long-haul flights"],[["High-travel Employees",4],"8000+ miles travelled by car and 10+ short-haul flights or 3+ long-haul flights"]]
         },
         "Component": "Multiple Number Input",
         "Category": "Employees"

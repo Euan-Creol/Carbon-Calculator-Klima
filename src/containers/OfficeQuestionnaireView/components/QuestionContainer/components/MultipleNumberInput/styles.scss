@@ -7,4 +7,12 @@
   .number-input{
     background-color: #aaaaaa;
   }
+  @media (max-width: 450px) {
+    .input-description{
+      display: none
+    }
+    .input-image{
+      display: none
+    }
+  }
 }

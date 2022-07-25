@@ -53,7 +53,7 @@ class OfficeQuestionnaire extends Component {
       FoodWasted: 1,
 
       QuestionNumber: 1,
-      Category: 'Office',
+      // Category: 'Office',
       EmployeeProgress: 0,
       EnergyProgress: 0,
       GoodsProgress: 0,
@@ -133,16 +133,18 @@ class OfficeQuestionnaire extends Component {
     })
   }
 
+  /*
   UpdateCategory(QuestionNumber) {
-    /*
+
         @notice A function to update the text in the category display
         @param QuestionNumber: Numerical representation of current question
-        */
+
     const NewCategory = OfficeQuestionnaireData.Questions[QuestionNumber + 1].Category
     this.setState({
       Category: NewCategory
     }, () => { this.UpdateProgress(QuestionNumber, NewCategory) })
   }
+*/
 
   UpdateProgress(QuestionNumber, Category) {
     /*
@@ -215,7 +217,7 @@ class OfficeQuestionnaire extends Component {
               className="question-button"
               onClick={() => { this.MoveQuestionnaire(fullpageApi, QuestionNumber) }}
             >
-              Next Question
+              NEXT QUESTION
             </Button>
           </Grid>
         </Grid>
@@ -440,7 +442,6 @@ class OfficeQuestionnaire extends Component {
     const {
       TotalFootprint,
       RegionID,
-      Category,
       QuestionNumber,
       EmployeeProgress,
       EnergyProgress,
@@ -618,9 +619,12 @@ class OfficeQuestionnaire extends Component {
             </Grid>
           </div>
         </div>
+
+        {/*
         <div className={`category-display-${ProgressOn}`}>
           <h2 className="category-text"> {Category} </h2>
         </div>
+        */}
 
         <div className={`previous-button-${ProgressOn}`}>
           <Grid container direction="row" alignItems="center" justifyContent="center">

@@ -27,7 +27,7 @@ class MultipleNumberInput extends Component {
      @return React component containing multiple inputs
       */
     return InputData.map(array => (
-      <Grid item xs key={array[0][0]}>
+      <Grid item xs={12} key={array[0][0]}>
         <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
           <Grid item xs>
             {this.DetermineImage(array[0][0])}
@@ -41,7 +41,7 @@ class MultipleNumberInput extends Component {
             />
           </Grid>
           <Grid item xs>
-            <h4> {array[1]} </h4>
+            <h4 className="input-description"> {array[1]} </h4>
           </Grid>
         </Grid>
       </Grid>
@@ -58,11 +58,11 @@ class MultipleNumberInput extends Component {
     default:
       return (<h2>ICON MISSING</h2>)
     case 'Low-travel Employees':
-      return (<ApartmentIcon fontSize="large" />)
+      return (<ApartmentIcon fontSize="large" className="input-image" />)
     case 'Mid-travel Employees':
-      return (<DirectionsCarIcon fontSize="large" />)
+      return (<DirectionsCarIcon fontSize="large" className="input-image" />)
     case 'High-travel Employees':
-      return (<FlightIcon fontSize="large" />)
+      return (<FlightIcon fontSize="large" className="input-image" />)
     }
   }
 

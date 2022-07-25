@@ -29,7 +29,7 @@ class QuestionContainer extends Component {
      @param QuestionNumber: A numerical representation of current question
      @return React component of the question title
       */
-    return <h2>{OfficeData.Questions[QuestionNumber].Question.toUpperCase()}</h2>
+    return <h2 className="question-title">{OfficeData.Questions[QuestionNumber].Question.toUpperCase()}</h2>
   }
 
   DetermineRegionOptions = (QuestionNumber, RegionID) => {
@@ -211,7 +211,7 @@ class QuestionContainer extends Component {
     return (
       <div className={styles}>
         <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
-          <Grid item xs={10} md={10}>
+          <Grid item xs={12} md={10}>
             <Card
               className="question-card"
             >

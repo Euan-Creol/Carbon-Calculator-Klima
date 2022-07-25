@@ -46,10 +46,11 @@ class Counter extends Component {
          @param props: Required to pass state to parent component
          @return React component of the counter option mapping
           */
+
     return CounterOptions.map(Array => (
       <div key={Array[0]}>
         <Grid container direction="row" justify="center" alignItems="center" spacing={2} style={{ maxHeight: 70 }}>
-          <Grid item xs={3}>
+          <Grid item xs={this.ReturnGridSize(SelectOptions)}>
             <Grid container direction="row" justify="flex-end" alignItems="center">
               <Grid className="option-text" item xs={12} >
                 <h2 className="option-label">{Array[0]}</h2>
@@ -57,16 +58,16 @@ class Counter extends Component {
             </Grid>
           </Grid>
           <Grid className="option-button" item xs>
-            <Grid container direction="row" justify="flex-start" alignItems="center">
+            <Grid container direction="row" justify="flex-start" alignItems="flex-start">
               <Grid className="option-button" item xs={12} >
-                <ButtonGroup size="large" variant="outlined" aria-label="flight-counter">
-                  <Button onClick={() => { this.UpdateCounter(Array, -1, props) }}>
+                <ButtonGroup size="large" variant="outlined" aria-label="counter" className="counter">
+                  <Button onClick={() => { this.UpdateCounter(Array, -1, props) }} className="counter-button">
                     -
                   </Button>
-                  <Button>
+                  <Button className="counter-button">
                     {this.DetermineStateName(Array[0])}
                   </Button>
-                  <Button onClick={() => { this.UpdateCounter(Array, 1, props) }}>
+                  <Button onClick={() => { this.UpdateCounter(Array, 1, props) }} className="counter-button">
                     +
                   </Button>
                 </ButtonGroup>
@@ -79,6 +80,13 @@ class Counter extends Component {
     ))
   }
 
+  ReturnGridSize = (SelectOptions) => {
+    if (SelectOptions === undefined) {
+      return 6
+    }
+    return 3
+  }
+
   ReturnSelect(SelectOptions, OptionName, props) {
     /*
          @notice A function to return the select component
@@ -87,21 +95,20 @@ class Counter extends Component {
          @param props: Required to pass state to parent component
          @return React component of the select options
           */
-    if (SelectOptions === undefined) {
-      return <Grid item xs={3} />
+    if (SelectOptions !== undefined) {
+      return (
+        <Grid item xs={3}>
+          <Selection
+            SelectOptions={SelectOptions}
+            DefaultValue="Fuel"
+            DefaultBool
+            onChange={footprintAddition =>
+              this.UpdateSelectFootprint(footprintAddition, OptionName, props)}
+          />
+        </Grid>
+      )
     }
-
-    return (
-      <Grid item xs={3}>
-        <Selection
-          SelectOptions={SelectOptions}
-          DefaultValue="Fuel Type"
-          DefaultBool
-          onChange={footprintAddition =>
-            this.UpdateSelectFootprint(footprintAddition, OptionName, props)}
-        />
-      </Grid>
-    )
+    return <div />
   }
 
   UpdateSelectFootprint(footprintAddition, OptionName, props) {
