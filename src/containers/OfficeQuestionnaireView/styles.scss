@@ -261,4 +261,29 @@
     margin: 10px;
     margin-top: 50px
   }
+  .footprint-display {
+    text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0% auto;
+    top: 80px;
+    z-index: 6;
+    width: 120px;
+    height: 120px;
+    justify-content: center;
+  }
+  .footprint-text {
+    color: #33972d;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  @media (max-width: 450px) {
+    .progress-iconactive{
+      display: none;
+    }
+    .footprint-display {
+      top: 40px;
+    }
+  }
 }

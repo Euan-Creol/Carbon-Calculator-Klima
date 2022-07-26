@@ -1,5 +1,8 @@
 :local(.styles) {
   .text-input {
+    background-color: #F7F7F7;
+    border-radius: 3px;
+    border: 0;
   }
   .MuiFormLabel-root {
   }
@@ -9,11 +12,8 @@
   .MuiInputBase-input{
   }
   .MuiOutlinedInput-notchedOutline {
-    background-color: #F7F7F7;
-    border-radius: 3px;
-    border: 0;
+    border: 0px;
   }
   .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    background-color: #FAFAFA;
   }
 }

@@ -146,12 +146,14 @@ class OfficeQuestionnaire extends Component {
   }
 */
 
-  UpdateProgress(QuestionNumber, Category) {
+  UpdateProgress(QuestionNumber) {
     /*
         @notice A function to update the circular progress display
         @param QuestionNumber: Numerical representation of current question
         @param Category: String representation of current question category
         */
+    const { Category } = OfficeQuestionnaireData.Questions[QuestionNumber + 1]
+
     const TotalNumberOfQuestions = 17 // TO-DO Remove hard-coded value
     const Percentage = (QuestionNumber / TotalNumberOfQuestions) * 100
     switch (Category) {
@@ -618,6 +620,10 @@ class OfficeQuestionnaire extends Component {
               </Grid>
             </Grid>
           </div>
+          <div className="footprint-display">
+            <h2 className="footprint-text"> {TotalFootprint.toFixed(1)} </h2>
+            <h4 style={{ marginTop: 0 }}> t CO2 e </h4>
+          </div>
         </div>
 
         {/*
@@ -658,7 +664,7 @@ class OfficeQuestionnaire extends Component {
           responsiveWidth={500}
           fadingEffect
 
-          onSlideLeave={() => { this.UpdateCategory(QuestionNumber) }}
+          onSlideLeave={() => { this.UpdateProgress(QuestionNumber) }}
 
           render={({ fullpageApi }) => {
             if (fullpageApi !== undefined && !this.state.fullpageApi) {

@@ -27,7 +27,7 @@ class MultipleNumberInput extends Component {
      @return React component containing multiple inputs
       */
     return InputData.map(array => (
-      <Grid item xs={12} key={array[0][0]}>
+      <Grid item xs={12} md={4} key={array[0][0]}>
         <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
           <Grid item xs>
             {this.DetermineImage(array[0][0])}

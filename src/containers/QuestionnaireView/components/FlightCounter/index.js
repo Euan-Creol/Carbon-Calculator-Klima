@@ -266,7 +266,7 @@ class FlightCounter extends Component {
     return (
       <div className={styles}>
         <Card style={{
-          padding: 32, borderRadius: '0.8rem', marginTop: 120, marginLeft: 10, marginRight: 10
+          padding: 32, borderRadius: '0.8rem', marginTop: 70, marginLeft: 10, marginRight: 10
         }}
         >
           <Grid
