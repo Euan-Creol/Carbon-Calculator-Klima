@@ -123,6 +123,12 @@ class OfficeQuestionnaire extends Component {
     }
   }
 
+  EndQuestionnaire(fullpage) {
+    this.setState({
+      ProgressOn: ''
+    }, () => { fullpage.moveTo(fullpage.getActiveSection().index + 2, 0) })
+  }
+
   UpdateRegion(RegionID) {
     /*
         @notice A function to move to update the state when RegionID is selected
@@ -303,10 +309,11 @@ class OfficeQuestionnaire extends Component {
       },)
       break
     case 12:
+      console.log('CANTEEN', footprintAddition)
       if (footprintAddition === 1) {
         fullpageApi.moveTo(2, 12)
       } else if (footprintAddition === 0) {
-        fullpageApi.moveTo(2, 16)
+        this.EndQuestionnaire(fullpageApi)
       }
       break
     case 13:

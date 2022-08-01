@@ -18,12 +18,20 @@
     .result-text {
       margin: 0;
     }
+    .result-text-reduce {
+      margin: 0;
+    }
     .offset-button {
       margin-top: 0
     }
   }
   @media (max-width: 450px) {
     .reduce-card {
+      display: none;
+    }
+  }
+  @media (max-width: 750px) {
+    .result-text-reduce{
       display: none;
     }
   }

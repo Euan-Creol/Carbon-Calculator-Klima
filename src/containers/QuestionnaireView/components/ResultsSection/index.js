@@ -228,7 +228,7 @@ class ResultsSection extends Component {
                   </h4>
                 </Grid>
                 <Grid item xs>
-                  <h4 style={{ fontSize: '12pt' }} className="result-text">
+                  <h4 style={{ fontSize: '12pt' }} className="result-text-reduce">
                     Each KLIMA token is backed by at least 1 ton of carbon. Below is a
                     conversion of your footprint in Klima, you can choose to offset
                     this.
