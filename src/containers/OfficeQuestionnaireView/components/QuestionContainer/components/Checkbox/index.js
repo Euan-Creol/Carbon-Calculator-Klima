@@ -85,7 +85,7 @@ class QuestionCheckbox extends Component {
 
 QuestionCheckbox.propTypes = {
   /* Array containing the checkbox data for that question and region */
-  CheckboxOptions: PropTypes.arrayOf(PropTypes.string).isRequired
+  CheckboxOptions: PropTypes.arrayOf(PropTypes.array).isRequired
 }
 
 export default QuestionCheckbox

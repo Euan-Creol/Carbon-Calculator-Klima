@@ -94,10 +94,10 @@
       "8": {
         "Question": "Which of these has your business purchased in the past 12 months?",
         "Options": {
-          "UKOptions": [["Mobile Phone",0.3],["Laptop",0.6],["Desktop Computer",0.8],["Company Car",9.4]],
-          "EUOptions": [["Mobile Phone",0.3],["Laptop",0.6],["Desktop Computer",0.8],["Company Car",9.4]],
-          "USOptions": [["Mobile Phone",0.3],["Laptop",0.6],["Desktop Computer",0.8],["Company Car",9.4]],
-          "WorldOptions": [["Mobile Phone",0.3],["Laptop",0.6],["Desktop Computer",0.8],["Company Car",9.4]]
+          "UKOptions": [["Mobile Phone",0.3],["Laptop",0.6],["Computer",0.8],["Company Car",9.4]],
+          "EUOptions": [["Mobile Phone",0.3],["Laptop",0.6],["Computer",0.8],["Company Car",9.4]],
+          "USOptions": [["Mobile Phone",0.3],["Laptop",0.6],["Computer",0.8],["Company Car",9.4]],
+          "WorldOptions": [["Mobile Phone",0.3],["Laptop",0.6],["Computer",0.8],["Company Car",9.4]]
         },
         "Component": "Counter",
         "Category": "Equipment"
@@ -131,19 +131,19 @@
         "Question": "What type of vehicle does your company use?",
         "Options": {
           "UKOptions": {
-            "Counter": [["Car",1],["Motorcycle",0.6],["Van",1.4],["Truck",2.6]],
+            "Counter": [["Car",1],["Van",1.4],["Truck",2.6]],
             "Select": [["Electric",0.3],["Hybrid",0.5],["Small Petrol",1.2],["Large Petrol",1.8],["Small Diesel",1.0],["Large Diesel",1.6]]
           },
           "EUOptions": {
-            "Counter": [["Car",1],["Motorcycle",0.6],["Van",1.4],["Truck",2.6]],
+            "Counter": [["Car",1],["Van",1.4],["Truck",2.6]],
             "Select": [["Electric",0.3],["Hybrid",0.5],["Small Petrol",1.2],["Large Petrol",1.8],["Small Diesel",1.0],["Large Diesel",1.6]]
             },
           "USOptions": {
-            "Counter": [["Car",1],["Motorcycle",0.6],["Van",1.4],["Truck",2.6]],
+            "Counter": [["Car",1],["Van",1.4],["Truck",2.6]],
             "Select": [["Electric",0.3],["Hybrid",0.5],["Small Petrol",1.2],["Large Petrol",1.8],["Small Diesel",1.0],["Large Diesel",1.6]]
             },
           "WorldOptions": {
-            "Counter": [["Car",1],["Motorcycle",0.6],["Van",1.4],["Truck",2.6]],
+            "Counter": [["Car",1],["Van",1.4],["Truck",2.6]],
             "Select": [["Electric",0.3],["Hybrid",0.5],["Small Petrol",1.2],["Large Petrol",1.8],["Small Diesel",1.0],["Large Diesel",1.6]]
             }
         },

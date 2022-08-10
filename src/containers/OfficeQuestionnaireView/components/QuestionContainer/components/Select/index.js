@@ -71,7 +71,7 @@ class Selection extends Component {
 
 Selection.propTypes = {
   /* Relevant data to populate select component */
-  SelectOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  SelectOptions: PropTypes.arrayOf(PropTypes.array).isRequired,
   /* Placeholder label for select component */
   DefaultValue: PropTypes.string.isRequired,
   /* Determine whether full width component or not */

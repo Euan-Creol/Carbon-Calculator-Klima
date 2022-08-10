@@ -520,7 +520,7 @@ class QuestionnaireView extends Component {
 
         <ReactFullpage
           pluginWrapper={this.pluginWrapper}
-          licenseKey="0628BF63-A12B4E50-ADE30A94-A3F386A1" // REMOVE API KEYS
+          licenseKey="0628BF63-A12B4E50-ADE30A94-A3F386A1"
           scrollingSpeed={1500}
           scrollHorizontally
           continuousHorizontal

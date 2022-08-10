@@ -123,10 +123,6 @@ class RegionSelect extends Component {
     return AverageFootprint
   }
 
-  handleFAQSelection() {
-    this.props.onFAQ()
-  }
-
   render() {
     const { displayText } = this.props
     const { RegionName, RegionID } = this.state
@@ -169,7 +165,7 @@ class RegionSelect extends Component {
           { displayText ? (
             <Grid item xs>
               <Card elevation={0}>
-                <CardActionArea onClick={() => { this.handleFAQSelection() }}>
+                <CardActionArea>
                   <Grid container direction="column" justifyContent="center" alignItems="center">
                     <Grid item xs>
                       <h4 style={{ fontWeight: 600, margin: 0 }}>
@@ -194,7 +190,6 @@ class RegionSelect extends Component {
 
 RegionSelect.propTypes = {
   displayText: PropTypes.bool.isRequired,
-  onFAQ: PropTypes.func.isRequired,
   RegionID: PropTypes.number.isRequired
 }
 

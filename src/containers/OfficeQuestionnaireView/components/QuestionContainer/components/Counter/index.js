@@ -52,14 +52,14 @@ class Counter extends Component {
         <Grid container direction="row" justify="center" alignItems="center" spacing={2} style={{ maxHeight: 70 }}>
           <Grid item xs={this.ReturnGridSize(SelectOptions)}>
             <Grid container direction="row" justify="flex-end" alignItems="center">
-              <Grid className="option-text" item xs={12} >
+              <Grid className="option-text" item xs={12} md={6}>
                 <h2 className="option-label">{Array[0]}</h2>
               </Grid>
             </Grid>
           </Grid>
           <Grid className="option-button" item xs>
             <Grid container direction="row" justify="flex-start" alignItems="flex-start">
-              <Grid className="option-button" item xs={12} >
+              <Grid className="option-button" item xs={6} md={6}>
                 <ButtonGroup size="large" variant="outlined" aria-label="counter" className="counter">
                   <Button onClick={() => { this.UpdateCounter(Array, -1, props) }} className="counter-button">
                     -
@@ -212,7 +212,7 @@ class Counter extends Component {
     case 'Laptop':
       stateName = this.state.Laptop
       break
-    case 'Desktop Computer':
+    case 'Computer':
       stateName = this.state.Desktop
       break
     case 'Company Car':
@@ -337,7 +337,7 @@ class Counter extends Component {
           this.UpdateQuestionFootprint(Array[1] * Value, 1, props)
         })
         break
-      case 'Desktop Computer':
+      case 'Computer':
         this.setState({
           Desktop: CounterState + Value
         }, () => {
@@ -418,8 +418,8 @@ class Counter extends Component {
 }
 
 Counter.propTypes = {
-  CounterOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
-  SelectOptions: PropTypes.arrayOf(PropTypes.string).isRequired
+  CounterOptions: PropTypes.arrayOf(PropTypes.array).isRequired,
+  SelectOptions: PropTypes.arrayOf(PropTypes.array).isRequired
 }
 
 export default Counter

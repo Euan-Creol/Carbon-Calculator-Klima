@@ -1,9 +1,6 @@
 import React, { Component }                 from 'react'
 import ReactFullpage                        from '@fullpage/react-fullpage'
-import { Button,
-  CircularProgress,
-  Grid,
-  Typography }                              from '@material-ui/core'
+import { Button, Grid }                     from '@material-ui/core'
 import { withRouter }                       from 'react-router-dom'
 
 import QuestionContainer                    from './components/QuestionContainer'
@@ -21,9 +18,6 @@ class OfficeQuestionnaire extends Component {
     super(props)
     this.state = {
       fullpageSet: false,
-      fullpage: null,
-
-      ProgressOn: '',
 
       RegionID: 0,
       TotalFootprint: 0,
@@ -53,12 +47,6 @@ class OfficeQuestionnaire extends Component {
       FoodWasted: 1,
 
       QuestionNumber: 1,
-      // Category: 'Office',
-      EmployeeProgress: 0,
-      EnergyProgress: 0,
-      GoodsProgress: 0,
-      EquipmentProgress: 0,
-      FoodProgress: 0,
 
       EmployeeResult: 0,
       EnergyResult: 0,
@@ -76,21 +64,17 @@ class OfficeQuestionnaire extends Component {
     if (this.state.fullpageSet === false) {
       fullpageApi.setAllowScrolling(false)
       this.setState({
-        fullpageSet: true,
-        fullpage: fullpageApi
+        fullpageSet: true
       })
     }
   }
 
-  StartQuestionnaire(fullpageApi) {
+  StartQuestionnaire = (fullpageApi) => {
     /*
         @notice A function to move to the first question and make the progress display visible
         @param fullpageApi: The API necessary to move to different slides
         */
     fullpageApi.moveTo(2, 0)
-    this.setState({
-      ProgressOn: 'active'
-    })
   }
 
   MoveQuestionnaire(fullpage, QuestionNumber) {
@@ -101,32 +85,29 @@ class OfficeQuestionnaire extends Component {
         */
     this.UpdateTotalFootprint()
     if (fullpage.getActiveSlide().isLast) {
-      this.setState({
-        ProgressOn: ''
-      }, () => { fullpage.moveTo(fullpage.getActiveSection().index + 2, 0) })
+      this.EndQuestionnaire(fullpage)
     } else {
       fullpage.moveTo(fullpage.getActiveSection().index + 1, QuestionNumber)
     }
   }
 
-  MoveToPreviousQuestion = (fullpage, QuestionNumber) => {
+  MoveToPreviousQuestion = (fullpage) => {
     /*
         @notice A function to move to the previous
         question when the 'previous question' button is pressed
         @param fullpageApi: The API necessary to move to different slides
-        @param QuestionNumber: Numerical value of current slide
         */
     const ActiveSlide = fullpage.getActiveSlide()
     const ActiveSection = fullpage.getActiveSection()
     if (ActiveSlide.isFirst === false) {
-      fullpage.moveTo(ActiveSection.index + 1, QuestionNumber - 1)
+      fullpage.moveTo(ActiveSection.index + 1, ActiveSlide.index - 1)
+    } else {
+      fullpage.moveTo(ActiveSection.index, 0)
     }
   }
 
-  EndQuestionnaire(fullpage) {
-    this.setState({
-      ProgressOn: ''
-    }, () => { fullpage.moveTo(fullpage.getActiveSection().index + 2, 0) })
+  EndQuestionnaire = (fullpage) => {
+    fullpage.moveTo(fullpage.getActiveSection().index + 2, 0)
   }
 
   UpdateRegion(RegionID) {
@@ -152,47 +133,6 @@ class OfficeQuestionnaire extends Component {
   }
 */
 
-  UpdateProgress(QuestionNumber) {
-    /*
-        @notice A function to update the circular progress display
-        @param QuestionNumber: Numerical representation of current question
-        @param Category: String representation of current question category
-        */
-    const { Category } = OfficeQuestionnaireData.Questions[QuestionNumber + 1]
-
-    const TotalNumberOfQuestions = 17 // TO-DO Remove hard-coded value
-    const Percentage = (QuestionNumber / TotalNumberOfQuestions) * 100
-    switch (Category) {
-    case 'Employees':
-      this.setState({
-        EmployeeProgress: Percentage
-      })
-      break
-    case 'Office':
-      this.setState({
-        EnergyProgress: Percentage
-      })
-      break
-    case 'Goods & Services':
-      this.setState({
-        GoodsProgress: Percentage
-      })
-      break
-    case 'Equipment':
-      this.setState({
-        EquipmentProgress: Percentage
-      })
-      break
-    case 'Food':
-      this.setState({
-        FoodProgress: Percentage
-      })
-      break
-    default:
-      break
-    }
-  }
-
   ReturnQuestion(QuestionNumber, RegionID, fullpageApi) {
     /*
         @notice A function to return the React components based on the question number
@@ -209,7 +149,7 @@ class OfficeQuestionnaire extends Component {
           backgroundSize: 'cover'
         }}
       >
-        <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
+        <Grid container direction="column" justifyContent="center" alignItems="center" spacing={3}>
           <Grid item xs>
             <QuestionContainer
               QuestionNumber={QuestionNumber}
@@ -220,13 +160,24 @@ class OfficeQuestionnaire extends Component {
             />
           </Grid>
           <Grid item xs>
-            <Button
-              variant="contained"
-              className="question-button"
-              onClick={() => { this.MoveQuestionnaire(fullpageApi, QuestionNumber) }}
-            >
-              NEXT QUESTION
-            </Button>
+            <Grid container direction="row" justifyContent="center" alignItems="center">
+              <Grid item md={12} xs={12}>
+                <Button
+                  variant="contained"
+                  className="question-button"
+                  onClick={() => { this.MoveQuestionnaire(fullpageApi, QuestionNumber) }}
+                >
+                  NEXT QUESTION
+                </Button>
+              </Grid>
+              <Grid item md={12} xs={12}>
+                <Button
+                  onClick={() => { this.MoveToPreviousQuestion(fullpageApi, QuestionNumber) }}
+                >
+                  Previous Question
+                </Button>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </div>
@@ -309,7 +260,6 @@ class OfficeQuestionnaire extends Component {
       },)
       break
     case 12:
-      console.log('CANTEEN', footprintAddition)
       if (footprintAddition === 1) {
         fullpageApi.moveTo(2, 12)
       } else if (footprintAddition === 0) {
@@ -452,211 +402,15 @@ class OfficeQuestionnaire extends Component {
       TotalFootprint,
       RegionID,
       QuestionNumber,
-      EmployeeProgress,
-      EnergyProgress,
-      GoodsProgress,
-      EquipmentProgress,
-      FoodProgress,
       EmployeeResult,
       EnergyResult,
       GoodsResult,
       EquipmentResult,
-      FoodResult,
-      fullpage,
-      ProgressOn
+      FoodResult
     } = this.state
 
-    /*
-    const data = [
-      {
-        data: {
-          office: EmployeeResult,
-          energy: EnergyResult,
-          goods: GoodsResult,
-          equipment: EquipmentResult,
-          food: FoodResult
-        },
-        meta: { color: '#fffcfc' }
-      }
-    ]
-
-
-    const captions = {
-      // columns
-      office: 'Office',
-      energy: 'Energy',
-      goods: 'Goods',
-      equipment: 'Equipment',
-      food: 'Food'
-    }
-    const FootprintPerCapita = TotalEmployeeFootprint / TotalEmployeeNumber
-    */
     return (
       <div className={styles}>
-        {/*
-        <div className={`menu-buttons-${ProgressOn}`}>
-          <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
-            <Grid item xs={2}>
-              <Button className="menu-button" onClick={() => { fullpage.moveTo(2, 0) }}>
-                EMPLOYEES
-              </Button>
-            </Grid>
-            <Grid item xs={2}>
-              <Button className="menu-button" onClick={() => { fullpage.moveTo(2, 1) }}>
-                ENERGY
-              </Button>
-            </Grid>
-            <Grid item xs={2}>
-              <Button className="menu-button" onClick={() => { fullpage.moveTo(2, 8) }}>
-                EQUIPMENT
-              </Button>
-            </Grid>
-            <Grid item xs={2}>
-              <Button className="menu-button"onClick={() => { fullpage.moveTo(2, 12) }}>
-                FOOD
-              </Button>
-            </Grid>
-            <Grid item xs={2}>
-              <Button className="menu-button" onClick={() => { fullpage.moveTo(2, 17) }}>
-                GOODS
-              </Button>
-            </Grid>
-          </Grid>
-        </div>
-        */}
-        <div className={`progress-icon${ProgressOn}`}>
-          <Grid container direction="column" alignItems="center" justifyContent="center">
-            <Grid item xs>
-              <Typography className="progress-text">
-                YOUR <strong>CARBON</strong> TOTAL
-              </Typography>
-            </Grid>
-          </Grid>
-          <div className="circular-progress-background">
-            <Grid container direction="column" alignItems="center" justifyContent="center">
-              <Grid item xs>
-                <CircularProgress
-                  style={{
-                    color: 'lightGrey'
-                  }}
-                  variant="determinate"
-                  size={120}
-                  thickness={4}
-                  value={100}
-                />
-              </Grid>
-            </Grid>
-          </div>
-          <div className="circular-progress-employees">
-            <Grid container direction="column" alignItems="center" justifyContent="center">
-              <Grid item xs>
-                <CircularProgress
-                  style={{
-                    color: '#33972d',
-                    opacity: 1
-                  }}
-                  variant="determinate"
-                  size={120}
-                  thickness={4}
-                  value={EmployeeProgress}
-                />
-              </Grid>
-            </Grid>
-          </div>
-          <div className="circular-progress-energy">
-            <Grid container direction="column" alignItems="center" justifyContent="center">
-              <Grid item xs>
-                <CircularProgress
-                  style={{
-                    color: '#33972d',
-                    opacity: 0.7
-                  }}
-                  variant="determinate"
-                  size={120}
-                  thickness={4}
-                  value={EnergyProgress}
-                />
-              </Grid>
-            </Grid>
-          </div>
-          <div className="circular-progress-goods">
-            <Grid container direction="column" alignItems="center" justifyContent="center">
-              <Grid item xs>
-                <CircularProgress
-                  style={{
-                    color: '#33972d',
-                    opacity: 0.4
-                  }}
-                  variant="determinate"
-                  size={120}
-                  thickness={4}
-                  value={GoodsProgress}
-                />
-              </Grid>
-            </Grid>
-          </div>
-          <div className="circular-progress-equipment">
-            <Grid container direction="column" alignItems="center" justifyContent="center">
-              <Grid item xs>
-                <CircularProgress
-                  style={{
-                    color: '#33972d',
-                    opacity: 0.1
-                  }}
-                  variant="determinate"
-                  size={120}
-                  thickness={4}
-                  value={EquipmentProgress}
-                />
-              </Grid>
-            </Grid>
-          </div>
-          <div className="circular-progress-food">
-            <Grid container direction="column" alignItems="center" justifyContent="center">
-              <Grid item xs>
-                <CircularProgress
-                  style={{
-                    color: '#33972d',
-                    opacity: 0.1
-                  }}
-                  variant="determinate"
-                  size={120}
-                  thickness={4}
-                  value={FoodProgress}
-                />
-              </Grid>
-            </Grid>
-          </div>
-          <div className="footprint-display">
-            <h2 className="footprint-text"> {TotalFootprint.toFixed(1)} </h2>
-            <h4 style={{ marginTop: 0 }}> t CO2 e </h4>
-          </div>
-        </div>
-
-        {/*
-        <div className={`category-display-${ProgressOn}`}>
-          <h2 className="category-text"> {Category} </h2>
-        </div>
-        */}
-
-        <div className={`previous-button-${ProgressOn}`}>
-          <Grid container direction="row" alignItems="center" justifyContent="center">
-            <Grid item xs>
-              <Button
-                onClick={() => { this.MoveToPreviousQuestion(fullpage, QuestionNumber) }}
-              >
-                Previous Question
-              </Button>
-            </Grid>
-            {/*
-            <Grid item xs>
-              <a href="mailto:corporate@creol.io" style={{ textAlign: 'center' }}>
-                Please contact Creol if a personalised calculator is required for your business
-              </a>
-            </Grid>
-            */}
-          </Grid>
-        </div>
         <ReactFullpage
           pluginWrapper={this.pluginWrapper}
           licenseKey="0628BF63-A12B4E50-ADE30A94-A3F386A1"
@@ -683,7 +437,7 @@ class OfficeQuestionnaire extends Component {
                 <ReactFullpage.Wrapper>
                   <div className="section">
                     <div className="slide">
-                      <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
+                      <Grid container direction="column" justifyContent="center" alignItems="center" spacing={1}>
                         <Grid item xs>
                           <h2 style={{ marginBottom: 0 }}> CALCULATE YOUR COMPANY FOOTPRINT </h2>
                         </Grid>
@@ -704,6 +458,7 @@ class OfficeQuestionnaire extends Component {
                         <RegionSelect
                           displayText={false}
                           onChange={(region) => { this.UpdateRegion(region) }}
+                          RegionID={RegionID}
                         />
                       </div>
                     </div>

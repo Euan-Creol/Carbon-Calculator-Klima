@@ -71,7 +71,7 @@ class Question extends Component {
 }
 
 Question.propTypes = {
-  QuestionOptions: PropTypes.arrayOf(PropTypes.string).isRequired
+  QuestionOptions: PropTypes.arrayOf(PropTypes.array).isRequired
 }
 
 export default Question

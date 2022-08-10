@@ -137,7 +137,7 @@ class QuestionContainer extends Component {
       />)
     case 'Multiple Inputs':
       return (
-        <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
+        <Grid container direction="column" justifyContent="center" alignItems="center" spacing={1}>
           <Grid item xs>
             <NumberInput
               InputLabel={RegionOptions[1].Input1[0][0]}
@@ -210,13 +210,13 @@ class QuestionContainer extends Component {
     const { QuestionNumber, RegionID } = this.props
     return (
       <div className={styles}>
-        <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
+        <Grid container direction="column" justifyContent="center" alignItems="center" spacing={1}>
           <Grid item xs={12} md={10}>
             <Card
               className="question-card"
             >
-              <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
-                <Grid item xs={10} md={10}>
+              <Grid container direction="column" justifyContent="center" alignItems="center" spacing={1}>
+                <Grid item xs={12} md={10}>
                   {this.ReturnQuestionContent(QuestionNumber, RegionID, this.props)}
                 </Grid>
               </Grid>

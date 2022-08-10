@@ -119,7 +119,7 @@ class MultipleNumberInput extends Component {
 }
 
 MultipleNumberInput.propTypes = {
-  InputData: PropTypes.arrayOf(PropTypes.string).isRequired
+  InputData: PropTypes.arrayOf(PropTypes.array).isRequired
 }
 
 export default MultipleNumberInput
