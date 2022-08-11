@@ -68,7 +68,7 @@ class ResultsSection extends Component {
       }
 
       return (
-        <Grid container direction="row" alignItems="center" justifyContent="center">
+        <Grid container direction="row" alignItems="center" justifyContent="center" key={name}>
           <Grid item xs={6} md={6}>
             <Grid container direction="column" alignItems="flex-start" justifyContent="flex-start" style={{ textAlign: 'left' }}>
               <Grid item xs>
@@ -150,8 +150,9 @@ class ResultsSection extends Component {
                           }}
                         >
                           {resultData.map((entry, index) => (
+
                             <Cell
-                              // key = {`cell-${index}`}
+                              key={`cell-${entry}`}
                               fill={COLOURS[index % COLOURS.length]}
                             />
                           ))}

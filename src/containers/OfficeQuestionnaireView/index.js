@@ -46,8 +46,6 @@ class OfficeQuestionnaire extends Component {
       LocallySourced: 1,
       FoodWasted: 1,
 
-      QuestionNumber: 1,
-
       EmployeeResult: 0,
       EnergyResult: 0,
       GoodsResult: 0,
@@ -291,9 +289,6 @@ class OfficeQuestionnaire extends Component {
       }, () => { this.UpdateTotalFootprint() })
       break
     }
-    this.setState({
-      QuestionNumber
-    })
   }
 
   UpdateTotalFootprint() {
@@ -401,7 +396,6 @@ class OfficeQuestionnaire extends Component {
     const {
       TotalFootprint,
       RegionID,
-      QuestionNumber,
       EmployeeResult,
       EnergyResult,
       GoodsResult,
@@ -424,8 +418,6 @@ class OfficeQuestionnaire extends Component {
           scrollBar={false}
           responsiveWidth={500}
           fadingEffect
-
-          onSlideLeave={() => { this.UpdateProgress(QuestionNumber) }}
 
           render={({ fullpageApi }) => {
             if (fullpageApi !== undefined && !this.state.fullpageApi) {

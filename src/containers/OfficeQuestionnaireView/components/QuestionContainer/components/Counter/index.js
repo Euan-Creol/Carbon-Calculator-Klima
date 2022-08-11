@@ -49,16 +49,16 @@ class Counter extends Component {
 
     return CounterOptions.map(Array => (
       <div key={Array[0]}>
-        <Grid container direction="row" justify="center" alignItems="center" spacing={2} style={{ maxHeight: 70 }}>
+        <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2} style={{ maxHeight: 70 }}>
           <Grid item xs={this.ReturnGridSize(SelectOptions)}>
-            <Grid container direction="row" justify="flex-end" alignItems="center">
+            <Grid container direction="row" justifyContent="flex-end" alignItems="center">
               <Grid className="option-text" item xs={12} md={6}>
                 <h2 className="option-label">{Array[0]}</h2>
               </Grid>
             </Grid>
           </Grid>
           <Grid className="option-button" item xs>
-            <Grid container direction="row" justify="flex-start" alignItems="flex-start">
+            <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start">
               <Grid className="option-button" item xs={6} md={6}>
                 <ButtonGroup size="large" variant="outlined" aria-label="counter" className="counter">
                   <Button onClick={() => { this.UpdateCounter(Array, -1, props) }} className="counter-button">
@@ -81,7 +81,7 @@ class Counter extends Component {
   }
 
   ReturnGridSize = (SelectOptions) => {
-    if (SelectOptions === undefined) {
+    if (SelectOptions === null) {
       return 6
     }
     return 3
@@ -95,7 +95,7 @@ class Counter extends Component {
          @param props: Required to pass state to parent component
          @return React component of the select options
           */
-    if (SelectOptions !== undefined) {
+    if (SelectOptions !== null) {
       return (
         <Grid item xs={3}>
           <Selection
@@ -419,7 +419,10 @@ class Counter extends Component {
 
 Counter.propTypes = {
   CounterOptions: PropTypes.arrayOf(PropTypes.array).isRequired,
-  SelectOptions: PropTypes.arrayOf(PropTypes.array).isRequired
+  SelectOptions: PropTypes.arrayOf(PropTypes.array)
+}
+Counter.defaultProps = {
+  SelectOptions: null
 }
 
 export default Counter

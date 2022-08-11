@@ -18,7 +18,7 @@ class Footer extends Component {
     return (
       <div className={styles}>
         <BottomNavigation>
-          <Grid container className="second-btn" alignContent="center" justify="center" direction="row">
+          <Grid container className="second-btn" alignContent="center" justifyContent="center" direction="row">
             <OpenIconSpeedDial color="primary" className="second-btn" history={history} />
           </Grid>
         </BottomNavigation>

@@ -175,7 +175,7 @@ class EmailSignup extends Component {
                     Region,
                     RegionFootprint)}
                 >
-                  <Grid container direction="column" justify="center" alignItems="center" spacing={3}>
+                  <Grid container direction="column" justifyContent="center" alignItems="center" spacing={3}>
                     <Grid item xs>
                       <TextValidator
                         label="Email"

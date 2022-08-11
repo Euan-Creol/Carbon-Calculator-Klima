@@ -112,6 +112,8 @@ class QuestionContainer extends Component {
     case 'Select':
       return (<Selection
         SelectOptions={RegionOptions[1]}
+        DefaultValue=""
+        DefaultBool={false}
         onChange={footprintAddition =>
           this.UpdateQuestionFootprint(footprintAddition, 1, props)}
       />)

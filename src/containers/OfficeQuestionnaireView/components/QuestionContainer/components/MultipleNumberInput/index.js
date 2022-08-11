@@ -28,7 +28,7 @@ class MultipleNumberInput extends Component {
       */
     return InputData.map(array => (
       <Grid item xs={12} md={4} key={array[0][0]}>
-        <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
+        <Grid container direction="column" justifyContent="center" alignItems="center" spacing={1}>
           <Grid item xs>
             {this.DetermineImage(array[0][0])}
           </Grid>
@@ -110,7 +110,7 @@ class MultipleNumberInput extends Component {
     const { InputData } = this.props
     return (
       <div className={styles}>
-        <Grid container direction="row" justify="center" alignItems="center" spacing={1}>
+        <Grid container direction="row" justifyContent="center" alignItems="center" spacing={1}>
           {this.ReturnComponents(InputData, this.props)}
         </Grid>
       </div>

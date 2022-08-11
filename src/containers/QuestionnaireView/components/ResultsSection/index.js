@@ -82,38 +82,40 @@ class ResultsSection extends Component {
       }
 
       return (
-        <Grid container direction="row" alignItems="center" justifyContent="center">
-          <Grid item xs={6} md={6}>
-            <Grid container direction="column" alignItems="flex-start" justifyContent="flex-start" style={{ textAlign: 'left' }}>
-              <Grid item xs>
-                <h4
-                  style={{
-                    marginTop: 0, marginBottom: 0, fontSize: '14pt', color: 'grey', fontWeight: categoryTextWeight
-                  }}
-                  className="category-text"
-                >
-                  {name.toUpperCase()}
-                </h4>
+        <div key={name}>
+          <Grid container direction="row" alignItems="center" justifyContent="center">
+            <Grid item xs={6} md={6}>
+              <Grid container direction="column" alignItems="flex-start" justifyContent="flex-start" style={{ textAlign: 'left' }}>
+                <Grid item xs>
+                  <h4
+                    style={{
+                      marginTop: 0, marginBottom: 0, fontSize: '14pt', color: 'grey', fontWeight: categoryTextWeight
+                    }}
+                    className="category-text"
+                  >
+                    {name.toUpperCase()}
+                  </h4>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={6} md={6}>
+              <Grid container direction="column" alignItems="flex-end" justifyContent="flex-end" style={{ textAlign: 'right' }}>
+                <Grid item xs>
+                  <h4
+                    style={{
+                      marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
+                    }}
+                  >
+                    {categoryFootprint.toFixed(1)} |
+                    <strong>
+                      {percentageOfTotal.toFixed(1)}%
+                    </strong>
+                  </h4>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={6} md={6}>
-            <Grid container direction="column" alignItems="flex-end" justifyContent="flex-end" style={{ textAlign: 'right' }}>
-              <Grid item xs>
-                <h4
-                  style={{
-                    marginTop: 0, marginBottom: 0, fontSize: '14pt', fontWeight: 400
-                  }}
-                >
-                  {categoryFootprint.toFixed(1)} |
-                  <strong>
-                    {percentageOfTotal.toFixed(1)}%
-                  </strong>
-                </h4>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+        </div>
       )
     }
 
