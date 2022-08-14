@@ -1225,7 +1225,7 @@ class QuestionnaireView extends Component {
           <Grid container direction="row">
             <Grid item xs>
               <ButtonGroup variant="text" style={{ color: 'grey' }}>
-                <Button className="footer-button" onClick={() => { window.location.href = 'https://offset.creol.io/#/office/' }}>Business Calculator</Button>
+                <Button className="footer-button" onClick={() => { window.location.href = 'https://klima.creol.io/#/office' }}>Business Calculator</Button>
                 <Button className="footer-button" onClick={() => { window.location.href = 'https://www.klimadao.finance/' }}>Klima Dao</Button>
                 <Button className="footer-button" onClick={() => { window.location.href = 'https://app.klimadao.finance/#/stake' }}>App</Button>
                 <Button className="footer-button" onClick={() => { window.location.href = 'https://docs.klimadao.finance/' }}>Docs</Button>
